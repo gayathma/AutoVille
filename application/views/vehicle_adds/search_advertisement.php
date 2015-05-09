@@ -153,66 +153,130 @@
                         </fieldset>
                         <!--End Search Filter-->
 
-                        <fieldset id="loan-calculator" class="grey-corner-box">
-                            <legend><span class="bold">Loan</span> calculator</legend>
-                            <ul>
-                                <li>
-                                    <label for="loan-amount">Loan Amount:</label>
-                                    <select id="loan-amount">
-                                        <option value="0" selected="selected">0.00 Euro</option>
-                                        <option value="1000">1000.00 Euro</option>
-                                        <option value="5000">5000.00 Euro</option>
-                                        <option value="10000">10000.00 Euro</option>
-                                    </select>							
-                                </li>
-                                <li>
-                                    <label for="down-payment">Down Payment:</label>
-                                    <select id="down-payment">
-                                        <option value="0" selected="selected">0.00 Euro</option>
-                                        <option value="1000">1000.00 Euro</option>
-                                        <option value="5000">5000.00 Euro</option>
-                                        <option value="10000">10000.00 Euro</option>
-                                    </select>							
-                                </li>
-                                <li>
-                                    <label for="annual-rate">Annual Rate:</label>
-                                    <select id="annual-rate">
-                                        <option value="0" selected="selected">0.00 %</option>
-                                        <option value="0.1">10.00 %</option>
-                                        <option value="0.2">20.00 %</option>
-                                        <option value="0.3">30.00 %</option>
-                                    </select>							
-                                </li>
-                                <li>
-                                    <label for="loan-period">Loan Period:</label>
-                                    <select id="loan-period">
-                                        <option value="3" selected="selected">3 Years</option>
-                                        <option value="1">1 Year</option>
-                                        <option value="2">2 Years</option>
-                                        <option value="3">4 Years</option>
-                                    </select>
-                                </li>
-                                <li>
-                                    <div class="submit-button"><input type="submit" value="calculate" /></div>
-                                </li>
-                                <li class="rate-value">
-                                    <p>Rate value: <span class="amount-value">0,00</span></p>
-                                </li>
-                            </ul>							
-                        </fieldset>
-                    </form>
+                        <!--                        <fieldset id="loan-calculator" class="grey-corner-box">
+                                                    <legend><span class="bold">Loan calculator</span> </legend>-->
+                        <!--                            <ul>
+                                                        <li>
+                                                            <label for="loan-amount">Loan Amount:</label>
+                                                            <select id="loan-amount">
+                                                                <option value="0" selected="selected">0.00 Euro</option>
+                                                                <option value="1000">1000.00 Euro</option>
+                                                                <option value="5000">5000.00 Euro</option>
+                                                                <option value="10000">10000.00 Euro</option>
+                                                            </select>							
+                                                        </li>
+                                                        <li>
+                                                            <label for="down-payment">Down Payment:</label>
+                                                            <select id="down-payment">
+                                                                <option value="0" selected="selected">0.00 Euro</option>
+                                                                <option value="1000">1000.00 Euro</option>
+                                                                <option value="5000">5000.00 Euro</option>
+                                                                <option value="10000">10000.00 Euro</option>
+                                                            </select>							
+                                                        </li>
+                                                        <li>
+                                                            <label for="annual-rate">Annual Rate:</label>
+                                                            <select id="annual-rate">
+                                                                <option value="0" selected="selected">0.00 %</option>
+                                                                <option value="0.1">10.00 %</option>
+                                                                <option value="0.2">20.00 %</option>
+                                                                <option value="0.3">30.00 %</option>
+                                                            </select>							
+                                                        </li>
+                                                        <li>
+                                                            <label for="loan-period">Loan Period:</label>
+                                                            <select id="loan-period">
+                                                                <option value="3" selected="selected">3 Years</option>
+                                                                <option value="1">1 Year</option>
+                                                                <option value="2">2 Years</option>
+                                                                <option value="3">4 Years</option>
+                                                            </select>
+                                                        </li>
+                                                        <li>
+                                                            <div class="submit-button"><input type="submit" value="calculate" /></div>
+                                                        </li>
+                                                        <li class="rate-value">
+                                                            <p>Rate value: <span class="amount-value">0,00</span></p>
+                                                        </li>
+                                                    </ul>							-->
+                        <div class="small-12 large-3 columns loan-calculator" data-layer-category="loan-calculator">
+                            <h3>Loan Calculator</h3>
+                            <div class="payload">
+                                <div class="row options">
+                                    <div class="form-group">
+                                        <label>Down Payment</label>
+                                        <div class="ui-slider" id="price-slider" data-value-min="0" data-value-max="100000000"  data-step="10"><!--data-currency="$" data-currency-placement="before" data-value-type="price"-->
+                                            <div class="values clearfix">
+                                                <input class="value-min" id="minprice" name="minprice" readonly>
+                                                <input class="value-max" id="maxprice" name="maxprice" readonly>
+                                            </div>
+                                            
+                                            <div class="element"></div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <label>Loan Term (Months)</label>
+                                        <div class="ui-slider" id="price-slider" data-value-min="12" data-value-max="120"  data-step="10"><!--data-currency="$" data-currency-placement="before" data-value-type="price"-->
+                                            <div class="values clearfix">
+                                                <input class="value-min" id="minprice" name="minprice" readonly>
+                                                <input class="value-max" id="maxprice" name="maxprice" readonly>
+                                            </div>
+                                            <div class="element"></div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <label>Interest Rate %</label>
+                                        <div class="ui-slider" id="price-slider" data-value-min="0" data-value-max="100"  data-step="10"><!--data-currency="$" data-currency-placement="before" data-value-type="price"-->
+                                            <div class="values clearfix">
+                                                <input class="value-min" id="minprice" name="minprice" readonly>
+                                                <input class="value-max" id="maxprice" name="maxprice" readonly>
+                                            </div>
+                                            <div class="element"></div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                </div>
+                            </div>
+                            <div class="details">
+                                <div class="row">
+                                    <div class="medium-8 large-8 column" data-bank-period="1">
+                                        <div class="car-value column">
+                                            <label>Car Value:</label>
+                                            <output>Rs. 119,900</output>
+                                        </div>
+                                        <br>
+                                        <div class="monthly-instalment column">
+                                            <label>Monthly Installment:</label>
+                                            <div class="output">
+<!--                                                <label> Rs</label>-->
+                                                <output id="monthly-payment">Rs. 5,524.79</output>
+                                            </div>
+                                            <div class="medium-1 large-1 columns">
+                                                <i class="icon-info-circled" data-selector="monthly-instalment-tooltip" data-tooltip="" aria-haspopup="true" title=""></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                 </div>
 
-                <div class="results-list one-half col-701" id="search_result">
+                <!--</fieldset>-->
+                </form>
+            </div>
 
-                    <?php echo $this->load->view('vehicle_adds/search_result'); ?>
+            <div class="results-list one-half col-701" id="search_result">
 
-                </div>
-
+                <?php echo $this->load->view('vehicle_adds/search_result'); ?>
 
             </div>
+
+
         </div>
-    </section><!--#search-list-->
+</div>
+</section><!--#search-list-->
 
 </div><!--#page-content-->
 

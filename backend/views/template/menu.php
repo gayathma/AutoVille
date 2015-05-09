@@ -1,5 +1,5 @@
 
-<ul class="sidebar-menu" id="nav-accordion">
+
     <li>
         <a  href="<?php echo site_url(); ?>/dashboard" id="dashboard_menu">
             <i class="fa fa-dashboard"></i>
@@ -18,7 +18,7 @@
         </ul>
     </li>
 
-    <?php
+   <?php
     $perm = Access_controll_service::check_access('ADD_ADVERTISEMENT');
     if ($perm) {
         ?>
@@ -89,5 +89,5 @@
 
 
 
-</ul>
+
 
