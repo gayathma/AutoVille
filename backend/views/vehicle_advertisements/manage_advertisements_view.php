@@ -20,9 +20,13 @@
                         </select>
                     </div>
                     <div class="col-lg-7">
+                        <div class="col-md-5">
                         <input type="text" placeholder="Search Here" class="input-sm form-control">
+                        </div>
+                        <div class="col-md-2">
                         <span class="input-group-btn">
                             <button type="button" class="btn btn-sm btn-success"> Go!</button> </span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -137,7 +141,7 @@
         if (confirm(condition)) {
             $.ajax({
                 type: "POST",
-                url: site_url + '/vehicle_advertisement/change_publish_status',
+                url: site_url + '/vehicle_advertisements/change_publish_status',
                 data: "id=" + advertisement_id + "&value=" + value,
                 success: function(msg) {
                     if (msg == 1) {
