@@ -199,13 +199,13 @@
                                                             <p>Rate value: <span class="amount-value">0,00</span></p>
                                                         </li>
                                                     </ul>							-->
-                        <div class="small-12 large-3 columns loan-calculator" data-layer-category="loan-calculator">
+<!--                        <div class="small-12 large-3 columns loan-calculator" data-layer-category="loan-calculator">
                             <h3>Loan Calculator</h3>
                             <div class="payload">
                                 <div class="row options">
                                     <div class="form-group">
                                         <label>Down Payment</label>
-                                        <div class="ui-slider" id="price-slider" data-value-min="0" data-value-max="100000000"  data-step="10"><!--data-currency="$" data-currency-placement="before" data-value-type="price"-->
+                                        <div class="ui-slider" id="price-slider" data-value-min="0" data-value-max="100000000"  data-step="10">data-currency="$" data-currency-placement="before" data-value-type="price"
                                             <div class="values clearfix">
                                                 <input class="value-min" id="minprice" name="minprice" readonly>
                                                 <input class="value-max" id="maxprice" name="maxprice" readonly>
@@ -217,7 +217,7 @@
                                     <br>
                                     <div class="form-group">
                                         <label>Loan Term (Months)</label>
-                                        <div class="ui-slider" id="price-slider" data-value-min="12" data-value-max="120"  data-step="10"><!--data-currency="$" data-currency-placement="before" data-value-type="price"-->
+                                        <div class="ui-slider" id="price-slider" data-value-min="12" data-value-max="120"  data-step="10">data-currency="$" data-currency-placement="before" data-value-type="price"
                                             <div class="values clearfix">
                                                 <input class="value-min" id="minprice" name="minprice" readonly>
                                                 <input class="value-max" id="maxprice" name="maxprice" readonly>
@@ -228,7 +228,7 @@
                                     <br>
                                     <div class="form-group">
                                         <label>Interest Rate %</label>
-                                        <div class="ui-slider" id="price-slider" data-value-min="0" data-value-max="100"  data-step="10"><!--data-currency="$" data-currency-placement="before" data-value-type="price"-->
+                                        <div class="ui-slider" id="price-slider" data-value-min="0" data-value-max="100"  data-step="10">data-currency="$" data-currency-placement="before" data-value-type="price"
                                             <div class="values clearfix">
                                                 <input class="value-min" id="minprice" name="minprice" readonly>
                                                 <input class="value-max" id="maxprice" name="maxprice" readonly>
@@ -250,7 +250,7 @@
                                         <div class="monthly-instalment column">
                                             <label>Monthly Installment:</label>
                                             <div class="output">
-<!--                                                <label> Rs</label>-->
+                                                <label> Rs</label>
                                                 <output id="monthly-payment">Rs. 5,524.79</output>
                                             </div>
                                             <div class="medium-1 large-1 columns">
@@ -261,7 +261,7 @@
                                 </div>
                             </div>
                         </div>
-                </div>
+                </div>-->
 
                 <!--</fieldset>-->
                 </form>
