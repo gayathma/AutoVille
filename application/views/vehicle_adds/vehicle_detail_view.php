@@ -380,10 +380,7 @@
         $.ajax({
             type: "POST",
             url: site_url + '/vehicle_search/search_advertisements',
-            data: "manufacturer=" + manufacturer + "&model=" + model + "&body_type=" + body_type + "&maxyear=" + maxyear +
-                    "&minyear=" + minyear + "&fuel_type=" + fuel_type + "&sale_type=" + sale_type + "&color=" + color +
-                    "&maxprice=" + maxprice + "&minprice=" + minprice + "&transmission=" + transmission +
-                    "&kilometers=" + kilometers + "&location=" + location + "&keyword=" + keyword + "&view_no=" + view_no,
+            data:
             success: function (msg) {
                 $('#search_result').html(msg);
             }
