@@ -266,6 +266,8 @@
                 <!--</fieldset>-->
                 </form>
             </div>
+                
+                
 
             <div class="results-list one-half col-701" id="search_result">
 
