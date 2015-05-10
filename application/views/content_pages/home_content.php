@@ -175,7 +175,7 @@
                 <div class="item featured">
                     <div class="image">
                         <div class="quick-view" id="1"><i class="fa fa-eye"></i><span>Quick View</span></div>
-                        <a href="item-detail.html">
+                        <a href="<?php echo site_url() ?>/vehicle_advertisements/vehicle_advertisement_detail_view/<?php echo $result->id; ?>">
                             <div class="overlay">
                                 <div class="inner">
                                     <div class="content">
