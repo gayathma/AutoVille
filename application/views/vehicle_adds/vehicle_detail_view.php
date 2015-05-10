@@ -54,12 +54,12 @@
                         </a>
                     </div>
                     <ul class="images-navigation">
-                        <?php foreach ($images as $image) {?>
-                        <li>
-                            <a href="<?php echo base_url() . 'uploads/vehicle_images/vh_' . $vehicle_detail->id . '/' . $image->image_path; ?>">
-                                <img src="<?php echo base_url() . 'uploads/vehicle_images/vh_' . $vehicle_detail->id . '/thumbnail/' . $image->image_path; ?>" alt="Thumb Car" />
-                            </a>
-                        </li>
+                        <?php foreach ($images as $image) { ?>
+                            <li>
+                                <a href="<?php echo base_url() . 'uploads/vehicle_images/vh_' . $vehicle_detail->id . '/' . $image->image_path; ?>">
+                                    <img src="<?php echo base_url() . 'uploads/vehicle_images/vh_' . $vehicle_detail->id . '/thumbnail/' . $image->image_path; ?>" alt="Thumb Car" />
+                                </a>
+                            </li>
                         <?php } ?>
                     </ul>
                     <div id="preloader"></div>
@@ -152,152 +152,243 @@
 
 
                 <div class="one-half col-241 search-area">
-                    <form id="search-filters">
-                        <fieldset id="loan-calculator" class="grey-corner-box">
-                            <legend><span class="bold">Loan</span> calculator</legend>
-                            <ul>
-                                <li>
-                                    <label for="loan-amount">Loan Amount:</label>
-                                    <select id="loan-amount">
-                                        <option value="0" selected="selected">0.00 Euro</option>
-                                        <option value="1000">1000.00 Euro</option>
-                                        <option value="5000">5000.00 Euro</option>
-                                        <option value="10000">10000.00 Euro</option>
-                                    </select>							
-                                </li>
-                                <li>
-                                    <label for="down-payment">Down Payment:</label>
-                                    <select id="down-payment">
-                                        <option value="0" selected="selected">0.00 Euro</option>
-                                        <option value="1000">1000.00 Euro</option>
-                                        <option value="5000">5000.00 Euro</option>
-                                        <option value="10000">10000.00 Euro</option>
-                                    </select>							
-                                </li>
-                                <li>
-                                    <label for="annual-rate">Annual Rate:</label>
-                                    <select id="annual-rate">
-                                        <option value="0" selected="selected">0.00 %</option>
-                                        <option value="0.1">10.00 %</option>
-                                        <option value="0.2">20.00 %</option>
-                                        <option value="0.3">30.00 %</option>
-                                    </select>							
-                                </li>
-                                <li>
-                                    <label for="loan-period">Loan Period:</label>
-                                    <select id="loan-period">
-                                        <option value="3" selected="selected">3 Years</option>
-                                        <option value="1">1 Year</option>
-                                        <option value="2">2 Years</option>
-                                        <option value="3">4 Years</option>
-                                    </select>
-                                </li>
-                                <li>
-                                    <div class="submit-button"><input type="submit" value="calculate" /></div>
-                                </li>
-                                <li class="rate-value">
-                                    <p>Rate value: <span class="amount-value">0,00</span></p>
-                                </li>
-                            </ul>
-                        </fieldset>
-                    </form>
+                    <!--<form id="search-filters">-->
+                    <!--                        <fieldset id="loan-calculator" class="grey-corner-box">
+                                                <legend><span class="bold">Loan</span> calculator</legend>
+                                                <ul>
+                                                    <li>
+                                                        <label for="loan-amount">Loan Amount:</label>
+                                                        <select id="loan-amount">
+                                                            <option value="0" selected="selected">0.00 Euro</option>
+                                                            <option value="1000">1000.00 Euro</option>
+                                                            <option value="5000">5000.00 Euro</option>
+                                                            <option value="10000">10000.00 Euro</option>
+                                                        </select>							
+                                                    </li>
+                                                    <li>
+                                                        <label for="down-payment">Down Payment:</label>
+                                                        <select id="down-payment">
+                                                            <option value="0" selected="selected">0.00 Euro</option>
+                                                            <option value="1000">1000.00 Euro</option>
+                                                            <option value="5000">5000.00 Euro</option>
+                                                            <option value="10000">10000.00 Euro</option>
+                                                        </select>							
+                                                    </li>
+                                                    <li>
+                                                        <label for="annual-rate">Annual Rate:</label>
+                                                        <select id="annual-rate">
+                                                            <option value="0" selected="selected">0.00 %</option>
+                                                            <option value="0.1">10.00 %</option>
+                                                            <option value="0.2">20.00 %</option>
+                                                            <option value="0.3">30.00 %</option>
+                                                        </select>							
+                                                    </li>
+                                                    <li>
+                                                        <label for="loan-period">Loan Period:</label>
+                                                        <select id="loan-period">
+                                                            <option value="3" selected="selected">3 Years</option>
+                                                            <option value="1">1 Year</option>
+                                                            <option value="2">2 Years</option>
+                                                            <option value="3">4 Years</option>
+                                                        </select>
+                                                    </li>
+                                                    <li>
+                                                        <div class="submit-button"><input type="submit" value="calculate" /></div>
+                                                    </li>
+                                                    <li class="rate-value">
+                                                        <p>Rate value: <span class="amount-value">0,00</span></p>
+                                                    </li>
+                                                </ul>
+                                            </fieldset>-->
 
-                    <div class="grey-corner-box">
-                        <a href="#"><img src="images/image_ads_here.gif" alt="Advertisement" /></a>
+                    <div class="small-12 large-3 columns loan-calculator" data-layer-category="loan-calculator">
+                        <h3>Loan Calculator</h3>
+                        <div class="payload">
+                            <div class="row options">
+                                <div class="form-group">
+                                    <label>Down Payment</label>
+                                    <div class="ui-slider" id="price-slider" data-value-min="0" data-value-max="100000000"  data-step="10"><!--data-currency="$" data-currency-placement="before" data-value-type="price"-->
+                                        <div class="values clearfix">
+                                            <input class="value-min" id="minprice" name="minprice" readonly>
+                                            <input class="value-max" id="maxprice" name="maxprice" readonly>
+                                        </div>
+
+                                        <div class="element"></div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="form-group">
+                                    <label>Loan Term (Months)</label>
+                                    <div class="ui-slider" id="price-slider" data-value-min="12" data-value-max="120"  data-step="10"><!--data-currency="$" data-currency-placement="before" data-value-type="price"-->
+                                        <div class="values clearfix">
+                                            <input class="value-min" id="minmonth" name="minmonth" readonly>
+                                            <input class="value-max" id="maxmonth" name="maxmonth" readonly>
+                                        </div>
+                                        <div class="element"></div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="form-group">
+                                    <label>Interest Rate %</label>
+                                    <div class="ui-slider" id="price-slider" data-value-min="0" data-value-max="100"  data-step="10"><!--data-currency="$" data-currency-placement="before" data-value-type="price"-->
+                                        <div class="values clearfix">
+                                            <input class="value-min" id="minrate" name="minrate" readonly>
+                                            <input class="value-max" id="maxrate" name="maxrate" readonly>
+                                        </div>
+                                        <div class="element"></div>
+                                    </div>
+                                </div>
+                                <br>
+                            </div>
+                        </div>
+                        <div class="details">
+                            <div class="row">
+                                <div class="medium-8 large-8 column" data-bank-period="1">
+                                    <div class="car-value column">
+                                        <label>Car Value:</label>
+                                        <output>Rs.  <?php echo number_format($vehicle_detail->price, 2, '.', ','); ?></output>
+                                    </div>
+                                    <br>
+                                    <div class="monthly-instalment column">
+                                        <label>Monthly Installment:</label>
+                                        <div class="output">
+                                            <!--                                                <label> Rs</label>-->
+                                            <output id="monthly-payment">Rs. <?php echo number_format($vehicle_detail->price, 2, '.', ','); ?></output>
+                                        </div>
+                                        <div class="medium-1 large-1 columns">
+                                            <i class="icon-info-circled" data-selector="monthly-instalment-tooltip" data-tooltip="" aria-haspopup="true" title=""></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                </div>
 
+                <!--</form>-->
+
+                <div class="grey-corner-box">
+                    <a href="#"><img src="images/image_ads_here.gif" alt="Advertisement" /></a>
                 </div>
 
             </div>
 
-            <div class="full-width standard-text-content">
-                <h3><span class="bold">Similar</span> offers</h3>
+        </div>
 
-                <ul class="offer-small list-content">
-                    <li>
-                        <a href="car-details.html">
-                            <img src="images/mercedes-thumb.jpg" alt="offer car" />
-                            <div class="entry-label">
-                                <h4>Mercedes-Benz CLS</h4>
-                                <span class="price-tag">54980 Euro</span>
-                            </div>
-                            <div class="entry-overlay">
-                                <ul class="car-list-details">
-                                    <li>Registration 2002</li>
-                                    <li>3.0 Diesel</li>
-                                    <li>230 HP</li>
-                                    <li>Body Coupe</li>
-                                    <li>120.000 KM</li>							
-                                </ul>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="car-details.html">
-                            <img src="images/mercedes-thumb.jpg" alt="offer car" />
-                            <div class="entry-label">
-                                <h4>Mercedes-Benz CLS</h4>
-                                <span class="price-tag">54980 Euro</span>
-                            </div>
-                            <div class="entry-overlay">
-                                <ul class="car-list-details">
-                                    <li>Registration 2002</li>
-                                    <li>3.0 Diesel</li>
-                                    <li>230 HP</li>
-                                    <li>Body Coupe</li>
-                                    <li>120.000 KM</li>							
-                                </ul>
-                            </div>
-                            <span class="v-sign">V</span>
-                            <span class='dealer-data'>Vehicle Dealer</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="car-details.html">
-                            <img src="images/mercedes-thumb.jpg" alt="offer car" />
-                            <div class="entry-label">
-                                <h4>Mercedes-Benz CLS</h4>
-                                <span class="price-tag">54980 Euro</span>
-                            </div>
-                            <div class="entry-overlay">
-                                <ul class="car-list-details">
-                                    <li>Registration 2002</li>
-                                    <li>3.0 Diesel</li>
-                                    <li>230 HP</li>
-                                    <li>Body Coupe</li>
-                                    <li>120.000 KM</li>							
-                                </ul>
-                            </div>
-                            <span class="v-sign">V</span>
-                            <span class='dealer-data'>Vehicle Dealer</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="car-details.html">
-                            <img src="images/mercedes-thumb.jpg" alt="offer car" />
-                            <div class="entry-label">
-                                <h4>Mercedes-Benz CLS</h4>
-                                <span class="price-tag">54980 Euro</span>
-                            </div>
-                            <div class="entry-overlay">
-                                <ul class="car-list-details">
-                                    <li>Registration 2002</li>
-                                    <li>3.0 Diesel</li>
-                                    <li>230 HP</li>
-                                    <li>Body Coupe</li>
-                                    <li>120.000 KM</li>							
-                                </ul>
-                            </div>
-                            <span class="v-sign">V</span>
-                            <span class='dealer-data'>Vehicle Dealer</span>
-                        </a>
-                    </li>
+        <div class="full-width standard-text-content">
+            <h3><span class="bold">Similar</span> offers</h3>
 
-                </ul>
-            </div>
+            <ul class="offer-small list-content">
+                <li>
+                    <a href="car-details.html">
+                        <img src="images/mercedes-thumb.jpg" alt="offer car" />
+                        <div class="entry-label">
+                            <h4>Mercedes-Benz CLS</h4>
+                            <span class="price-tag">54980 Euro</span>
+                        </div>
+                        <div class="entry-overlay">
+                            <ul class="car-list-details">
+                                <li>Registration 2002</li>
+                                <li>3.0 Diesel</li>
+                                <li>230 HP</li>
+                                <li>Body Coupe</li>
+                                <li>120.000 KM</li>							
+                            </ul>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="car-details.html">
+                        <img src="images/mercedes-thumb.jpg" alt="offer car" />
+                        <div class="entry-label">
+                            <h4>Mercedes-Benz CLS</h4>
+                            <span class="price-tag">54980 Euro</span>
+                        </div>
+                        <div class="entry-overlay">
+                            <ul class="car-list-details">
+                                <li>Registration 2002</li>
+                                <li>3.0 Diesel</li>
+                                <li>230 HP</li>
+                                <li>Body Coupe</li>
+                                <li>120.000 KM</li>							
+                            </ul>
+                        </div>
+                        <span class="v-sign">V</span>
+                        <span class='dealer-data'>Vehicle Dealer</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="car-details.html">
+                        <img src="images/mercedes-thumb.jpg" alt="offer car" />
+                        <div class="entry-label">
+                            <h4>Mercedes-Benz CLS</h4>
+                            <span class="price-tag">54980 Euro</span>
+                        </div>
+                        <div class="entry-overlay">
+                            <ul class="car-list-details">
+                                <li>Registration 2002</li>
+                                <li>3.0 Diesel</li>
+                                <li>230 HP</li>
+                                <li>Body Coupe</li>
+                                <li>120.000 KM</li>							
+                            </ul>
+                        </div>
+                        <span class="v-sign">V</span>
+                        <span class='dealer-data'>Vehicle Dealer</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="car-details.html">
+                        <img src="images/mercedes-thumb.jpg" alt="offer car" />
+                        <div class="entry-label">
+                            <h4>Mercedes-Benz CLS</h4>
+                            <span class="price-tag">54980 Euro</span>
+                        </div>
+                        <div class="entry-overlay">
+                            <ul class="car-list-details">
+                                <li>Registration 2002</li>
+                                <li>3.0 Diesel</li>
+                                <li>230 HP</li>
+                                <li>Body Coupe</li>
+                                <li>120.000 KM</li>							
+                            </ul>
+                        </div>
+                        <span class="v-sign">V</span>
+                        <span class='dealer-data'>Vehicle Dealer</span>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
 
 
-        </div><!--.content-holder-->
-    </section><!--#search-list-->
+</div><!--.content-holder-->
+</section><!--#search-list-->
 
 </div><!--#page-content-->
+
+<script type="text/javascript">
+
+    function calculate_loan() {
+        var maxyear = $('#maxyear').val();
+        var minyear = $('#minyear').val();
+        var minmonth = $('#minmonth').val();
+        var maxmonth = $('#maxmonth').val();
+        var minrate = $('#minrate').val();
+        var maxrate = $('#maxrate').val();
+        
+        $.ajax({
+            type: "POST",
+            url: site_url + '/vehicle_search/search_advertisements',
+            data: "manufacturer=" + manufacturer + "&model=" + model + "&body_type=" + body_type + "&maxyear=" + maxyear +
+                    "&minyear=" + minyear + "&fuel_type=" + fuel_type + "&sale_type=" + sale_type + "&color=" + color +
+                    "&maxprice=" + maxprice + "&minprice=" + minprice + "&transmission=" + transmission +
+                    "&kilometers=" + kilometers + "&location=" + location + "&keyword=" + keyword + "&view_no=" + view_no,
+            success: function (msg) {
+                $('#search_result').html(msg);
+            }
+        });
+    }
+
+
+</script>
