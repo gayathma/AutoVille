@@ -377,6 +377,7 @@
         var minrate = $('#minrate').val();
         var maxrate = $('#maxrate').val();
         
+        
         $.ajax({
             type: "POST",
             url: site_url + '/vehicle_search/search_advertisements',
@@ -386,6 +387,7 @@
             }
         });
     }
+    
 
 
 </script>
