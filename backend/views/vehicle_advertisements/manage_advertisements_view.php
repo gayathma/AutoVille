@@ -12,8 +12,8 @@
                 <div class="form-group">
                     <div class="col-lg-2 col-sm-2">
                         <select class="form-control input-sm m-bot15">
-                            <?php foreach ($reg_users as $result) { ?>
-                                <option id="<?php echo $result->id; ?>"><?php echo $result->name; ?></option>
+                            <?php foreach ($reg_users as $user) { ?>
+                                <option id="<?php echo $user->id; ?>"><?php echo $user->name; ?></option>
                                 <?php
                             }
                             ?>
