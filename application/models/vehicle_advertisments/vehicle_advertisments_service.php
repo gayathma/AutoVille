@@ -270,7 +270,7 @@ class Vehicle_advertisments_service extends CI_Model {
      * get advertisements for a particular logged user
      */
 
-    function get_advertisements_for_user($limit, $start,$user_id) {
+    function get_advertisements_for_user($limit, $start, $user_id) {
 
         $this->db->select('vehicle_advertisements.*,vehicle_images.image_path,'
                 . 'manufacture.name as manufacture,model.name as model,'
@@ -286,7 +286,7 @@ class Vehicle_advertisments_service extends CI_Model {
         $this->db->where('vehicle_advertisements.is_deleted', '0');
         $this->db->where('vehicle_advertisements.added_by', $user_id);
         $this->db->group_by('vehicle_advertisements.id');
-        if ($limit != '' && $start !='') {
+        if ($limit != '' && $start != '') {
             $this->db->limit($limit, $start);
         }
 
@@ -305,11 +305,11 @@ class Vehicle_advertisments_service extends CI_Model {
     }
 
     /*
-     * Get Featured advertisments  
+     * Get Featured advertisments only
      * Author - Nadeesha
      * 
      */
-    
+
     function get_featured_advertisements($limit) {
 
         $this->db->select('vehicle_advertisements.*,vehicle_images.image_path,'
@@ -324,7 +324,7 @@ class Vehicle_advertisments_service extends CI_Model {
         $this->db->join('body_type', 'body_type.id = vehicle_advertisements.body_type_id');
         $this->db->join('vehicle_images', 'vehicle_images.vehicle_id = vehicle_advertisements.id');
         $this->db->where('vehicle_advertisements.is_deleted', '0');
-        $this->db->where('vehicle_advertisements.is_featured','1');
+        $this->db->where('vehicle_advertisements.is_featured', '2');
         $this->db->group_by('vehicle_advertisements.id');
         if ($limit != '') {
             $this->db->limit($limit);
@@ -333,4 +333,7 @@ class Vehicle_advertisments_service extends CI_Model {
         $query = $this->db->get();
         return $query->result();
     }
+
+   
+    
 }

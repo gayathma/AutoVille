@@ -12,7 +12,7 @@
                 <div class="form-group">
                     <div class="col-lg-2 col-sm-2">
                         <select class="form-control input-sm m-bot15">
-                            <?php foreach ($reg_users as $result) { ?>
+                            <?php foreach ($approved_ads as $result) { ?>
                                 <option id="<?php echo $result->id; ?>"><?php echo $result->name; ?></option>
                                 <?php
                             }
@@ -21,11 +21,11 @@
                     </div>
                     <div class="col-lg-7">
                         <div class="col-md-5">
-                        <input type="text" placeholder="Search Here" class="input-sm form-control">
+                            <input type="text" placeholder="Search Here" class="input-sm form-control">
                         </div>
                         <div class="col-md-2">
-                        <span class="input-group-btn">
-                            <button type="button" class="btn btn-sm btn-success"> Go!</button> </span>
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-sm btn-success"> Go!</button> </span>
                         </div>
                     </div>
                 </div>
@@ -44,12 +44,12 @@
                     <th>Color</th>
                     <th>Price</th>
                     <th>Added By</th>
-                    <th>Active Status</th>
-                    <th>Actions</th>
+                    <th>Featured Status</th>
+<!--                    <th>Actions</th>-->
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($results as $result) { ?>
+                <?php foreach ($approved_ads as $result) { ?>
                     <tr id="advertisement_<?php echo $result->id; ?>">
                         <td class="p-name">
                             <a href="project_details.html"><?php echo ucfirst($result->manufacture . ' ' . $result->model . ' ' . $result->year); ?></a>
@@ -78,23 +78,25 @@
                             <?php echo $result->added_by_user; ?>
                         </td>
                         <td>
-                            <?php if ($result->is_published == '1') { ?>
-                                <span class="label label-primary">Active</span>
-                                <a class="btn btn-success btn-xs"  onclick="change_advertisement_status(<?php echo $result->id; ?>, 2, this);"><i class="fa fa-arrow-up " title="Reject Advertisement"></i></a> 
-                            <?php } elseif ($result->is_published == '0') { ?>
+                            <?php if ($result->is_featured == '2') { ?>
+                                <span class="label label-primary">Featured</span>
+                                <a class="btn btn-success btn-xs"  onclick="change_advertisement_status(<?php echo $result->id; ?>, 2, this);"><i class="fa fa-arrow-up " title="Remove Featured"></i></a> 
+                            <?php } elseif ($result->is_featured == '1') { ?>
                                 <span class="label label-default">Pending</span> 
-                                <a class="btn btn-success btn-xs"  onclick="change_advertisement_status(<?php echo $result->id; ?>, 1, this);"><i class="fa fa-arrow-up " title="Approve Advertisement"></i></a> 
+                                <a class="btn btn-success btn-xs"  onclick="change_advertisement_status(<?php echo $result->id; ?>, 1, this);"><i class="fa fa-arrow-up " title="activate Featured"></i></a> 
                             <?php } else { ?>
-                                <span class="label label-danger">Rejected</span>  
-                            <?php } ?>
+                                <span class="label label-danger">Disable</span>  
+                            <?php } ?> 
+
+
 
 
                         </td>
-                        <td>
+    <!--                        <td>
                             <a class="btn btn-danger btn-xs"  onclick="delete_advertisement(<?php echo $result->id; ?>);"><i class="fa fa-trash-o " title="Remove"></i></a>
                             <a href="project_details.html" class="btn btn-info btn-xs"><i class="fa fa-folder" title="View"></i></a>
 
-                        </td>
+                        </td>-->
                     </tr>
 
                     <?php
@@ -108,28 +110,6 @@
 
 
 <script type="text/javascript">
-    //delete advertisement
-    function delete_advertisement(id) {
-
-        if (confirm('Are you sure want to delete this Vehicle Advertisement ?')) {
-
-            $.ajax({
-                type: "POST",
-                url: site_url + '/vehicle_advertisements/delete_advertisement',
-                data: "id=" + id,
-                success: function(msg) {
-                    //alert(msg);
-                    if (msg == 1) {
-                        //document.getElementById(trid).style.display='none';
-                        $('#advertisement_' + id).hide();
-                    }
-                    else if (msg == 2) {
-                        alert('Cannot be deleted as it is already assigned to others. !!');
-                    }
-                }
-            });
-        }
-    }
 
     function change_advertisement_status(advertisement_id, value, element) {
 
@@ -143,12 +123,12 @@
                 type: "POST",
                 url: site_url + '/vehicle_advertisements/change_publish_status',
                 data: "id=" + advertisement_id + "&value=" + value,
-                success: function(msg) {
+                success: function (msg) {
                     if (msg == 1) {
-                        if (value == 1) {
-                            $(element).parent().html('<span class="label label-primary">Active</span><a class="btn btn-success btn-xs"  onclick="change_advertisement_status('+advertisement_id+', 2, this);"><i class="fa fa-arrow-up " title="Reject Advertisement"></i></a> ');
+                        if (value == 2) {
+                            $(element).parent().html('<span class="label label-primary">Featured</span><a class="btn btn-success btn-xs"  onclick="change_advertisement_status(<?php echo $result->id; ?>, 2, this);"><i class="fa fa-arrow-up " title="Remove Featured"></i></a> ');
                         } else {
-                            $(element).parent().html('<span class="label label-danger">Rejected</span> ');
+                            $(element).parent().html('<span class="label label-default">Disable</span> ');
                         }
 
                     } else if (msg == 2) {
@@ -163,7 +143,7 @@
     function reload_advertisements() {
         $('#advertisement_div').html('<center><div class="load-anim"><i id="animate-icon" class="fa fa-spinner fa-3x fa-spin loader-icon-margin"></i></div></center>');
         var x = $('.load-anim').show().delay(5000);
-        $.post(site_url + '/vehicle_advertisements/search_advertisements', {}, function(msg) {
+        $.post(site_url + '/vehicle_advertisements/search_advertisements', {}, function (msg) {
             $('#advertisement_div').html('');
             $('#advertisement_div').html(msg);
             x.fadeOut('slow');

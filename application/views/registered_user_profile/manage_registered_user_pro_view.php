@@ -20,8 +20,8 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label>Name*</label>
-                                        <input class="form-control" type="text" required="" placeholder="" value="<?php echo $user->name; ?>">
-                                        <!--<input name="name" type="text" class="form-control" id="name" placeholder=" " value="<?php echo $user->name; ?>">-->
+                                        <input class="form-control" type="text" required="" placeholder="" value="<?php echo $result->name; ?>">
+                                        <!--<input name="name" type="text" class="form-control" id="name" placeholder=" " value="<?php echo $result->name; ?>">-->
                                     </div>
                                     <div class="col-md-6">
                                         <label>Username</label>

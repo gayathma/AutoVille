@@ -10,49 +10,49 @@
         <div class="form-group">
             <label  class="col-lg-2 control-label">Title</label>
             <div class="col-lg-6">
-                <input name="title" type="text" class="form-control" id="title" placeholder=" " value="<?php echo $user->title; ?>">
+                <input name="title" type="text" class="form-control" id="title" placeholder=" " value="<?php echo $result->title; ?>">
             </div>
         </div>
         <div class="form-group">
             <label  class="col-lg-2 control-label">Name</label>
             <div class="col-lg-6">
-                <input name="name" type="text" class="form-control" id="name" placeholder=" " value="<?php echo $user->name; ?>">
+                <input name="name" type="text" class="form-control" id="name" placeholder=" " value="<?php echo $result->name; ?>">
             </div>
         </div>
         <div class="form-group">
             <label  class="col-lg-2 control-label">User Name</label>
             <div class="col-lg-6">
-                <input name="user_name" type="text" class="form-control" id="username" placeholder=" " value="<?php echo $user->user_name; ?>">
+                <input name="user_name" type="text" class="form-control" id="username" placeholder=" " value="<?php echo $result->user_name; ?>">
             </div>
         </div>
         <!--<div class="form-group">
             <label  class="col-lg-2 control-label">User Type</label>
             <div class="col-lg-6">
-                <input name="user_type" type="text" class="form-control" id="type" placeholder=" "value="<?php echo $user->user_type; ?>">
+                <input name="user_type" type="text" class="form-control" id="type" placeholder=" "value="<?php echo $result->user_type; ?>">
             </div>
         </div>-->
         <div class="form-group">
             <label  class="col-lg-2 control-label">E-mail</label>
             <div class="col-lg-6">
-                <input name="email" type="text" class="form-control" id="email" placeholder=" " value="<?php echo $user->email; ?>">
+                <input name="email" type="text" class="form-control" id="email" placeholder=" " value="<?php echo $result->email; ?>">
             </div>
         </div>
         <div class="form-group">
             <label  class="col-lg-2 control-label">Address</label>
             <div class="col-lg-6">
-                <input name="address" type="text" class="form-control" id="address" placeholder=" "value="<?php echo $user->address; ?>">
+                <input name="address" type="text" class="form-control" id="address" placeholder=" "value="<?php echo $result->address; ?>">
             </div>
         </div>
         <div class="form-group">
             <label  class="col-lg-2 control-label">Contact No 01</label>
             <div class="col-lg-6">
-                <input name="contact_no_1" type="text" class="form-control" id="mobile1" placeholder=" " value="<?php echo $user->contact_no_1; ?>">
+                <input name="contact_no_1" type="text" class="form-control" id="mobile1" placeholder=" " value="<?php echo $result->contact_no_1; ?>">
             </div>
         </div>
         <div class="form-group">
             <label  class="col-lg-2 control-label">Contact No 02</label>
             <div class="col-lg-6">
-                <input name="contact_no_2" type="text" class="form-control" id="mobile2" placeholder=" " value="<?php echo $user->contact_no_2; ?>">
+                <input name="contact_no_2" type="text" class="form-control" id="mobile2" placeholder=" " value="<?php echo $result->contact_no_2; ?>">
             </div>
         </div>
 
