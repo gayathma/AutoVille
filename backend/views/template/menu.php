@@ -11,6 +11,7 @@
         <a href="javascript:;" id="user_menu">
             <i class="fa fa-users"></i>
             <span>Users</span>
+            
         </a> 
         <ul class="sub">
             <li><a  href="<?php echo site_url(); ?>/users/manage_admins" onclick="">Manage Administrators</a></li>
