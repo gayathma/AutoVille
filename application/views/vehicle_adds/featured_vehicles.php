@@ -37,7 +37,7 @@
                         <div class="wrapper">
                             <a href="">
                                 <h3><?php echo $result->manufacture . " " . $result->model; ?></h3></a>
-                            <figure><?php echo $result->year;?></figure>
+                             <figure><?php echo $result->body_type; ?></figure>
                             <div class="info">
                                 <div class="type">
                                     <i><img src="assets/img/hotel-last-minute.jpg" alt=""></i>
