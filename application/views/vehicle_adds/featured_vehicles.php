@@ -41,7 +41,22 @@
                             <div class="info">
                                 <div class="type">
                                     <i><img src="assets/img/hotel-last-minute.jpg" alt=""></i>
-                                    <figure><?php echo $result->sale_type;?></figure>
+                                    <dl>
+                            <?php if (!is_null($result->fuel_type)) { ?>
+                                        <dt>Engine</dt>
+                                        <dd><?php echo $result->fuel_type; ?></dd>
+                                    <?php } ?>
+
+                                    <?php if (!is_null($result->kilometers)) { ?>
+                                        <dt>Kilometers</dt>
+                                        <dd><?php echo $result->kilometers; ?></dd>
+                                    <?php } ?>
+
+                                    <?php if (!is_null($result->year)) { ?>
+                                        <dt>Year</dt>
+                                        <dd><?php echo $result->year; ?></dd>
+                                    <?php } ?>
+                        </dl>
                                 </div>
                                 <!--<div class="rating" data-rating="4"></div>-->
                             </div>
