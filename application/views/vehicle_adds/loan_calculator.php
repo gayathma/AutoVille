@@ -5,10 +5,11 @@
             <div class="row options">
                 <div class="form-group">
                     <label>Down Payment</label>
-                    <div class="ui-slider" id="price-slider" data-value-min="0" data-value-max="100000000"  data-step="10"><!--data-currency="$" data-currency-placement="before" data-value-type="price"-->
+                    <div class="range_inputs" id="price-slider" data-value-min="0" data-value-max="100000000"  data-step="10"><!--data-currency="$" data-currency-placement="before" data-value-type="price"-->
                         <div class="values clearfix">
-                            <input class="value-min" id="minprice" name="minprice" readonly>
-                            <input class="value-max" id="maxprice" name="maxprice" readonly>
+                            <input type="range" class="value-min" id="minprice" name="minprice" readonly>
+                            <!--<input type="range" class="value-max" id="maxprice" name="maxprice" readonly>-->
+
                         </div>
 
                         <div class="element"></div>
@@ -55,7 +56,8 @@
                 <label>Monthly Installment:</label>
                 <div class="output" >
                     <!--<label> Rs</label>-->
-                    <output id="monthly-payment">Rs. 0</output>
+                    <!--<output id="monthly-payment">Rs. 0</output>-->
+                    <input type="text" id="val3" /><br>
                 </div>
                 <div class="medium-1 large-1 columns">
                     <i class="icon-info-circled" data-selector="monthly-instalment-tooltip" data-tooltip="" aria-haspopup="true" title=""></i>
@@ -68,36 +70,42 @@
 </div>
 
 <script type="text/javascript">
-    $(document).ready(function(){
+    $(document).ready(function () {
 
-   $('#price-slider').on('change', function(){
+//   $('#price-slider').on('change', function(){
+//
+//        var maxprice = 0;
+//        var carPrice = number_format(<?php echo $vehicle_detail->price; ?>, 2, '.', ',');
+////        var maxmonth = $('#maxmonth').val();
+////        var maxrate = $('#maxrate').val();
+//        $('#monthly-payment').html('Rs.'+$('#maxprice').val());
+//        function changeValue() {
+//            var installment = (carPrice - $("#price-slider").slider(".value"));
+////                    + (($vehicle_detail - > price) * maxrate) / 100.0;
+//            $("#monthly-payment").val(installment);
+//        }
+//
+//        $("#price-slider").slider({
+//            value: 100,
+//            min: 0,
+//            max: 500,
+//            step: 50,
+//            slide: function (event, ui) {
+//                maxprice = ui.value;
+//                changeValue();
+//            }
+//        });
 
-        var maxprice = 0;
-        var carPrice = number_format(<?php echo $vehicle_detail->price;?>, 2, '.', ',');
-//        var maxmonth = $('#maxmonth').val();
-//        var maxrate = $('#maxrate').val();
-        $('#monthly-payment').html('Rs.'+$('#maxprice').val());
-        function changeValue() {
-            var installment = (carPrice - $("#price-slider").slider(".value"));
-//                    + (($vehicle_detail - > price) * maxrate) / 100.0;
-            $("#monthly-payment").val(installment);
-        }
-
-        $("#price-slider").slider({
-            value: 100,
-            min: 0,
-            max: 500,
-            step: 50,
-            slide: function (event, ui) {
-                maxprice = ui.value;
-                changeValue();
-            }
+//        var carPrice = number_format(<?php echo $vehicle_detail->price; ?>, 2, '.', ',');
+        $("#price-slider").mousemove(function () {
+            $("#val3").val(
+                    (carPrice - parseInt($("#price-slider").val()))
+                    );
         });
 
 
     });
 
-});
 
 </script>
 

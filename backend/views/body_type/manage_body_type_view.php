@@ -170,6 +170,8 @@
         $("#add_body_type_form").validate({
             rules: {
                 name: "required"
+               
+                
             },
             messages: {
                 name: "Please enter a Body Type"
@@ -194,6 +196,7 @@
 
     });
 
+  
     //delete body types
     function delete_body_types(id) {
 
