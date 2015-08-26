@@ -5,37 +5,42 @@
             <div class="row options">
                 <div class="form-group">
                     <label>Down Payment</label>
-                    <div class="range_inputs" id="price-slider" data-value-min="0" data-value-max="100000000"  data-step="10"><!--data-currency="$" data-currency-placement="before" data-value-type="price"-->
-                        <div class="values clearfix">
-                            <input type="range" class="value-min" id="minprice" name="minprice" readonly>
-                            <!--<input type="range" class="value-max" id="maxprice" name="maxprice" readonly>-->
+                    <!--                    <div class="range_inputs" id="price-slider" data-value-min="0" data-value-max="100000000"  data-step="10">data-currency="$" data-currency-placement="before" data-value-type="price"
+                                            <div class="values clearfix">
+                                                <input type="range" class="value-min" id="minprice" name="minprice" readonly>
+                                                <input type="range" class="value-max" id="maxprice" name="maxprice" readonly>
+                    
+                                            </div>
+                    
+                                            <div class="element"></div>
+                                        </div>-->
+                    <input type="range" id="price-slider" min="0" max="100"><br>
 
-                        </div>
-
-                        <div class="element"></div>
-                    </div>
                 </div>
                 <br>
                 <div class="form-group">
                     <label>Loan Term (Months)</label>
-                    <div class="ui-slider" id="month-slider" data-value-min="12" data-value-max="120"  data-step="10"><!--data-currency="$" data-currency-placement="before" data-value-type="price"-->
-                        <div class="values clearfix">
-                            <input class="value-min" id="minmonth" name="minmonth" readonly>
-                            <input class="value-max" id="maxmonth" name="maxmonth" readonly>
-                        </div>
-                        <div class="element"></div>
-                    </div>
+                    <!--                    <div class="ui-slider" id="month-slider" data-value-min="12" data-value-max="120"  data-step="10">data-currency="$" data-currency-placement="before" data-value-type="price"
+                                            <div class="values clearfix">
+                                                <input class="value-min" id="minmonth" name="minmonth" readonly>
+                                                <input class="value-max" id="maxmonth" name="maxmonth" readonly>
+                                            </div>
+                                            <div class="element"></div>
+                                        </div>-->
+                    <input type="range" id="val2" min="0" max="#"><br>
                 </div>
                 <br>
                 <div class="form-group">
                     <label>Interest Rate %</label>
-                    <div class="ui-slider" id="rate-slider" data-value-min="0" data-value-max="100"  data-step="10"><!--data-currency="$" data-currency-placement="before" data-value-type="price"-->
-                        <div class="values clearfix">
-                            <input class="value-min" id="minrate" name="minrate" readonly>
-                            <input class="value-max" id="maxrate" name="maxrate" readonly>
-                        </div>
-                        <div class="element"></div>
-                    </div>
+                    <!--                    <div class="ui-slider" id="rate-slider" data-value-min="0" data-value-max="100"  data-step="10">data-currency="$" data-currency-placement="before" data-value-type="price"
+                                            <div class="values clearfix">
+                                                <input class="value-min" id="minrate" name="minrate" readonly>
+                                                <input class="value-max" id="maxrate" name="maxrate" readonly>
+                                            </div>
+                                            <div class="element"></div>
+                                        </div>-->
+                    <input type="range" id="val1" min="0" max="100"><br>
+
                 </div>
             </div>
         </div>
@@ -43,9 +48,9 @@
         <div class="details">
             <div class="row">
                 <!--<div class="medium-8 large-8 column" data-bank-period="1">-->
-                <div class="car-value ">
+                <div class="car-value " id="carPrice">
                     <label>Car Value: </label>
-                    <output> Rs.  <?php echo number_format($vehicle_detail->price, 2, '.', ','); ?></output>
+                    <output> Rs.  <?php echo number_format($vehicle_detail->price); ?></output>
 
                 </div>
             </div>
@@ -99,8 +104,7 @@
 //        var carPrice = number_format(<?php echo $vehicle_detail->price; ?>, 2, '.', ',');
         $("#price-slider").mousemove(function () {
             $("#val3").val(
-                    (carPrice - parseInt($("#price-slider").val()))
-                    );
+                    parseInt($("#carPrice").val()) - parseInt($("#price-slider").val()));
         });
 
 
