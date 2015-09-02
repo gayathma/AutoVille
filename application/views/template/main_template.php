@@ -103,7 +103,13 @@
                     <!--Off Canvas Navigation-->
                     <nav class="off-canvas-navigation">
                         <header>Navigation</header>
-                        <div class="main-navigation navigation-off-canvas"></div>
+                        <div class="main-navigation navigation-off-canvas">
+                            <ul>
+                                <li>
+                                    <a href="listing-grid.html">Listing</a>
+                                </li>
+                            </ul>
+                        </div>
                     </nav>
                     <!--end Off Canvas Navigation-->
                     <!--Page Content-->
