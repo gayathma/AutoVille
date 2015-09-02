@@ -5,16 +5,8 @@
             <div class="row options">
                 <div class="form-group">
                     <label>Down Payment</label>
-                    <!--                    <div class="range_inputs" id="price-slider" data-value-min="0" data-value-max="100000000"  data-step="10">data-currency="$" data-currency-placement="before" data-value-type="price"
-                                            <div class="values clearfix">
-                                                <input type="range" class="value-min" id="minprice" name="minprice" readonly>
-                                                <input type="range" class="value-max" id="maxprice" name="maxprice" readonly>
-                    
-                                            </div>
-                    
-                                            <div class="element"></div>
-                                        </div>-->
-                    <input type="range" id="price-slider" min="0" max="100"><br>
+                  
+                    <input type="range" id="price-slider" min="0" max="<?php echo number_format($vehicle_detail->price); ?>"><br>
 
                 </div>
                 <br>
@@ -101,10 +93,12 @@
 //            }
 //        });
 
-//        var carPrice = number_format(<?php echo $vehicle_detail->price; ?>, 2, '.', ',');
+        var carvalue=<?php echo $vehicle_detail->price; ?>;
+        print("carvalue");
+
         $("#price-slider").mousemove(function () {
             $("#val3").val(
-                    parseInt($("#carPrice").val()) - parseInt($("#price-slider").val()));
+                   parseInt(carvalue) - parseInt($("#price-slider").val()));
         });
 
 
