@@ -6,20 +6,14 @@
                 <div class="form-group">
                     <label>Down Payment</label>
                   
-                    <input type="range" id="price-slider" min="0" max="<?php echo number_format($vehicle_detail->price); ?>"><br>
-
+                    <input type="range" value="price" id="price-slider" min="0" max="<?php echo ($vehicle_detail->price);?>"><br>
+                    <output> </output>
                 </div>
                 <br>
                 <div class="form-group">
                     <label>Loan Term (Months)</label>
-                    <!--                    <div class="ui-slider" id="month-slider" data-value-min="12" data-value-max="120"  data-step="10">data-currency="$" data-currency-placement="before" data-value-type="price"
-                                            <div class="values clearfix">
-                                                <input class="value-min" id="minmonth" name="minmonth" readonly>
-                                                <input class="value-max" id="maxmonth" name="maxmonth" readonly>
-                                            </div>
-                                            <div class="element"></div>
-                                        </div>-->
-                    <input type="range" id="val2" min="0" max="#"><br>
+                    
+                    <input type="range" id="month-slider" min="1" max="120"><br>
                 </div>
                 <br>
                 <div class="form-group">
@@ -100,7 +94,11 @@
             $("#val3").val(
                    parseInt(carvalue) - parseInt($("#price-slider").val()));
         });
-
+        
+        $("#month-slider").mousemove(function () {
+            $("#val3").val(
+                   (parseInt(carvalue) - parseInt($("#price-slider").val()))/parseInt($("#month-slider").val()));
+        });
 
     });
 
