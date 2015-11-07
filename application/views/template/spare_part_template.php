@@ -16,7 +16,7 @@
         <link rel="stylesheet" href="<?php echo base_url(); ?>application_resources/assets/css/style.css" type="text/css">
         <link rel="stylesheet" href="<?php echo base_url(); ?>application_resources/assets/css/jquery.nouislider.min.css" type="text/css">
         <link rel="stylesheet" href="<?php echo base_url(); ?>application_resources/assets/css/colors/blue.css" type="text/css">
-        <!--<link rel="stylesheet" href="<?php echo base_url(); ?>application_resources/assets/css/user.style.css" type="text/css">-->
+        <link type="text/css" href="<?php echo base_url(); ?>application_resources/assets/css/jquery.mCustomScrollbar.css" rel="stylesheet">
         <link href="<?php echo base_url(); ?>application_resources/pusher/pusher-chat-widget.css" rel="stylesheet" />
 
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery-2.1.0.min.js"></script>       
@@ -117,7 +117,7 @@
                                     </li>
                                 <?php } ?>
                                 <li>
-                                    <a class="has-child"  href="<?php echo site_url();?>/spare_parts/home">Spare Parts</a>
+                                    <a aria-controls="sub-level-1"  href="<?php echo site_url();?>/home">Vehicles</a>
                                 </li>
                                 <li>   
                                     <a href="<?php echo site_url(); ?>/home/about_us">About Us</a>
@@ -259,33 +259,33 @@
 
 
         <div class="modal-backdrop hide fade in"  ></div>
-            <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="chat_error" class="modal fade">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            <h4 class="modal-title">Sorry, Seller is not online</h4>
-                        </div>
+        <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="chat_error" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Sorry, Seller is not online</h4>
+                    </div>
 
-                        <div class="modal-body">
-                            <p>Please try again later</p>
+                    <div class="modal-body">
+                        <p>Please try again later</p>
 
-                        </div>
-                        <div class="modal-footer">
-                            <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
-
-                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
 
                     </div>
 
                 </div>
+
             </div>
+        </div>
 
 
 
 
         <!--<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;libraries=places"></script>-->
-        <!--<script type="text/javascript" src="<?php // echo base_url();           ?>application_resources/assets/js/richmarker-compiled.js"></script>-->
+        <!--<script type="text/javascript" src="<?php // echo base_url();              ?>application_resources/assets/js/richmarker-compiled.js"></script>-->
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery-migrate-1.2.1.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/bootstrap/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/smoothscroll.js"></script>
@@ -296,28 +296,10 @@
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery.ui.timepicker.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery.nouislider.all.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/custom.js"></script>
-       <!--<script type="text/javascript" src="<?php //echo base_url();           ?>application_resources/assets/js/maps.js"></script>-->
+        <script src="<?php echo base_url(); ?>application_resources/assets/js/jquery.mCustomScrollbar.concat.min.js" type="text/javascript">
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/lazy/jquery.lazyload.js"></script>
         <script src="//js.pusher.com/3.0/pusher.min.js"></script>
 
-
-
-        <script>
-            //autoComplete();
-            $(function() {
-                $("img.lazy").lazyload({
-                    effect: "fadeIn"
-                });
-            });
-
-//            $(function() {
-//                var pusher = new Pusher('ec747a95f1c879f5fd91');
-//                var chatWidget = new PusherChatWidget(pusher, {
-//                    chatEndPoint: '<?php echo base_url(); ?>application_resources/pusher/php/chat.php'
-//                });
-//            });
-
-        </script>
         <!--[if lte IE 9]>
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/ie-scripts.js"></script>
     <![endif]-->
