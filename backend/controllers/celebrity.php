@@ -44,7 +44,8 @@ class Celebrity extends CI_Controller{
         $celebrity_model->set_description($this->input->post('description', TRUE));
         $celebrity_model->set_image($this->input->post('image', TRUE));
         $celebrity_model->set_added_by($this->session->userdata('USER_ID'));
-        $celebrity_model->set_added_date(date("Y-m-d H:i:s"));        
+        $celebrity_model->set_added_date(date("Y-m-d H:i:s"));
+        $celebrity_model->set_updated_by(1);
         $celebrity_model->set_is_published('1');
         $celebrity_model->set_is_deleted('0');
 
@@ -93,26 +94,28 @@ class Celebrity extends CI_Controller{
      * update the celebrity details
      */
 
-    function edit_manufacture() {
-        $manufacure_model = new Manufacture_model();
-        $manufacure_service = new Manufacture_service();
+    function edit_celebrity() {
+        $celebrity_model = new Celebrity_model();
+        $celebrity_service = new Celebrity_service();
 
-        $manufacure_model->set_id($this->input->post('manufacture_id', TRUE));
-        $manufacure_model->set_name($this->input->post('name', TRUE));
-        $manufacure_model->set_updated_by($this->session->userdata('USER_ID'));
-        $manufacure_model->set_updated_date(date("Y-m-d H:i:s"));
+        $celebrity_model->set_id($this->input->post('celebrity_id', TRUE));
+        $celebrity_model->set_name($this->input->post('name', TRUE));
+        $celebrity_model->set_description($this->input->post('description', TRUE));
+        $celebrity_model->set_image($this->input->post('image', TRUE));
+        $celebrity_model->set_updated_by($this->session->userdata('USER_ID'));
+        $celebrity_model->set_updated_date(date("Y-m-d H:i:s"));
    
-        echo $manufacure_service->update_manufacure($manufacure_model);
+        echo $celebrity_service->update_celebrity($celebrity_model);
     }
 
     /*
-     * This function is to upload manufacture logo
+     * This function is to upload celebrity logo
      */
 
-    function upload_manufacture_logo() {
+    function upload_celebrity_logo() {
 
-        $uploaddir = './uploads/manufacture_logo/';
-        $unique_tag = 'manufacture_logo';
+        $uploaddir = './uploads/celebrity/';
+        $unique_tag = 'celebrity';
 
         $filename = $unique_tag . time() . '-' . basename($_FILES['uploadfile']['name']); //this is the file name
         $file = $uploaddir . $filename; // this is the full path of the uploaded file

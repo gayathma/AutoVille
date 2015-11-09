@@ -12,6 +12,8 @@ class Celebrity_model extends CI_Model{
     var $is_deleted;
     var $added_date;
     var $added_by;
+    var $updated_by;
+    var $updated_date;
     
     function get_id() {
         return $this->id;
@@ -92,6 +94,24 @@ class Celebrity_model extends CI_Model{
     function set_added_by($added_by) {
         $this->added_by = $added_by;
     }
+    
+    function get_updated_by() {
+        return $this->updated_by;
+    }
+
+    function get_updated_date() {
+        return $this->updated_date;
+    }
+
+    function set_updated_by($updated_by) {
+        $this->updated_by = $updated_by;
+    }
+
+    function set_updated_date($updated_date) {
+        $this->updated_date = $updated_date;
+    }
+
+
 
 
     
