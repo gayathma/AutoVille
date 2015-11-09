@@ -54,20 +54,5 @@
 <!--end Partners-->
 
 <section id="subscribe" class="block">
-    <div class="container">
-        <header>
-            <h2>Subscribe</h2>
-        </header>
-        <form class="subscribe form-inline border-less-inputs" role="form" method="post" action="?">
-            <div class="input-group">
-                <input id="subscribe_email" class="form-control" type="email" placeholder="Enter your email and get the newest updates">
-                <span class="input-group-btn">
-                    <button class="btn btn-default btn-large" type="button">
-                        Subscribe
-                        <i class="fa fa-angle-right"></i>
-                    </button>
-                </span>
-            </div>
-        </form>
-    </div>
+    <?php echo $this->load->view('content_pages/subscribe'); ?>
 </section>

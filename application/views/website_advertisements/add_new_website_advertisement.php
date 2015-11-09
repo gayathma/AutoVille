@@ -163,7 +163,6 @@
     </div>
 </section>
 <script src="<?php echo base_url(); ?>application_resources/assets/toastr-master/toastr.js"></script>
-<script src="<?php echo base_url(); ?>application_resources/assets/toastr-master/toastr.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery.validate.min.js"></script>
 
 <script type="text/javascript">
