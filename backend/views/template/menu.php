@@ -50,6 +50,17 @@
             <li><a href="<?php echo site_url(); ?>/contents/load_contents_by_hcode/WHYUS">Why Us</a></li>
         </ul>
     </li>
+    
+     <li class="sub-menu">
+        <a href="javascript:;" id="campaign_menu">
+            <i class="fa fa-rss"></i>
+            <span>Campaign</span>
+        </a> 
+        <ul class="sub">
+            <li><a  href="<?php echo site_url(); ?>/subscribe/manage_comments">Newsletters</a></li>
+            <li><a  href="<?php echo site_url(); ?>/subscribe/manage_subscribers">Subscribers</a></li>
+        </ul>
+    </li>
 
     <li class="sub-menu">
         <a href="javascript:;" id="comments_menu">

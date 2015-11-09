@@ -18,8 +18,8 @@ class Transmission extends CI_Controller {
         }
     }
 
-    /* manage_companies function
-     * This will display all the companies
+    /* 
+     * This will display all the transmissions
      */
 
     function manage_transmissions() {
