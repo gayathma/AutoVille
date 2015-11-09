@@ -116,5 +116,48 @@ class Vehicle_search extends CI_Controller {
             $this->template->load('template/main_template', $parials, $data);
         }
     }
+    
+    /*
+     * ar application search function
+     */
+    public function search($start = 0) {
+
+        if ($this->is_first_time) {
+            $data                = $this->load_data();
+            $this->is_first_time = FALSE;
+        }
+
+        $vehicle_advertisments_service = new Vehicle_advertisments_service();
+        $data['latest_vehicles']       = $vehicle_advertisments_service->get_new_arrival(2);
+
+        $config = array();
+
+        $config["base_url"]    = site_url() . "/vehicle_search/search_advertisements/";
+        $config["per_page"]    = 12;
+        $config["uri_segment"] = 3;
+        $config["num_links"]   = 4;
+
+
+        $manufacture  = trim($this->input->get('type', TRUE));
+
+        $view_no = trim($this->input->post('view_no', TRUE));
+
+        $data['results'] = $vehicle_advertisments_service->search($manufacture, $config["per_page"], $start, 'half');
+
+        $config["total_rows"] = count($vehicle_advertisments_service->search($manufacture, $config["per_page"], 0, 'all'));
+
+        $this->pagination->initialize($config);
+
+        $data["links"] = $this->pagination->create_links();
+
+        $data['is_advance_search'] = '0';
+
+        if ($view_no == 1) {
+            echo $this->load->view('vehicle_adds/search_result', $data);
+        } else {
+            $parials = array('content' => 'vehicle_adds/search_advertisement', 'new_arrivals' => 'vehicle_adds/new_arrivals');
+            $this->template->load('template/main_template', $parials, $data);
+        }
+    }
 
 }
