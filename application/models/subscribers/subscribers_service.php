@@ -18,6 +18,8 @@ class Subscribers_service extends CI_Model {
      * get subscriber using email
      */
     function get_subscriber($email){
+        $this->db->select('*');
+        $this->db->from('subscribers');
         $this->db->where('email', $email);
         $query = $this->db->get();
         return $query->row();

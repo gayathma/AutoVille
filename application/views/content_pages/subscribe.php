@@ -17,10 +17,9 @@
 <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery.validate.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
-
         $("#subscribe_form").validate({
             rules: {
-                email:{
+                subscribe_email:{
                     required:true,
                     email: true
                 }
