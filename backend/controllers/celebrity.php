@@ -21,7 +21,7 @@ class Celebrity extends CI_Controller{
 
     function manage_celebrity() {
 
-        $celebrity_service = new Celebrity_model();
+        $celebrity_service = new Celebrity_service();
 
         $data['heading'] = "Manage Celebrity";
         $data['results'] = $celebrity_service->get_all_celebrities();
