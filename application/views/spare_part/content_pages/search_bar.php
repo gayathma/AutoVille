@@ -14,19 +14,19 @@
             <!-- /.form-group -->
             <div class="form-group">
                 <select name="category" multiple title="Select Category" data-live-search="true">
-                    <option value="1">Stores</option>
-                    <option value="2" class="sub-category">Apparel</option>
+                    <option value="1"></option>
+<!--                    <option value="2" class="sub-category">Apparel</option>
                     <option value="3" class="sub-category">Computers</option>
-                    <option value="4" class="sub-category">Nature</option>
+                    <option value="4" class="sub-category">Nature</option>-->
                     <option value="5">Tourism</option>
                     <option value="6">Restaurant & Bars</option>
-                    <option value="7" class="sub-category">Bars</option>
+<!--                    <option value="7" class="sub-category">Bars</option>
                     <option value="8" class="sub-category">Vegetarian</option>
-                    <option value="9" class="sub-category">Steak & Grill</option>
+                    <option value="9" class="sub-category">Steak & Grill</option>-->
                     <option value="10">Sports</option>
-                    <option value="11" class="sub-category">Cycling</option>
+<!--                    <option value="11" class="sub-category">Cycling</option>
                     <option value="12" class="sub-category">Water Sports</option>
-                    <option value="13" class="sub-category">Winter Sports</option>
+                    <option value="13" class="sub-category">Winter Sports</option>-->
                 </select>
             </div>
             <!-- /.form-group -->

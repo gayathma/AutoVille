@@ -40,14 +40,14 @@
                         <figure>Spark Plugs</figure>
                         
 <!--                        <div class="price">$2500</div>-->
-<!--                        <div class="info">
+                        <div class="info">
                             <div class="type">
                                 <i>
                                     <img class="mCS_img_loaded" alt="" src="assets/icons/store/apparel/umbrella-2.png">
                                 </i>
-                                <span>Apartment</span>
+                                <!--<span>Apartment</span>-->
                             </div>
-                            <div class="rating" data-rating="4">
+<!--                            <div class="rating" data-rating="4">
                                 <span class="stars">
                                     <i class="fa fa-star s1 active" data-score="1"></i>
                                     <i class="fa fa-star s2 active" data-score="2"></i>
@@ -55,8 +55,8 @@
                                     <i class="fa fa-star s4 active" data-score="4"></i>
                                     <i class="fa fa-star s5" data-score="5"></i>
                                 </span>
-                            </div>
-                        </div>-->
+                            </div>-->
+                        </div>
                     </div>
                 </div>
             </li>
