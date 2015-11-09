@@ -14,6 +14,7 @@
         </div>
     </form>
 </div>
+<script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery.validate.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
 
@@ -25,7 +26,6 @@
                 }
             }, submitHandler: function(form)
             {
-                
                 $.post(site_url + '/home/subscribe', $('#subscribe_form').serialize(), function(msg)
                 {                  
                     if (msg == 1) {
