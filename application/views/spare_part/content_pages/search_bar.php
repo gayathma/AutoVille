@@ -7,7 +7,7 @@
             </div>
             <div class="form-group">
                 <label>Price Rs.</label>
-                <div class="ui-slider" id="price-slider" data-value-min="100000" data-value-max="100000000"  data-step="10">
+                <div class="ui-slider" id="price-slider" data-value-min="100" data-value-max="1000000"  data-step="10">
                     <div class="values clearfix">
                         <input class="value-min" id="minprice" name="minprice" readonly>
                         <input class="value-max" id="maxprice" name="maxprice" readonly>

@@ -90,6 +90,7 @@ class Spare_parts_ad_service extends CI_Model {
                 . 'spare_parts_advertisements.price,'
                 . 'spare_parts_advertisements.category_id,'
                 . 'spare_parts_advertisements.added_by,'
+                . 'spare_parts_advertisements.is_featured,'
                 . 'spare_parts_cat.name as category');
         $this->db->from('spare_parts_advertisements');
         $this->db->join('spare_parts_cat', 'spare_parts_cat.id = spare_parts_advertisements.category_id');

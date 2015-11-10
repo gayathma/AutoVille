@@ -26,7 +26,7 @@
             } else if ($resultcount == 2) {
                 $class_no = 4;
             } else if ($resultcount == 1) {
-                $class_no = 4;
+                $class_no = 3;
             }
             ?>
             <div class="row">
@@ -36,16 +36,19 @@
                         <div class="item" >
                             <div class="image">
                                 <div class="quick-view"><i class="fa fa-plus"></i><span>Park & Compare</span></div>
-                                <!--<a href="<?php //echo site_url()     ?>/vehicle_advertisements/vehicle_advertisement_detail_view/<?php //echo $result->id;    ?>">-->
-                                <div class="overlay">
-                                    <div class="inner">
-                                        <div class="content">
-                                            <h4>Description</h4>
-                                            <p><?php echo $result->description; ?></p>
+                                <a href="#">
+                                    <div class="overlay">
+                                        <div class="inner">
+                                            <div class="content">
+                                                <h4>Description</h4>
+                                                <p><?php echo $result->description; ?></p>
+                                            </div>
                                         </div>
+                                    </div>   
+                                    <div class="item-specific">
+                                        <span></span>
                                     </div>
-                                </div>                                                                                             
-                                <img src="<?php echo base_url() . 'uploads/spare_part_images/' . $result->image; ?>" height="180" width="260" alt=""/>
+                                    <img src="<?php echo base_url() . 'uploads/spare_part_images/' . $result->image; ?>" height="180" width="260" alt=""/>
                                 </a>
                             </div>
                             <div class="wrapper">
