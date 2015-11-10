@@ -1,41 +1,69 @@
 <div class="search-bar horizontal">
-    <form class="main-search border-less-inputs" role="form" method="post">
+    <form id="spare_parts_search_form" class="main-search border-less-inputs" role="form" method="post">
         <div class="input-row">
             <div class="form-group">
-                <input type="text" class="form-control" id="keyword" placeholder="Enter Keyword">
+                <label>Name</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name">
             </div>
-            <!-- /.form-group -->
             <div class="form-group">
-                <div class="input-group location">
-                    <input type="text" class="form-control" id="location" placeholder="Enter Location">
-                    <span class="input-group-addon"><i class="fa fa-map-marker geolocation" data-toggle="tooltip" data-placement="bottom" title="Find my position"></i></span>
+                <label>Price Rs.</label>
+                <div class="ui-slider" id="price-slider" data-value-min="100000" data-value-max="100000000"  data-step="10">
+                    <div class="values clearfix">
+                        <input class="value-min" id="minprice" name="minprice" readonly>
+                        <input class="value-max" id="maxprice" name="maxprice" readonly>
+                    </div>
+                    <div class="element"></div>
                 </div>
             </div>
-            <!-- /.form-group -->
             <div class="form-group">
-                <select name="category" multiple title="Select Category" data-live-search="true">
-                    <option value="1"></option>
-<!--                    <option value="2" class="sub-category">Apparel</option>
-                    <option value="3" class="sub-category">Computers</option>
-                    <option value="4" class="sub-category">Nature</option>-->
-                    <option value="5">Tourism</option>
-                    <option value="6">Restaurant & Bars</option>
-<!--                    <option value="7" class="sub-category">Bars</option>
-                    <option value="8" class="sub-category">Vegetarian</option>
-                    <option value="9" class="sub-category">Steak & Grill</option>-->
-                    <option value="10">Sports</option>
-<!--                    <option value="11" class="sub-category">Cycling</option>
-                    <option value="12" class="sub-category">Water Sports</option>
-                    <option value="13" class="sub-category">Winter Sports</option>-->
+                <label for="manufacturer">Manufacturer</label>
+                <select name="manufacturer" id="manufacturer" title="Manufacturer" data-live-search="true">
+                    <option value="">Select Manufacturer</option>
+                    <?php foreach ($manufactures as $manufacture) { ?>
+                        <option value="<?php echo $manufacture->id; ?>"><?php echo $manufacture->name; ?></option>
+                    <?php } ?>
+                </select>
+            </div>            
+            <div class="form-group">
+                <label for="category_id">Category</label>
+                <select name="category_id" id="category_id" title="Category" data-live-search="true">
+                    <option value="">Select Category</option>
+                    <option value="1">test Category</option>
                 </select>
             </div>
-            <!-- /.form-group -->
+            <div class="form-group">
+                <label>Keyword</label>
+                <input type="text" class="form-control" id="keyword" name="keyword" placeholder="Enter Keyword">
+            </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-            </div>
-            <!-- /.form-group -->
-        </div>
-        <!-- /.input-row -->
-    </form>
-    <!-- /.main-search -->
+            </div>           
+        </div>        
+    </form>    
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $("#spare_parts_search_form").validate({
+            focusInvalid: false,
+            ignore: "",
+            rules: {
+            }, submitHandler: function (form) {
+
+                var $form = $('#spare_parts_search_form');
+
+                $.ajax({
+                    type: "POST",
+                    url: site_url + '/spare_parts/spare_parts_advertisements/search_spare_part',
+                    data: $form.serialize(),
+                    success: function (msg) {
+                        $('#spareparts_search_results').html(msg);
+                    }
+                });
+
+            }
+        });
+    });
+
+</script>

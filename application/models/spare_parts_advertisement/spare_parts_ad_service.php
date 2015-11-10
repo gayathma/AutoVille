@@ -80,12 +80,13 @@ class Spare_parts_ad_service extends CI_Model {
         return $query->result();
     }
 
-    function search_spare_parts($name, $category_id, $maxprice, $minprice, $keyword, $limit, $start) {
+    function search_spare_parts($name, $manufacture_id, $category_id, $maxprice, $minprice, $keyword, $limit, $start) {
 
         $this->db->select('spare_parts_advertisements.id,'
                 . 'spare_parts_advertisements.name,'
                 . 'spare_parts_advertisements.image,'
                 . 'spare_parts_advertisements.description,'
+                . 'spare_parts_advertisements.manufacture_id,'
                 . 'spare_parts_advertisements.price,'
                 . 'spare_parts_advertisements.category_id,'
                 . 'spare_parts_advertisements.added_by,'
@@ -96,7 +97,10 @@ class Spare_parts_ad_service extends CI_Model {
         $this->db->where('spare_parts_advertisements.is_published', '1');
 
         if (!empty($name) && !is_null($name)) {
-            $this->db->where('spare_parts_advertisements.name', $name);
+            $this->db->like('spare_parts_advertisements.name', $name);
+        }
+        if (!empty($manufacture_id) && !is_null($manufacture_id)) {
+            $this->db->where('spare_parts_advertisements.manufacture_id', $manufacture_id);
         }
         if (!empty($category_id) && !is_null($category_id)) {
             $this->db->where('spare_parts_advertisements.category_id', $category_id);
@@ -106,7 +110,7 @@ class Spare_parts_ad_service extends CI_Model {
             $this->db->where('spare_parts_advertisements.price >=', $minprice);
         }
         if (!empty($keyword) && !is_null($keyword)) {
-            $this->db->where('spare_parts_advertisements.description', $keyword);
+            $this->db->like('spare_parts_advertisements.description', $keyword);
         }
 
         $this->db->order_by("spare_parts_advertisements.added_date", "desc");

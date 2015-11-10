@@ -8,6 +8,8 @@ class Spare_parts_advertisements extends CI_Controller {
     function __construct() {
         parent::__construct();
 
+        $this->load->library('pagination_custome');
+
         $this->load->model('spare_parts_advertisement/spare_parts_ad_model');
         $this->load->model('spare_parts_advertisement/spare_parts_ad_service');
 
@@ -74,8 +76,32 @@ class Spare_parts_advertisements extends CI_Controller {
         echo $spare_part_ad_service->add_spare_part_advertisement($spare_part_ad_model);
     }
 
-    function search_spare_part() {
-        echo $this->load->view('spare_part/spare_part_adds/spare_part_search_result');
+    function search_spare_part($start = "0") {
+
+        $spare_part_ad_service = new Spare_parts_ad_service();
+
+        $config = array();
+
+        $config["base_url"] = site_url() . "/spare_parts/spare_parts_advertisements/search_spare_part";
+        $config["per_page"] = 12;
+        $config["uri_segment"] = 3;
+        $config["num_links"] = 4;
+
+        $name = trim($this->input->post('name', TRUE));
+        $manufacture_id = trim($this->input->post('manufacturer', TRUE));
+        $category_id = trim($this->input->post('category_id', TRUE));
+        $keyword = trim($this->input->post('keyword', TRUE));
+        $maxprice = trim($this->input->post('maxprice', TRUE));
+        $minprice = trim($this->input->post('minprice', TRUE));
+
+        $data['results'] = $spare_part_ad_service->search_spare_parts($name, $manufacture_id, $category_id, $maxprice, $minprice, $keyword, $config["per_page"], $start);
+
+        $config["total_rows"] = count($spare_part_ad_service->search_spare_parts($name, $manufacture_id, $category_id, $maxprice, $minprice, $keyword, '', ''));
+
+        $this->pagination_custome->initialize($config);
+        $data["links"] = $this->pagination_custome->create_links();
+
+        echo $this->load->view('spare_part/spare_part_adds/spare_part_search_result', $data);
     }
 
 }
