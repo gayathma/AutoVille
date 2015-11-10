@@ -1,7 +1,7 @@
 <?php
 
-class Celebrity_model extends CI_Model{
-    
+class Celebrity_model extends CI_Model {
+
     var $id;
     var $name;
     var $manufacture_id;
@@ -14,7 +14,16 @@ class Celebrity_model extends CI_Model{
     var $added_by;
     var $updated_by;
     var $updated_date;
-    
+    var $year;
+
+    public function get_year() {
+        return $this->year;
+    }
+
+    public function set_year($year) {
+        $this->year = $year;
+    }
+
     function get_id() {
         return $this->id;
     }
@@ -94,7 +103,7 @@ class Celebrity_model extends CI_Model{
     function set_added_by($added_by) {
         $this->added_by = $added_by;
     }
-    
+
     function get_updated_by() {
         return $this->updated_by;
     }
@@ -111,9 +120,4 @@ class Celebrity_model extends CI_Model{
         $this->updated_date = $updated_date;
     }
 
-
-
-
-    
 }
-

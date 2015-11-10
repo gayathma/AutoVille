@@ -24,8 +24,8 @@
                                 <th>#</th>
                                 <th>Vehicle</th>
                                 <th>Name</th>
-                                <th>Image</th>
                                 <th>Description</th>
+                                <th>Image</th>
                                 <th>Active Status</th>
                                 <th>Actions</th>
                             </tr>
@@ -37,11 +37,11 @@
                                 ?>
                                 <tr id="celebrity_<?php echo $result->id; ?>">
                                     <td><?php echo ++$i; ?></td>
-                                    <td><?php echo $result->name; ?></td>
+                                    <td><?php echo ($result->manufacture . ' ' . $result->model . ' ' . $result->year); ?></td>
                                     <td><?php echo $result->name; ?></td>
                                     <td><?php echo $result->description; ?></td>
                                     <td align="center"><img src="<?php echo base_url(); ?>uploads/celebrity/<?php echo $result->image; ?>" width="60px" /></td>
-                                        <td align="center">
+                                    <td align="center">
                                         <?php if ($result->is_published) { ?>
                                             <a class="btn btn-success btn-xs" onclick="change_publish_status(<?php echo $result->id; ?>, 0, this)" title="click to deactivate celebrity"><i class="fa fa-check"></i></a> 
                                         <?php } else { ?> 
@@ -118,13 +118,68 @@
 
 
                     </script>
+
+                    <div class="form-group">
+                        <label for="name">Manufacture<span class="mandatory">*</span></label>
+                        <select name="manufacture" id="manufacture" title="This field is required." data-live-search="true" class="live_select" >
+                            <option value="" selected>Select Manufacturer</option>
+                            <?php foreach ($manufactures as $manufacture) { ?>
+                                <option value="<?php echo $manufacture->id; ?>"><?php echo $manufacture->name; ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="name">Model<span class="mandatory">*</span></label>
+                        <select name="model" id="model" title="This field is required." data-live-search="true" class="live_select" >
+                            <option value="" selected>Select Model</option>
+                            <?php foreach ($models as $model) { ?>
+                                <option value="<?php echo $model->id; ?>"><?php echo $model->name; ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fabrication">Fabrication</label>
+                        <select name="fabrication" id="fabrication" title="This field is required."  data-live-search="true">
+                            <option value="">Select Fabrication</option>
+                            <option value="1990">1990</option>
+                            <option value="1991">1991</option>
+                            <option value="1992">1992</option>
+                            <option value="1993">1993</option>
+                            <option value="1994">1994</option>
+                            <option value="1995">1995</option>
+                            <option value="1996">1996</option>
+                            <option value="1997">1997</option>
+                            <option value="1998">1998</option>
+                            <option value="1999">1999</option>
+                            <option value="2000">2000</option>
+                            <option value="2001">2001</option>
+                            <option value="2002">2002</option>
+                            <option value="2003">2003</option>
+                            <option value="2004">2004</option>
+                            <option value="2005">2005</option>
+                            <option value="2006">2006</option>
+                            <option value="2007">2007</option>
+                            <option value="2008">2008</option>
+                            <option value="2009">2009</option>
+                            <option value="2010">2010</option>
+                            <option value="2011">2011</option>
+                            <option value="2012">2012</option>
+                            <option value="2013">2013</option>
+                            <option value="2014">2014</option>
+                            <option value="2015">2015</option>
+                        </select>
+                    </div> 
+
+
                     <div class="form-group">
                         <label for="name">Celebrity<span class="mandatory">*</span></label>
                         <input id="name" class="form-control" name="name" type="text" placeholder="Enter name">
                     </div>
                     <div class="form-group">
                         <label for="name">Description<span class="mandatory">*</span></label>
-                        <input id="name" class="form-control" name="description" type="text" placeholder="Enter description">
+                        <input id="description" class="form-control" name="description" type="text" placeholder="Enter description">
                     </div>
                     <div class="form-group">
                         <div id="upload">
@@ -172,12 +227,16 @@
 
                                                 $("#add_celebrity_form").validate({
                                                     rules: {
+                                                        manufacturer: "required",
+                                                        model: "required",
                                                         name: "required",
-                                                        description:"required"
+                                                        description: "required"
                                                     },
                                                     messages: {
+                                                        manufacturer: "Please select a manufacture",
+                                                        model: "required",
                                                         name: "Please enter a Celebrity",
-                                                        description:"Please enter a description"
+                                                        description: "Please enter a description"
                                                     }, submitHandler: function (form)
                                                     {
                                                         $.post(site_url + '/celebrity/add_celebrity', $('#add_celebrity_form').serialize(), function (msg)
