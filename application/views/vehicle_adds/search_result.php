@@ -70,7 +70,7 @@
                                         <!--Bookmark-->
                                         <?php
                                         $bookmarked_vehicles_service = new Bookmarked_vehicles_service();
-                                        $bookmarked_vehile_det       = $bookmarked_vehicles_service->get_bookmarkd_vehicle($this->session->userdata('USER_ID'), $result->id);
+                                        $bookmarked_vehile_det = $bookmarked_vehicles_service->get_bookmarkd_vehicle($this->session->userdata('USER_ID'), $result->id);
                                         ?>                                        
 
                                         <!--Add New Bookmark-->
@@ -100,16 +100,18 @@
 
                                         <!--Heart-->
                                         <span id="add_like_div">
-                                            <a class="star_class" style="cursor: pointer" onclick="">              
-                                                <img alt="1" id="heart_img" src="<?php echo base_url(); ?>application_resources/raty/images/heart.png" title="Like">
+                                            <a class="star_class" style="cursor: pointer" title="I Love this" onclick="like_vehicle('<?php echo $result->id; ?>')">              
+                                                <i class="fa fa-heart"></i>
+                                                <span id="like_count_<?php echo $result->id; ?>">0</span>
                                             </a>                                         
                                         </span>
 
                                         <span id="add_dislike_div">
-                                            <a class="star_class" style="cursor: pointer" onclick="">              
-                                                <img alt="1" id="broken_heart_img" src="<?php echo base_url(); ?>application_resources/raty/images/broken_heart.png" title="Dislike">
+                                            <a class="star_class" style="cursor: pointer" title="Broken Heart" onclick="dislike_vehicle('<?php echo $result->id; ?>')">              
+                                                <i class="fa fa-heart-o"></i>
+                                                <span id="dislike_count_<?php echo $result->id; ?>">0</span>
                                             </a>
-                                        </span>                                        
+                                        </span>                                   
                                         <!--End Heart-->
                                     <?php } ?>
                                 </h3>
@@ -163,8 +165,8 @@
 <?php
 
 function CurrencyFormat($number) {
-    $decimalplaces     = 2;
-    $decimalcharacter  = '.';
+    $decimalplaces = 2;
+    $decimalcharacter = '.';
     $thousandseparater = ',';
     return number_format($number, $decimalplaces, $decimalcharacter, $thousandseparater);
 }
@@ -177,137 +179,165 @@ function CurrencyFormat($number) {
 
 <script type="text/javascript">
 
-                                                    function bookmark(vehicle_id) {
+                                                //bookmark vehicle
+                                                function bookmark(vehicle_id) {
 
-                                                        var bookmark_status = $('#bookmark_status_' + vehicle_id).val();
-                                                        var bookmark_id = $('#bookmark_id_' + vehicle_id).val();
+                                                    var bookmark_status = $('#bookmark_status_' + vehicle_id).val();
+                                                    var bookmark_id = $('#bookmark_id_' + vehicle_id).val();
 
-                                                        if (bookmark_status == '0') {
-                                                            //add bookmark
-                                                            if (confirm('Bookmark this Vehicle?')) {
+                                                    if (bookmark_status == '0') {
+                                                        //add bookmark
+                                                        if (confirm('Bookmark this Vehicle?')) {
 
-                                                                $.ajax({
-                                                                    type: "POST",
-                                                                    url: site_url + '/bookmarked_vehicles/bookmark_vehicle',
-                                                                    data: "vehicle_id=" + vehicle_id,
-                                                                    success: function(msg) {
-                                                                        if (msg != 0) {
-                                                                            toastr.success("Successfully Bookmarked!!", "AutoVille");
-                                                                            $('#bookmark_status_' + vehicle_id).val('1');
-                                                                            $('#bookmark_id_' + vehicle_id).val(msg);
-                                                                            $('#star_img_' + vehicle_id).attr('src', '<?php echo base_url(); ?>application_resources/raty/images/star-on.png');
-                                                                            $('#star_img_' + vehicle_id).attr('title', 'Remove Bookmark');
-                                                                        } else {
-                                                                            alert('Error!');
-                                                                        }
+                                                            $.ajax({
+                                                                type: "POST",
+                                                                url: site_url + '/bookmarked_vehicles/bookmark_vehicle',
+                                                                data: "vehicle_id=" + vehicle_id,
+                                                                success: function (msg) {
+                                                                    if (msg != 0) {
+                                                                        toastr.success("Successfully Bookmarked!!", "AutoVille");
+                                                                        $('#bookmark_status_' + vehicle_id).val('1');
+                                                                        $('#bookmark_id_' + vehicle_id).val(msg);
+                                                                        $('#star_img_' + vehicle_id).attr('src', '<?php echo base_url(); ?>application_resources/raty/images/star-on.png');
+                                                                        $('#star_img_' + vehicle_id).attr('title', 'Remove Bookmark');
+                                                                    } else {
+                                                                        alert('Error!');
                                                                     }
-                                                                });
-                                                            }
+                                                                }
+                                                            });
+                                                        }
 
-                                                        } else if (bookmark_status == '1') {
-                                                            //remove bookmark
-                                                            if (confirm('Remove Bookmark?')) {
+                                                    } else if (bookmark_status == '1') {
+                                                        //remove bookmark
+                                                        if (confirm('Remove Bookmark?')) {
 
-                                                                $.ajax({
-                                                                    type: "POST",
-                                                                    url: site_url + '/bookmarked_vehicles/remove_bookmark',
-                                                                    data: "bookmark_id=" + bookmark_id,
-                                                                    success: function(msg) {
-                                                                        if (msg != 0) {
-                                                                            toastr.success("Bookmark Removed Successfully!!", "AutoVille");
-                                                                            $('#bookmark_status_' + vehicle_id).val('0');
-                                                                            $('#bookmark_id_' + vehicle_id).val('0');
-                                                                            $('#star_img_' + vehicle_id).attr('src', '<?php echo base_url(); ?>application_resources/raty/images/star-off.png');
-                                                                            $('#star_img_' + vehicle_id).attr('title', 'Bookmark');
-                                                                        } else {
-                                                                            alert('Error!');
-                                                                        }
+                                                            $.ajax({
+                                                                type: "POST",
+                                                                url: site_url + '/bookmarked_vehicles/remove_bookmark',
+                                                                data: "bookmark_id=" + bookmark_id,
+                                                                success: function (msg) {
+                                                                    if (msg != 0) {
+                                                                        toastr.success("Bookmark Removed Successfully!!", "AutoVille");
+                                                                        $('#bookmark_status_' + vehicle_id).val('0');
+                                                                        $('#bookmark_id_' + vehicle_id).val('0');
+                                                                        $('#star_img_' + vehicle_id).attr('src', '<?php echo base_url(); ?>application_resources/raty/images/star-off.png');
+                                                                        $('#star_img_' + vehicle_id).attr('title', 'Bookmark');
+                                                                    } else {
+                                                                        alert('Error!');
                                                                     }
-                                                                });
-                                                            }
-                                                        }
-
-                                                    }
-
-
-                                                    function add_to_compare(id) {
-
-                                                        $.ajax({
-                                                            type: "POST",
-                                                            url: site_url + '/vehicle_compare/add_vehicle_to_compare',
-                                                            data: "id=" + id,
-                                                            success: function(msg) {
-                                                                if (msg != 0) {
-                                                                    toastr.success("Successfully parked in Garage!!", "AutoVille");
-                                                                    $('#compare_vehicle_list').html(msg);
-                                                                } else {
-                                                                    alert('Error loading vehicles');
                                                                 }
+                                                            });
+                                                        }
+                                                    }
+
+                                                }
+
+
+                                                //like
+                                                function like_vehicle(vehicle_id) {
+
+                                                    $.ajax({
+                                                        type: "POST",
+                                                        url: site_url + '/vehicle_like_dislike/add_vehicle_likes',
+                                                        data: "vehicle_id=" + vehicle_id,
+                                                        success: function (msg) {
+                                                            $('#like_count_' + vehicle_id).html(msg);
+                                                        }
+                                                    });
+                                                }
+
+                                                //dislike
+                                                function dislike_vehicle(vehicle_id) {
+
+                                                    $.ajax({
+                                                        type: "POST",
+                                                        url: site_url + '/vehicle_like_dislike/add_vehicle_dislikes',
+                                                        data: "vehicle_id=" + vehicle_id,
+                                                        success: function (msg) {
+                                                            $('#dislike_count_' + vehicle_id).html(msg);
+                                                        }
+                                                    });
+                                                }
+
+                                                //add vehicle to compare list
+                                                function add_to_compare(id) {
+
+                                                    $.ajax({
+                                                        type: "POST",
+                                                        url: site_url + '/vehicle_compare/add_vehicle_to_compare',
+                                                        data: "id=" + id,
+                                                        success: function (msg) {
+                                                            if (msg != 0) {
+                                                                toastr.success("Successfully parked in Garage!!", "AutoVille");
+                                                                $('#compare_vehicle_list').html(msg);
+                                                            } else {
+                                                                alert('Error loading vehicles');
                                                             }
-                                                        });
+                                                        }
+                                                    });
 
-                                                    }
+                                                }
 
-                                                    function save_in_browser(id) {
+                                                function save_in_browser(id) {
 
-                                                        $.ajax({
-                                                            type: "POST",
-                                                            url: site_url + '/vehicle_compare/load_li_tags',
-                                                            data: "id=" + id,
-                                                            success: function(msg) {
-                                                                if (msg != 0) {
+                                                    $.ajax({
+                                                        type: "POST",
+                                                        url: site_url + '/vehicle_compare/load_li_tags',
+                                                        data: "id=" + id,
+                                                        success: function (msg) {
+                                                            if (msg != 0) {
 
-                                                                    //save key as vehicle_vehicleid, load_li_tags return <li> tag for one vehicle, save it as value                                                                   
-                                                                    //$.jStorage.set(key, value, options), Saves a value to local storage 
-                                                                    $.jStorage.set("vehicle_" + id, msg);
-                                                                    jStorege_get_values();
+                                                                //save key as vehicle_vehicleid, load_li_tags return <li> tag for one vehicle, save it as value                                                                   
+                                                                //$.jStorage.set(key, value, options), Saves a value to local storage 
+                                                                $.jStorage.set("vehicle_" + id, msg);
+                                                                jStorege_get_values();
 
-                                                                } else {
-                                                                    alert('Error loading vehicles');
-                                                                }
+                                                            } else {
+                                                                alert('Error loading vehicles');
                                                             }
-                                                        });
+                                                        }
+                                                    });
 
+                                                }
+
+
+                                                //append all <li> tags and compare button,load compare_vehicle_list on header
+                                                function jStorege_get_values() {
+
+                                                    //$.jStorage.index() Returns all the keys currently in use as an array.
+                                                    var key_list = $.jStorage.index();
+
+                                                    var li_list = '<button style="border:0px solid black; background-color: transparent;" data-toggle="dropdown"><i class="fa fa-road"></i> Compare(' + key_list.length + ')<span class="caret"></span></button><ul class="dropdown-menu" id="added_vehicle_list">';
+
+                                                    if (key_list.length == 0) {
+                                                        li_list = '<li>Add Vehicle</li>';
                                                     }
 
-
-                                                    //append all <li> tags and compare button,load compare_vehicle_list on header
-                                                    function jStorege_get_values() {
-
-                                                        //$.jStorage.index() Returns all the keys currently in use as an array.
-                                                        var key_list = $.jStorage.index();
-
-                                                        var li_list = '<button style="border:0px solid black; background-color: transparent;" data-toggle="dropdown"><i class="fa fa-road"></i> Compare(' + key_list.length + ')<span class="caret"></span></button><ul class="dropdown-menu" id="added_vehicle_list">';
-
-                                                        if (key_list.length == 0) {
-                                                            li_list = '<li>Add Vehicle</li>';
-                                                        }
-
-                                                        //append all li tags
-                                                        for (i = 0; i < key_list.length; i++) {
-                                                            li_list += $.jStorage.get(key_list[i]);
-                                                        }
-
-                                                        var compare_btn = '<li><a href="<?php echo site_url(); ?>/vehicle_compare/load_compare_vehicles_dashboard_unreg_user/' + key_list + '" class="dealer-name"><button id="compareButton">Compare</button></a></li>';
-
-                                                        //append compare button
-                                                        if (key_list.length >= 2) {
-                                                            li_list += compare_btn;
-                                                        }
-
-                                                        li_list += '</ul>';
-                                                        $('#compare_vehicle_list').html(li_list);
+                                                    //append all li tags
+                                                    for (i = 0; i < key_list.length; i++) {
+                                                        li_list += $.jStorage.get(key_list[i]);
                                                     }
 
+                                                    var compare_btn = '<li><a href="<?php echo site_url(); ?>/vehicle_compare/load_compare_vehicles_dashboard_unreg_user/' + key_list + '" class="dealer-name"><button id="compareButton">Compare</button></a></li>';
 
-                                                    //this function invokes from Pagination_custome.php in system/libraries    
-                                                    function setting_pagination_content(url) {
-
-                                                        $.post(url, {}, function(msg)
-                                                        {
-                                                            $('#advanced_search_result_content').html(msg);
-                                                        });
+                                                    //append compare button
+                                                    if (key_list.length >= 2) {
+                                                        li_list += compare_btn;
                                                     }
+
+                                                    li_list += '</ul>';
+                                                    $('#compare_vehicle_list').html(li_list);
+                                                }
+
+
+                                                //this function invokes from Pagination_custome.php in system/libraries    
+                                                function setting_pagination_content(url) {
+
+                                                    $.post(url, {}, function (msg)
+                                                    {
+                                                        $('#advanced_search_result_content').html(msg);
+                                                    });
+                                                }
 
 </script>
 
