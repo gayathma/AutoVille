@@ -7,7 +7,7 @@ class Newsletters_service extends CI_Model {
         $this->load->model('newsletters/newsletters_model');
     }
 
-    /*
+    /**
      * get all newsletters that registered for newsletters
      */
     public function get_all_newsletters() {
@@ -18,9 +18,11 @@ class Newsletters_service extends CI_Model {
         $query = $this->db->get();
         return $query->result();
     }
-    
-     /*
+
+    /**
      * save newsletter in database  
+     * @param object $newsletters_model Input model
+     * @return boolean
      */
     function add_newsletter($newsletters_model) {
         return $this->db->insert('newsletters', $newsletters_model);
