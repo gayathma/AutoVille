@@ -50,19 +50,21 @@
                             <div class="wrapper">
                                 <ul class="main-navigation navigation-top-header"></ul>
                                 <ul class="user-area">
-                                    <!--<div class="dealer-login">-->   
-
+                                    <!--cart-->
+                                    <li>
+                                        <div class="btn-group cd-cart items-added"  id="added_vehicle_list">  
+                                            <button style="border:0px solid black; background-color: transparent;">
+                                                <i class="fa fa-shopping-cart"></i>
+                                                <span>0</span>
+                                            </button>                                                                                      
+                                        </div>
+                                    </li>
                                     <!--cart-->
                                     <li>
                                         <div class="btn-group" id="compare_vehicle_list">                                                
                                             <button style="border:0px solid black; background-color: transparent;" data-toggle="dropdown"><i class="fa fa-road"></i> Compare(0)
                                                 <span class="caret"></span>
                                             </button>
-                                            <ul class="dropdown-menu" id="added_vehicle_list">  
-                                                <!--One car-->
-                                                <li>Add Vehicle</li>                                                                                                   
-                                                <!--End One car-->                                                                                                        
-                                            </ul>
                                         </div>
                                     </li>
                                     <!--End cart-->
@@ -118,7 +120,7 @@
                                     </li>
                                 <?php } ?>
                                 <li>
-                                    <a aria-controls="sub-level-1"  href="<?php echo site_url();?>/home">Vehicles</a>
+                                    <a aria-controls="sub-level-1"  href="<?php echo site_url(); ?>/home">Vehicles</a>
                                 </li>
                                 <li>   
                                     <a href="<?php echo site_url(); ?>/home/about_us">About Us</a>
@@ -286,7 +288,7 @@
 
 
         <!--<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;libraries=places"></script>-->
-        <!--<script type="text/javascript" src="<?php // echo base_url();              ?>application_resources/assets/js/richmarker-compiled.js"></script>-->
+        <!--<script type="text/javascript" src="<?php // echo base_url();                 ?>application_resources/assets/js/richmarker-compiled.js"></script>-->
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery-migrate-1.2.1.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/bootstrap/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/smoothscroll.js"></script>
@@ -298,7 +300,7 @@
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery.nouislider.all.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/custom.js"></script>
         <script src="<?php echo base_url(); ?>application_resources/assets/js/jquery.mCustomScrollbar.concat.min.js" type="text/javascript">
-        <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/lazy/jquery.lazyload.js"></script>
+            < script type = "text/javascript" src = "<?php echo base_url(); ?>application_resources/lazy/jquery.lazyload.js" ></script>
         <script src="//js.pusher.com/3.0/pusher.min.js"></script>
 
         <!--[if lte IE 9]>
@@ -313,7 +315,7 @@
 
 <script>
 
-    $(document).ready(function() {
+            $(document).ready(function() {
 
 <?php if ($this->session->userdata('USER_LOGGED_IN')) { ?>
             $.ajax({
