@@ -12,8 +12,8 @@
                 <div class="adv-table">
                     <div class="clearfix">
                         <div class="btn-group">
-                            <a id="editable-sample_new" class="btn btn-shadow btn-primary" href="#newsletter_add_modal" data-toggle="modal">
-                                Add New
+                            <a id="editable-sample_new" class="btn btn-shadow btn-primary" href="<?php echo site_url(); ?>/subscribe/add_newsletter_view" data-toggle="modal">
+                                Send New Newsletter
                                 <i class="fa fa-plus"></i>
                             </a>
                         </div>
@@ -23,6 +23,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>Subject</th>
+                                <th>Status</th>
                                 <th>Added Date</th>
                                 <th>Actions</th>
                             </tr>
@@ -35,6 +36,13 @@
                                 <tr id="newsletter_<?php echo $result->id; ?>">
                                     <td><?php echo ++$i; ?></td>
                                     <td><?php echo $result->subject; ?></td>
+                                    <td>
+                                        <?php if($result->status == '1'){ ?>
+                                            sent
+                                        <?php }else{ ?>
+                                            failed
+                                        <?php } ?>
+                                    </td>
                                     <td><?php echo $result->added_date; ?></td>
 
                                     <td align="center">

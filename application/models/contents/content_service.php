@@ -6,6 +6,9 @@ class Content_service extends CI_Model {
         parent::__construct();
     }
 
+    /*
+     * get content using hcode
+     */
     function get_content_by_hcode($content_model) {
         $query = $this->db->get_where('contents', array(
             'content_hcode' => $content_model->get_content_hcode()
@@ -13,6 +16,9 @@ class Content_service extends CI_Model {
         return $query->row();
     }
     
+    /*
+     * get content using hcode
+     */
     function get_content_by_hcodes($hcode) {
         $query = $this->db->get_where('contents', array(
             'content_hcode' => $hcode

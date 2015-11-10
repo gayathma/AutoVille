@@ -7,6 +7,9 @@ class Comments_service extends CI_Model {
         $this->load->model('comments/comments_model');
     }
 
+    /*
+     * get latest site site comments
+     */
     public function get_all_comments() {
 
         $this->db->select('comment.title,'
@@ -20,6 +23,9 @@ class Comments_service extends CI_Model {
         return $query->result();
     }
 
+    /*
+     * get all site comments
+     */
     public function get_all_comments_list() {
 
         $this->db->select('comment.*,user.name as added_by_user,user.profile_pic');
@@ -32,6 +38,9 @@ class Comments_service extends CI_Model {
         return $query->result();
     }
     
+    /*
+     * save comment in database
+     */
     function add_website_comments($website_comments_model) {
         return $this->db->insert('comment', $website_comments_model);
     }

@@ -57,7 +57,7 @@
             <span>Campaign</span>
         </a> 
         <ul class="sub">
-            <li><a  href="<?php echo site_url(); ?>/subscribe/manage_comments">Newsletters</a></li>
+            <li><a  href="<?php echo site_url(); ?>/subscribe/manage_newsletters">Newsletters</a></li>
             <li><a  href="<?php echo site_url(); ?>/subscribe/manage_subscribers">Subscribers</a></li>
         </ul>
     </li>

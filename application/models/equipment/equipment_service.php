@@ -7,6 +7,9 @@ class Equipment_service extends CI_Model {
         $this->load->model('equipment/equipment_model');
     }
 
+    /*
+     * get all active equipments
+     */
     function get_all_active_equipment() {
         $this->db->select('equipment.*');
         $this->db->from('equipment');
@@ -17,12 +20,18 @@ class Equipment_service extends CI_Model {
         return $query->result();
     }
 
+    /*
+     * get active equipments by id
+     */
     function get_equipment_by_id($equipment_model) {
 
         $query = $this->db->get_where('equipment', array('id' => $equipment_model->get_id(), 'is_deleted' => '0'));
         return $query->row();
     }
 
+    /*
+     * get equipments for vehicle
+     */
     function get_equiments_in_vehicle($vehicle_id){
         
         $this->db->select('equipment.name,');
@@ -31,8 +40,6 @@ class Equipment_service extends CI_Model {
         $this->db->join('vehicle_compare','vehicle_compare.vehicle_id=vehicle_equipment.vehicle_id');
         $this->db->where('vehicle_compare.vehicle_id',$vehicle_id);
         $query = $this->db->get(); 
-        //echo $this->db->last_query();
-        //die;
         return $query->result();
     }
 }

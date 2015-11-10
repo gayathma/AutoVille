@@ -18,5 +18,12 @@ class Newsletters_service extends CI_Model {
         $query = $this->db->get();
         return $query->result();
     }
+    
+     /*
+     * save newsletter in database  
+     */
+    function add_newsletter($newsletters_model) {
+        return $this->db->insert('newsletters', $newsletters_model);
+    }
 
 }

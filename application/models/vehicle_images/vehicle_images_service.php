@@ -1,8 +1,10 @@
 <?php
 
-class Vehicle_images_service extends CI_Model {
+class Vehicle_images_service extends CI_Model
+{
 
-    function __construct() {
+    function __construct()
+    {
         parent::__construct();
         $this->load->model('vehicle_images/vehicle_images_model');
     }
@@ -11,11 +13,17 @@ class Vehicle_images_service extends CI_Model {
      * Insert data into temp images table
      */
 
-    function add_new_images($vehicle_images_model) {
+    function add_new_images($vehicle_images_model)
+    {
         return $this->db->insert('vehicle_images', $vehicle_images_model);
     }
 
-    function get_last_advertisement_id() {
+    /*
+     * get last advertisement
+     */
+
+    function get_last_advertisement_id()
+    {
         $this->db->select('id');
         $this->db->from('vehicle_advertisements');
         $this->db->order_by("id", "desc");
@@ -25,7 +33,12 @@ class Vehicle_images_service extends CI_Model {
         return $query->row();
     }
 
-    function get_images_for_advertisement($advertisement_id) {
+    /*
+     * get all images for one advertisement
+     */
+
+    function get_images_for_advertisement($advertisement_id)
+    {
         $this->db->select('*');
         $this->db->from('vehicle_images');
         $this->db->where("vehicle_id", $advertisement_id);
@@ -36,7 +49,12 @@ class Vehicle_images_service extends CI_Model {
         return $query->result();
     }
 
-    function get_images_for_advertisement_one($advertisement_id) {
+    /*
+     * get one images for one advertisement
+     */
+
+    function get_images_for_advertisement_one($advertisement_id)
+    {
         $this->db->select('*');
         $this->db->from('vehicle_images');
         $this->db->where("vehicle_id", $advertisement_id);
