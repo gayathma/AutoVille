@@ -15,6 +15,9 @@ class Vehicle_like_dislike extends CI_Controller {
         $this->load->model('vehicle_dislikes/vehicle_dislikes_service');
     }
 
+    /**
+     * add vehile like and 
+     */
     function add_vehicle_likes() {
 
         $vehicle_likes_model = new Vehicle_likes_model();
