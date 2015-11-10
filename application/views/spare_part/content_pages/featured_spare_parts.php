@@ -8,7 +8,7 @@
                         <div class="overlay">
                             <div class="inner">
                                 <div class="content">
-                                    <h4>Description</h4>
+                                    <h4><?php echo $value->name;?></h4>
                                     <p>Curabitur odio nibh, luctus non pulvinar a, ultricies ac diam. Donec neque massa</p>
                                 </div>
                             </div>
@@ -26,7 +26,7 @@
                     </a>
                 </div>
                 <div class="wrapper">
-                    <a href="item-detail.html"><h3>Steak House Restaurant</h3></a>
+                    <a href="item-detail.html"><h3><?php echo $value?></h3></a>
                     <figure>63 Birch Street</figure>
                     <div class="info">
                         <div class="type">

@@ -79,6 +79,35 @@ class Spare_parts_ad_service extends CI_Model {
         $query = $this->db->get();
         return $query->result();
     }
+    
+    /*
+     * This is the service function to get newly arrived spare parts
+     * Author Ashani
+     */
+    public function get_new_arrival($limit) {
+
+        $this->db->select('spare_parts_advertisements.id,'
+                . 'spare_parts_advertisements.name,'
+                . 'spare_parts_advertisements.year,'
+                . 'spare_parts_advertisements.image,'
+                . 'manufacture.name as manufacture,'
+                . 'model.name as model,'
+                . 'fuel_type.name as fuel_type,');
+        $this->db->from('spare_parts_advertisements');
+        $this->db->join('manufacture', 'manufacture.id = spare_parts_advertisements.manufacture_id');
+        $this->db->join('model', 'model.id = spare_parts_advertisements.model_id');
+        $this->db->join('fuel_type', 'fuel_type.id = spare_parts_advertisements.fuel_type_id');
+        $this->db->where('spare_parts_advertisements.is_deleted', '0');
+        $this->db->order_by("spare_parts_advertisements.added_date", "desc");
+        $this->db->group_by('spare_parts_advertisements.id');
+        if ($limit != '') {
+            $this->db->limit($limit);
+        }
+
+        $query = $this->db->get();
+        return $query->result();
+    }
+
 
     function search_spare_parts($name, $manufacture_id, $category_id, $maxprice, $minprice, $keyword, $limit, $start) {
 
