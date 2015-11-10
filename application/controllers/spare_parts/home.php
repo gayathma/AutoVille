@@ -15,8 +15,9 @@ class Home extends CI_Controller {
 
         $spare_part_ad_service = new Spare_parts_ad_service();
 
-        $data['featured_spare_parts'] = $spare_part_ad_service->get_featured_vehicles(4);
+        $data['featured_spare_parts'] = $spare_part_ad_service->get_featured_vehicles(4); //Ashani
         $data['manufactures'] = $spare_part_ad_service->get_manufactures();
+        $data['new_arrivals'] = $spare_part_ad_service->get_new_arrival(4); //Ashani
 
         $parials = array('content' => 'spare_part/content_pages/home_content');
         $this->template->load('template/spare_part_template', $parials, $data);

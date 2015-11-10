@@ -26,7 +26,7 @@
                     </a>
                 </div>
                 <div class="wrapper">
-                    <a href="item-detail.html"><h3><?php echo $value?></h3></a>
+                    <a href="item-detail.html"><h3><?php echo $value->year;?></h3></a>
                     <figure>63 Birch Street</figure>
                     <div class="info">
                         <div class="type">
