@@ -16,10 +16,10 @@ class Manufacture extends CI_Controller {
         }
     }
 
-    /* manage manufacture functions
+    /**
+     *  manage manufacture functions
      * this will display all the manufacture
      */
-
     function manage_manufactures() {
 
         $manufacture_service = new Manufacture_service();
@@ -31,10 +31,9 @@ class Manufacture extends CI_Controller {
         $this->template->load('template/main_template', $parials, $data);
     }
 
-    /*
+    /**
      * adding a manufacture
      */
-
     function add_manufacture() {
         $manufacture_model   = new Manufacture_model();
         $manufacture_service = new Manufacture_service();
@@ -51,19 +50,17 @@ class Manufacture extends CI_Controller {
         echo $manufacture_service->add_new_manufacture($manufacture_model);
     }
 
-    /*
+    /**
      * Delete manufacture
      */
-
     function delete_manufactures() {
         $manufacture_service = new Manufacture_service();
         echo $manufacture_service->delete_manufacture(trim($this->input->post('id', TRUE)));
     }
 
-    /*
+    /**
      * change the publish status of the manufacture
      */
-
     function change_publish_status() {
         $manufacture_model   = new Manufacture_model();
         $manufacture_service = new Manufacture_service();
@@ -74,10 +71,9 @@ class Manufacture extends CI_Controller {
         echo $manufacture_service->publish_manufacture($manufacture_model);
     }
 
-    /*
+    /**
      * Edit manufacture pop up content set up and then send
      */
-
     function load_edit_manufacture_content() {
         $manufacure_model   = new Manufacture_model();
         $manufacure_service = new Manufacture_service();
@@ -89,10 +85,9 @@ class Manufacture extends CI_Controller {
         echo $this->load->view('manufacture/manufacture_edit_pop_up', $data, TRUE);
     }
 
-    /*
+    /**
      * update the manufacute details
      */
-
     function edit_manufacture() {
         $manufacure_model   = new Manufacture_model();
         $manufacure_service = new Manufacture_service();
@@ -105,10 +100,9 @@ class Manufacture extends CI_Controller {
         echo $manufacure_service->update_manufacure($manufacure_model);
     }
 
-    /*
+    /**
      * This function is to upload manufacture logo
      */
-
     function upload_manufacture_logo() {
 
         $uploaddir  = './uploads/manufacture_logo/';
@@ -124,21 +118,13 @@ class Manufacture extends CI_Controller {
         }
     }
 
+    /**
+     * load all manufacture names
+     */
     public function load_manufacturers() {
         $manufacture_service = new Manufacture_service();
         $data['names']       = $manufacture_service->get_manufacture_name();
         echo $this->load->view('manufacturers/manufacture_list_view', $data);
     }
 
-//    public function load_vehicle_news() {
-//        $manufacture_service = new Manufacture_service();
-//        $data['results']     = $manufacture_service->get_vehicle_news();
-//        echo $this->load->view('manufacturers/manufacture_list_view', $data);
-//    }
-
-//    public function load_vehicle_models(){
-//        $manufacure_service=new Manufacture_service();
-//        $data['models']=$manufacure_service->get_vehicle_models();
-//        echo $this->load->view('manufacturers/manufacture_list_view', $data);
-//    }
 }

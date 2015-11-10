@@ -14,17 +14,15 @@ class Vehicle_reviews extends CI_Controller {
         $this->load->model('vehicle_reviews/vehicle_reviews_service');
     }
 
-    /*
+    /**
      * function to load all vehicle reviews
      */
-
     function load_all_vehicle_reviews() {
         $vehicle_reviews_service = new Vehicle_reviews_service();
         $vehicle_id              = $this->uri->segment(3);
         $logged_user_id          = $this->session->userdata('USER_ID');
         $data['logged_user']     = $this->session->userdata('USER_ID');
-        //echo $logged_user_id;
-        //echo $vehicle_id;
+
         $data['vehicle_reviews'] = $vehicle_reviews_service->get_all_vehicle_reviews($vehicle_id);
         $data['user_id']         = $vehicle_reviews_service->get_logged_in_users_reviews($logged_user_id);
 
@@ -32,6 +30,9 @@ class Vehicle_reviews extends CI_Controller {
         $this->template->load('template/main_template', $parials, $data);
     }
 
+    /**
+     * add vehicle reviews
+     */
     function add_vehicle_reviews() {
         $vehicle_reviews_service = new Vehicle_reviews_service();
         $vehicle_reviews_model   = new Vehicle_reviews_model();
@@ -91,6 +92,9 @@ class Vehicle_reviews extends CI_Controller {
         }
     }
 
+    /**
+     * delete vehicle review
+     */
     function delete_review() {
         $vehicle_reviews_service = new Vehicle_reviews_service();
         $vehicle_reviews_service->delete_vehicle_reviews(trim($this->input->post('id', TRUE)));
@@ -137,10 +141,9 @@ class Vehicle_reviews extends CI_Controller {
         }
     }
 
-    /*
+    /**
      * Edit transmission pop up content set up and then send .
      */
-
     function load_edit_review_content() {
         $vehicle_reviews_service = new Vehicle_reviews_service();
         $vehicle_reviews_model   = new Vehicle_reviews_model();
@@ -153,10 +156,9 @@ class Vehicle_reviews extends CI_Controller {
         echo $this->load->view('vehicle_adds/vehicle_reviews_edit_view', $data, TRUE);
     }
 
-    /*
+    /**
      * This function is to update the review details
      */
-
     function edit_review() {
 
         $vehicle_reviews_service = new Vehicle_reviews_service();

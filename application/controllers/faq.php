@@ -16,29 +16,38 @@ class Faq extends CI_Controller {
         $this->load->model('website_advertisements/website_advertisements_service');
     }
 
+    /**
+     * load all questions and show them in the site
+     */
     function load_all_questions() {
-        $faq_service = new faq_service();
+        $faq_service           = new faq_service();
         $data['faq_questions'] = $faq_service->get_all_questions();
 
         $parials = array('content' => 'vehicle_adds/recent_adds');
         $this->template->load('template/main_template', $parials, $data);
     }
 
+    /**
+     * list all questions and answers in the faq page
+     */
     function list_faq_questions() {
-        $faq_service = new faq_service();
+        $faq_service                   = new faq_service();
         $vehicle_advertisments_service = new Vehicle_advertisments_service();
         $website_advertisement_service = new Website_advertisements_service();
 
         $data['faq_question_list'] = $faq_service->get_all_questions_list();
-        $data['latest_vehicles'] = $vehicle_advertisments_service->get_new_arrival(2);
+        $data['latest_vehicles']   = $vehicle_advertisments_service->get_new_arrival(2);
         $data['commercial_images'] = $website_advertisement_service->get_advertisement_image();
 
         $parials = array('content' => 'content_pages/faq_view', 'new_arrivals' => 'vehicle_adds/new_arrivals');
         $this->template->load('template/main_template', $parials, $data);
     }
 
+    /**
+     * add faq questions
+     */
     function add_faq_questions() {
-        $faq_model = new faq_model();
+        $faq_model   = new faq_model();
         $faq_service = new faq_service();
 
         $faq_model->setEmail($this->input->post('email', TRUE));
@@ -61,10 +70,10 @@ class Faq extends CI_Controller {
                         <h4><?php echo $value->question; ?>
                         </h4>
                         <div class="answer">
-                            <?php if ($value->answer == '') { ?>
+            <?php if ($value->answer == '') { ?>
                                 <figure>Answer</figure>
                                 <p>
-                                    <?php echo ("Not yet Answered!"); ?>  
+                <?php echo ("Not yet Answered!"); ?>  
                                 </p>
                             <?php } else { ?>
                                 <figure>Answer</figure>
@@ -76,8 +85,9 @@ class Faq extends CI_Controller {
                     </div>
                 </article>
             </div>
-            <?php
-        }
-    }
+                            <?php
+                        }
+                    }
 
-}
+                }
+                

@@ -58,6 +58,9 @@ class Vehicle_advertisements extends CI_Controller {
         $this->load->library('sms_handler');
     }
 
+    /**
+     * post a new advertisement
+     */
     function post_new_advertisement() {
 
         $manufacture_service           = new Manufacture_service();
@@ -101,6 +104,10 @@ class Vehicle_advertisements extends CI_Controller {
         $this->template->load('template/main_template', $parials, $data);
     }
 
+    /**
+     * edit advertisement
+     * @param integer $advertisement_id Input advertisement id
+     */
     function edit_new_advertisement($advertisement_id) {
 
 
@@ -142,6 +149,9 @@ class Vehicle_advertisements extends CI_Controller {
         $this->template->load('template/main_template', $parials, $data);
     }
 
+    /**
+     * add vehicle images to a temporary location
+     */
     function add_temp_vehicle_images() {
 
         $vehicle_images_temp_model   = new Vehicle_images_temp_model();
@@ -160,10 +170,9 @@ class Vehicle_advertisements extends CI_Controller {
         }
     }
 
-    /*
+    /**
      * Add new vehicle advertisements
      */
-
     function add_new_advertisement() {
 //        $perm = Access_controllerservice :: checkAccess('ADD_PRIVILEGES');
 //        if ($perm) {
@@ -206,9 +215,6 @@ class Vehicle_advertisements extends CI_Controller {
         $vehicle_advertisement_model->set_added_date(date("Y-m-d H:i:s"));
         $vehicle_advertisement_model->set_added_by($this->session->userdata('USER_ID'));
 
-
-
-
         $advertisement_id = $vehicle_advertisement_service->add_new_advertisements($vehicle_advertisement_model);
         $msg              = 1;
 
@@ -247,30 +253,20 @@ class Vehicle_advertisements extends CI_Controller {
 
             mail($email, $email_subject, $mseg, $headers);
 
-
             //sms to admins
             $message = "New Advertisement has submitted. \n ";
-//            $message .= 'Driver:' . $driver_details->Employee_Name . ' ' . $driver_details->last_name . ' \n ';
-//            $message .= 'Start Time:' . $basic_request_details->required_date . ' \n ';
-//            $message .= 'Location(s):';
-//
-//            $message .= $location_messages;
-//            $this->sms_handler->sendSMS(0756020115, $message); //correct one
         }
 
         echo $msg;
-
-
 
 //        } else {
 //            $this->template->load('template/access_denied_page');
 //        }
     }
 
-    /*
+    /**
      * Edit vehicle advertisements
      */
-
     function edit_advertisement() {
 
 
@@ -347,6 +343,9 @@ class Vehicle_advertisements extends CI_Controller {
         echo $msg;
     }
 
+    /**
+     * get vehicle models for manufacturer
+     */
     public function get_models_for_manufacturer() {
         $vehicle_model_service = new Vehicle_model_service();
 
@@ -362,6 +361,10 @@ class Vehicle_advertisements extends CI_Controller {
         echo '</select>';
     }
 
+    /**
+     * load vehicle advertisement detail view
+     * @param integer $id Input vehicle id
+     */
     public function vehicle_advertisement_detail_view($id) {
         $vehicle_advertisments_service = new Vehicle_advertisments_service();
         $vehicle_images_service        = new Vehicle_images_service();
@@ -375,9 +378,6 @@ class Vehicle_advertisements extends CI_Controller {
 
         $vehicle_id = $this->uri->segment(3);
 
-
-
-
         $data['equipments']         = $equipment_service->get_all_active_equipment();
         $data['vehicle_detail']     = $vehicle_advertisments_service->get_advertisement_by_id($id);
         $data['seller_add']         = $user_service->get_user($data['vehicle_detail']->added_by);
@@ -386,7 +386,6 @@ class Vehicle_advertisements extends CI_Controller {
         $data['review_looks_count'] = count($searched_vehicles_service->get_view_count_for_advertisement($id));
 
         $data['suggestions'] = $vehicle_advertisments_service->similar_suggestions($data['vehicle_detail']->manufacture_id, $data['vehicle_detail']->model_id); //Ashani
-
 
         $vehicle_equipments = $vehicle_equipment_service->get_equipments_by_vehicle_id($id);
         $equipment_array    = array();
@@ -403,10 +402,9 @@ class Vehicle_advertisements extends CI_Controller {
         $this->template->load('template/main_template', $parials, $data);
     }
 
-    /*
+    /**
      * This is to delete a advertisement by the user
      */
-
     function delete_advertisement() {
 
         $vehicle_advertisments_service = new Vehicle_advertisments_service();
@@ -414,11 +412,10 @@ class Vehicle_advertisements extends CI_Controller {
         echo $vehicle_advertisments_service->delete_advertisement(trim($this->input->post('id', TRUE)));
     }
 
-    /*
+    /**
      * This is to send emails to sellers by users
      * author - nadeesha
      */
-
     function send_email_to_sellers() {
 
         $email_subject        = "AutoVille Customer Request";
@@ -452,12 +449,11 @@ class Vehicle_advertisements extends CI_Controller {
         $this->sms_handler->sendSMS(0765514269, $message); //correct one
     }
 
-    /*
+    /**
      * This is to update the is_featured status from 0 to 1- request featured
      * author- Nadeesha
      * 
      */
-
     function request_featured() {
         $vehicle_advertisments_model   = new Vehicle_advertisments_model();
         $vehicle_advertisments_service = new Vehicle_advertisments_service();
@@ -468,10 +464,9 @@ class Vehicle_advertisements extends CI_Controller {
         echo $vehicle_advertisments_service->request_featured_advertisement($vehicle_advertisments_model);
     }
 
-    /*
+    /**
      * add search histrory details for user
      */
-
     function add_search_history() {
         if ($this->session->userdata('USER_ID') != '') {
             $searched_vehicles_model   = new Searched_vehicles_model();
