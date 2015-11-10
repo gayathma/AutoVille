@@ -43,11 +43,11 @@ class Home extends CI_Controller {
         $this->load->model('subscribers/subscribers_service');
     }
 
-    /*
+    /**
      * load about us page details
      * and display the page
      */
-    function about_us(){
+    function about_us() {
         $manufacture_service           = new Manufacture_service();
         $body_type_service             = new Body_type_service();
         $fuel_type_service             = new Fuel_Type_service();
@@ -71,18 +71,18 @@ class Home extends CI_Controller {
         $data['vehicle_results'] = $vehicle_results;
 
         $data['names'] = $manufacture_service->get_manufacture_name();
-        
-        $data['price_drop_vehicles']  = $vehicle_advertisments_service->get_price_drop_vehicles(4);//Ashani
-        $data['latest_vehicles']= $vehicle_advertisments_service->get_new_arrival(2);  //author-Ishani
+
+        $data['price_drop_vehicles']  = $vehicle_advertisments_service->get_price_drop_vehicles(4); //Ashani
+        $data['latest_vehicles']      = $vehicle_advertisments_service->get_new_arrival(2);  //author-Ishani
         $data['vehicle_news_results'] = $vehicle_news_service->get_vehicle_news();      //author-Ishani
         $data['featured_vehicles']    = $vehicle_advertisments_service->get_featured_advertisements(4);
-        $data['popular_vehicles']    = $vehicle_advertisments_service->get_popular_advertisements(4);//Ashanis']    = $vehicle_advertisments_service->get_popular_advertisements(4);//Ashani
-        
+        $data['popular_vehicles']     = $vehicle_advertisments_service->get_popular_advertisements(4); //Ashanis']    = $vehicle_advertisments_service->get_popular_advertisements(4);//Ashani
+
         $parials = array('content' => 'content_pages/about_us', 'new_arrivals' => 'vehicle_adds/new_arrivals');
         $this->template->load('template/main_template', $parials, $data);
     }
 
-    /*
+    /**
      * load the home page of the site
      */
     function index() {
@@ -111,36 +111,35 @@ class Home extends CI_Controller {
 
         $data['names'] = $manufacture_service->get_manufacture_name();
 
-        $data['price_drop_vehicles']  = $vehicle_advertisments_service->get_price_drop_vehicles(4);//Ashani
-        $data['latest_vehicles']= $vehicle_advertisments_service->get_new_arrival(2);  //author-Ishani
+        $data['price_drop_vehicles']  = $vehicle_advertisments_service->get_price_drop_vehicles(4); //Ashani
+        $data['latest_vehicles']      = $vehicle_advertisments_service->get_new_arrival(2);  //author-Ishani
         $data['vehicle_news_results'] = $vehicle_news_service->get_vehicle_news();      //author-Ishani
         $data['featured_vehicles']    = $vehicle_advertisments_service->get_featured_advertisements(4);
-        $data['popular_vehicles']    = $vehicle_advertisments_service->get_popular_advertisements();//Ashani
+        $data['popular_vehicles']     = $vehicle_advertisments_service->get_popular_advertisements(); //Ashani
 
         $parials = array('content' => 'content_pages/home_content', 'new_arrivals' => 'vehicle_adds/new_arrivals');
         $this->template->load('template/main_template', $parials, $data);
     }
 
-    /*
+    /**
      * set subscriber Details
      * and save them in database
      */
-    function subscribe(){
-        $subscribers_model = new Subscribers_model();
+    function subscribe() {
+        $subscribers_model   = new Subscribers_model();
         $subscribers_service = new Subscribers_service();
-        
+
         //check whether user is already subscribed or not
         $subscriber = $subscribers_service->get_subscriber($this->input->post('subscribe_email', TRUE));
-        if(empty($subscriber)){
+        if (empty($subscriber)) {
             $subscribers_model->set_email($this->input->post('subscribe_email', TRUE));
             $subscribers_model->set_status('1');
             $subscribers_model->set_added_date(date("Y-m-d H:i:s"));
 
             echo $subscribers_service->add_subscribers($subscribers_model);
-        }else{
+        } else {
             echo 0;
         }
     }
-    
 
 }

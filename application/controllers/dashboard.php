@@ -23,10 +23,13 @@ class Dashboard extends CI_Controller {
         $this->load->library('pagination_custome');
     }
 
+    /**
+     * load all dashboard content
+     * @param string $start Input starting value
+     */
     function index($start = "0") {
 
         $vehicle_advertisements_service = new Vehicle_advertisments_service();
-
 
         $config = array();
 
@@ -47,11 +50,13 @@ class Dashboard extends CI_Controller {
         $this->template->load('template/main_template', $parials, $data);
     }
 
+    /**
+     * 
+     * load all advertisements for a user
+     * @param string $start Input starting value
+     */
     function load_my_advertisements($start = "0") {
-
-
         $vehicle_advertisements_service = new Vehicle_advertisments_service();
-
 
         $config = array();
 
@@ -69,6 +74,11 @@ class Dashboard extends CI_Controller {
         echo $this->load->view('my_dashboard/my_advertisements', $data);
     }
 
+    /**
+     * 
+     * load all saved searches for a user
+     * @param string $start Input starting value
+     */
     function load_saved_searches($start = "0") {
 
 
@@ -91,6 +101,9 @@ class Dashboard extends CI_Controller {
         echo $this->load->view('my_dashboard/saved_searches', $data);
     }
 
+    /**
+     * delete saved searches
+     */
     function delete_saved_search() {
 
         $searched_vehicles_service = new Searched_vehicles_service();
@@ -98,6 +111,11 @@ class Dashboard extends CI_Controller {
         echo $searched_vehicles_service->delete_serached_record(trim($this->input->post('id', TRUE)));
     }
 
+    /**
+     * 
+     * load all bookmarked vehicles for a user
+     * @param string $start Input starting value
+     */
     function load_bookmarked_vehicles($start = "0") {
 
         $bookmarked_vehicles_service = new Bookmarked_vehicles_service();

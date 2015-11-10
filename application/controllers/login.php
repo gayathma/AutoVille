@@ -20,6 +20,9 @@ class Login extends CI_Controller {
         $this->load->model('vehicle_advertisments/vehicle_advertisments_service');
     }
 
+    /**
+     * activate user
+     */
     function activate() {
         if ($this->register_users_service->activate_user($_GET['email'], $_GET['token'])) {
             redirect(site_url() . '/login/load_login');
@@ -28,6 +31,9 @@ class Login extends CI_Controller {
         }
     }
 
+    /**
+     * load login page
+     */
     function load_login() {
 
         $vehicle_advertisments_service = new Vehicle_advertisments_service();
@@ -41,7 +47,9 @@ class Login extends CI_Controller {
         }
     }
 
-    //Login details checking function 
+    /**
+     * Login details checking function 
+     */
     function authenticate_user() {
 
         $user_model   = new User_model();
@@ -81,7 +89,9 @@ class Login extends CI_Controller {
         }
     }
 
-    //Authenticate via Google Plus
+   /**
+    * Authenticate via Google Plus
+    */
     function google_authenticate_user() {
 
         $user_model   = new User_model();
@@ -148,6 +158,9 @@ class Login extends CI_Controller {
         die;
     }
 
+    /**
+     * logout 
+     */
     function logout() {
 
         $user_model   = new User_model();
@@ -165,6 +178,9 @@ class Login extends CI_Controller {
         redirect(site_url() . '/login/load_login');
     }
 
+    /**
+     * give option for user to change the forget password
+     */
     function forget_password() {
 
         $user_service = new User_service();
@@ -203,11 +219,17 @@ class Login extends CI_Controller {
         echo '0';
     }
 
+    /**
+     * reset the passoword
+     */
     function reset_password() {
         $parials = array('content' => 'content_pages/reset_password');
         $this->template->load('template/main_template', $parials);
     }
 
+    /**
+     * update the password
+     */
     function update_password() {
 
         $user_service = new User_service();
@@ -234,7 +256,6 @@ class Login extends CI_Controller {
                 }
             }
         }
-
         echo '0';
     }
 

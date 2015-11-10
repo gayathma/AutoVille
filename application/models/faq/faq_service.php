@@ -7,7 +7,7 @@ class Faq_service extends CI_Model {
         $this->load->model('faq/faq_model');
     }
 
-    /*
+    /**
      * get recent questions that are published
      */
     public function get_all_questions() {
@@ -21,7 +21,7 @@ class Faq_service extends CI_Model {
         return $query->result();
     }
 
-    /*
+    /**
      * get all questions that are published
      */
     public function get_all_questions_list() {
@@ -35,8 +35,10 @@ class Faq_service extends CI_Model {
         return $query->result();
     }
 
-    /*
+    /**
      * save question in database
+     * @param object $faq_model Input model
+     * @return boolean
      */
     public function add_questions($faq_model) {
         return $this->db->insert('faq', $faq_model);

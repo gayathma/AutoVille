@@ -7,7 +7,7 @@ class District_service extends CI_Model {
         $this->load->model('district/district_model');
     }
 
-    /*
+    /**
      * This is the service function to get all districts
      */
     function get_all_districts() {

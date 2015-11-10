@@ -12,8 +12,10 @@ class Pages extends CI_Controller {
         $this->load->model('vehicle_advertisments/vehicle_advertisments_service');
     }
 
+    /**
+     * load content of contact us page
+     */
     function contact_us() {
-
         $data['']                      = '';
         $vehicle_advertisments_service = new Vehicle_advertisments_service();
         $data['latest_vehicles']       = $vehicle_advertisments_service->get_new_arrival(2);
@@ -22,8 +24,10 @@ class Pages extends CI_Controller {
         $this->template->load('template/main_template', $parials, $data);
     }
 
+    /**
+     * load content of how to buy page
+     */
     function how_to_buy() {
-
         $vehicle_advertisments_service = new Vehicle_advertisments_service();
 
         $data['']                = '';
@@ -33,9 +37,10 @@ class Pages extends CI_Controller {
         $this->template->load('template/main_template', $parials, $data);
     }
 
+    /**
+     * load content of site map page
+     */
     function site_map() {
-
-
         $vehicle_advertisments_service = new Vehicle_advertisments_service();
 
         $data['']                = '';

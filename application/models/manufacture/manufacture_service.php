@@ -7,7 +7,7 @@ class Manufacture_service extends CI_Model {
         $this->load->model('manufacture/manufacture_model');
     }
 
-    /*
+    /**
      * service function to get all manufacure
      */
     public function get_all_active_manufactures_for_home() {
@@ -22,7 +22,7 @@ class Manufacture_service extends CI_Model {
         return $query->result();
     }
 
-    /*
+    /**
      * service function to get all manufacure
      */
     public function get_all_active_manufactures() {
@@ -36,15 +36,17 @@ class Manufacture_service extends CI_Model {
         return $query->result();
     }
 
-    /*
+    /**
      * get the manufacture details by pasing the manufacture id as a parameter
+     * @param object $manufacture_model Input model
+     * @return object
      */
     function get_manufacure_by_id($manufacture_model) {
-        $query = $this->db->get_where('manufacture', array('id'         => $manufacture_model->get_id(), 'is_deleted' => '0'));
+        $query = $this->db->get_where('manufacture', array('id' => $manufacture_model->get_id(), 'is_deleted' => '0'));
         return $query->row();
     }
 
-    /*
+    /**
      * get names of all manufaturers
      */
     function get_manufacture_name() {

@@ -1,29 +1,25 @@
 <?php
 
-class Vehicle_images_service extends CI_Model
-{
+class Vehicle_images_service extends CI_Model {
 
-    function __construct()
-    {
+    function __construct() {
         parent::__construct();
         $this->load->model('vehicle_images/vehicle_images_model');
     }
 
-    /*
+    /**
      * Insert data into temp images table
+     * @param object $vehicle_images_model Input model
+     * @return boolean
      */
-
-    function add_new_images($vehicle_images_model)
-    {
+    function add_new_images($vehicle_images_model) {
         return $this->db->insert('vehicle_images', $vehicle_images_model);
     }
 
-    /*
+    /**
      * get last advertisement
      */
-
-    function get_last_advertisement_id()
-    {
+    function get_last_advertisement_id() {
         $this->db->select('id');
         $this->db->from('vehicle_advertisements');
         $this->db->order_by("id", "desc");
@@ -33,12 +29,12 @@ class Vehicle_images_service extends CI_Model
         return $query->row();
     }
 
-    /*
+    /**
      * get all images for one advertisement
+     * @param integer $advertisement_id Input advertisement id
+     * @return object
      */
-
-    function get_images_for_advertisement($advertisement_id)
-    {
+    function get_images_for_advertisement($advertisement_id) {
         $this->db->select('*');
         $this->db->from('vehicle_images');
         $this->db->where("vehicle_id", $advertisement_id);
@@ -49,12 +45,12 @@ class Vehicle_images_service extends CI_Model
         return $query->result();
     }
 
-    /*
-     * get one images for one advertisement
+    /**
+     * get one images for one advertisement advertisement id
+     * @param integer $advertisement_id Inout 
+     * @return object
      */
-
-    function get_images_for_advertisement_one($advertisement_id)
-    {
+    function get_images_for_advertisement_one($advertisement_id) {
         $this->db->select('*');
         $this->db->from('vehicle_images');
         $this->db->where("vehicle_id", $advertisement_id);

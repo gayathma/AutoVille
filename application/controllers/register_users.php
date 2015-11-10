@@ -14,22 +14,30 @@ class Register_Users extends CI_Controller {
         $this->load->model('vehicle_advertisments/vehicle_advertisments_model');
         $this->load->model('vehicle_advertisments/vehicle_advertisments_service');
     }
-    
-    function check_email(){
-        if($this->register_users_service->check_email($_POST['email']) )
+
+    /**
+     * check email is already there
+     */
+    function check_email() {
+        if ($this->register_users_service->check_email($_POST['email']))
             echo 1;
         else
             echo -1;
     }
-    
-    function check_username(){
-        if($this->register_users_service->check_username($_POST['username']) )
+
+    /**
+     * check user name is already there
+     */
+    function check_username() {
+        if ($this->register_users_service->check_username($_POST['username']))
             echo 1;
         else
             echo -1;
     }
-    
-    
+
+    /**
+     * load registration page
+     */
     function load_registration() {
 
         $vehicle_advertisments_service = new Vehicle_advertisments_service();
@@ -43,6 +51,10 @@ class Register_Users extends CI_Controller {
         }
     }
 
+    /**
+     * add new user
+     * @return boolean true success ,false error
+     */
     function add_new_user() {
 
         $register_users_model   = new Register_Users_model();
@@ -60,7 +72,7 @@ class Register_Users extends CI_Controller {
         $register_users_model->set_password(md5($this->input->post('form_register_password', TRUE)));
         $register_users_model->set_is_online('0');
         $register_users_model->set_title(trim($this->input->post('title', TRUE)));
-        
+
         $token = $this->generate_random_string(); //generate account activation token
 
         $register_users_model->set_account_activation_code($token);
@@ -88,8 +100,6 @@ class Register_Users extends CI_Controller {
         $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
         $headers .= 'From: Autoville <info.autovillle@gmail.com>' . "\r\n";
         $headers .= 'Cc: info.autovillle@gmail.com' . "\r\n";
-//        echo $msg;
-//        return;
 
         if (mail($email, $email_subject, $msg, $headers)) {
             echo "1";
@@ -101,6 +111,11 @@ class Register_Users extends CI_Controller {
         return true;
     }
 
+    /**
+     * generate random string for url tocken
+     * @param integer $length Input tocken length
+     * @return string tocken
+     */
     public function generate_random_string($length = 10) {
         $characters    = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $random_string = '';

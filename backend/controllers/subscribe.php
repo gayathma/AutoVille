@@ -3,11 +3,9 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Subscribe extends CI_Controller
-{
+class Subscribe extends CI_Controller {
 
-    function __construct()
-    {
+    function __construct() {
         parent::__construct();
 
         if (!$this->session->userdata('USER_LOGGED_IN')) {
@@ -23,12 +21,10 @@ class Subscribe extends CI_Controller
         }
     }
 
-    /*
+    /**
      * This will display all the subscribers registered for newsletters
      */
-
-    function manage_subscribers()
-    {
+    function manage_subscribers() {
 
         $subscribers_service = new Subscribers_service();
 
@@ -39,12 +35,10 @@ class Subscribe extends CI_Controller
         $this->template->load('template/main_template', $parials, $data);
     }
 
-    /*
+    /**
      * This will display all newsletters
      */
-
-    function manage_newsletters()
-    {
+    function manage_newsletters() {
 
         $newsletters_service = new Newsletters_service();
 
@@ -55,27 +49,23 @@ class Subscribe extends CI_Controller
         $this->template->load('template/main_template', $parials, $data);
     }
 
-    /*
+    /**
      * Newsletter add view
      */
-
-    function add_newsletter_view()
-    {
+    function add_newsletter_view() {
         $data['heading'] = "Send Newsletter";
 
         $parials = array('content' => 'newsletters/add_newsletter');
         $this->template->load('template/main_template', $parials, $data);
     }
 
-    /*
+    /**
      * save newsletter in database
      */
-
-    function add_newsletter()
-    {
+    function add_newsletter() {
 
         $newsletters_service = new Newsletters_service();
-        $newsletters_model = new Newsletters_model();
+        $newsletters_model   = new Newsletters_model();
 
         $newsletters_model->set_subject($this->input->post('subject', TRUE));
         $newsletters_model->set_content($this->input->post('content', TRUE));
@@ -84,14 +74,12 @@ class Subscribe extends CI_Controller
         echo $newsletters_service->add_newsletter($newsletters_model);
     }
 
-    /*
+    /**
      * save newsletter in database and send to all subscribers
      */
-
-    function send_newsletter()
-    {
+    function send_newsletter() {
         $newsletters_service = new Newsletters_service();
-        $newsletters_model = new Newsletters_model();
+        $newsletters_model   = new Newsletters_model();
         $subscribers_service = new Subscribers_service();
 
         $newsletters_model->set_subject($this->input->post('subject', TRUE));
@@ -104,9 +92,9 @@ class Subscribe extends CI_Controller
         $subscribers = $subscribers_service->get_active_subscribers();
         foreach ($subscribers as $subscriber) {
             //send email
-            $email_to = $subscriber->email;
-            $email_subject = $this->input->post('subject', TRUE);
-            $data['email'] = $subscriber->email;
+            $email_to        = $subscriber->email;
+            $email_subject   = $this->input->post('subject', TRUE);
+            $data['email']   = $subscriber->email;
             $data['content'] = $subscriber->content;
 
             $msg = $this->load->view('template/mail_template/forgot_password', $data, TRUE);

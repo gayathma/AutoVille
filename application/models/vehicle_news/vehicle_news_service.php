@@ -8,18 +8,17 @@ class Vehicle_news_service extends CI_Model {
     }
 
     /**
-     * 
-     * @param type $vehicle_news_model
-     * @return type
+     * add vehicle news to database
+     * @param object $vehicle_news_model Input model
+     * @return boolean
      */
-
     function add_new_vehicle_news($vehicle_news_model) {
         return $this->db->insert('vehicle_news', $vehicle_news_model);
     }
 
     /**
-     * 
-     * @return type
+     * get latest news
+     * @return object
      */
     function get_vehicle_news() {
         $this->db->select('vehicle_news.title,'
@@ -34,6 +33,10 @@ class Vehicle_news_service extends CI_Model {
         return $query->result();
     }
 
+    /**
+     * get all vehicle news
+     * @return object
+     */
     function get_vehicle_news_list() {
         $this->db->select('vehicle_news.title,vehicle_news.content');
         $this->db->from('vehicle_news');

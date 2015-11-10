@@ -12,6 +12,9 @@ class Bookmarked_vehicles extends CI_Controller {
         $this->load->model('bookmarked_vehicles/bookmarked_vehicles_service');
     }
 
+    /**
+     * bookmark a vehicle
+     */
     function bookmark_vehicle() {
 
         $bookmarked_vehicles_model   = new Bookmarked_vehicles_model();
@@ -26,6 +29,9 @@ class Bookmarked_vehicles extends CI_Controller {
         echo $bookmarked_vehicles_service->insert_bookmarked_vehicle($bookmarked_vehicles_model);
     }
 
+    /**
+     * remove bookmark for a particular vehicle
+     */
     function remove_bookmark() {
 
         $bookmarked_vehicles_service = new Bookmarked_vehicles_service();
