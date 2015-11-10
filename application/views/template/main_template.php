@@ -117,7 +117,7 @@
                                     </li>
                                 <?php } ?>
                                 <li>
-                                    <a class="has-child"  href="<?php echo site_url();?>/spare_parts/home">Spare Parts</a>
+                                    <a class="has-child"  href="<?php echo site_url(); ?>/spare_parts/home">Spare Parts</a>
                                 </li>
                                 <li>   
                                     <a href="<?php echo site_url(); ?>/home/about_us">About Us</a>
@@ -248,6 +248,35 @@
         </div>
         <!-- End Forgot Password Modal -->
 
+        <!-- Subscriber Seller Modal -->
+        <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="subscribe_seller_model" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Subscribe Seller</h4>
+                    </div>
+                    <form id="subscribe_seller_form">
+                        <div class="modal-body">
+                            <p>Enter your e-mail address</p>
+                            <input type="text" id="subscriber_email" name="subscriber_email" placeholder="Email" autocomplete="off" class="form-control placeholder-no-fix">
+                        </div>
+                        <div class="modal-footer">
+                            <button data-dismiss="modal" class="btn btn-default" type="button">Cancel</button>
+                            <button class="btn btn-success" type="submit">Submit</button>
+                        </div>
+                    </form>
+                </div>
+                <div id="fade_valid_msg" style="display: none">
+                    <div class="alert alert-success">
+                        <i class="fa fa-check-circle fa-fw fa-lg"></i>
+                        Subscribed Seller!!
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Subscriber Seller Modal -->
+
         <!--Review Edit Modal -->
         <div  class="modal fade "   id="review_edit_div" tabindex="-1" role="dialog"  aria-hidden="true">
             <div class="modal-dialog">
@@ -259,33 +288,33 @@
 
 
         <div class="modal-backdrop hide fade in"  ></div>
-            <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="chat_error" class="modal fade">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            <h4 class="modal-title">Sorry, Seller is not online</h4>
-                        </div>
+        <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="chat_error" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Sorry, Seller is not online</h4>
+                    </div>
 
-                        <div class="modal-body">
-                            <p>Please try again later</p>
+                    <div class="modal-body">
+                        <p>Please try again later</p>
 
-                        </div>
-                        <div class="modal-footer">
-                            <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
-
-                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
 
                     </div>
 
                 </div>
+
             </div>
+        </div>
 
 
 
 
         <!--<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;libraries=places"></script>-->
-        <!--<script type="text/javascript" src="<?php // echo base_url();           ?>application_resources/assets/js/richmarker-compiled.js"></script>-->
+        <!--<script type="text/javascript" src="<?php // echo base_url();             ?>application_resources/assets/js/richmarker-compiled.js"></script>-->
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery-migrate-1.2.1.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/bootstrap/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/smoothscroll.js"></script>
@@ -296,19 +325,19 @@
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery.ui.timepicker.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery.nouislider.all.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/custom.js"></script>
-       <!--<script type="text/javascript" src="<?php //echo base_url();           ?>application_resources/assets/js/maps.js"></script>-->
+       <!--<script type="text/javascript" src="<?php //echo base_url();             ?>application_resources/assets/js/maps.js"></script>-->
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/lazy/jquery.lazyload.js"></script>
         <script src="//js.pusher.com/3.0/pusher.min.js"></script>
 
 
 
         <script>
-            //autoComplete();
-            $(function() {
-                $("img.lazy").lazyload({
-                    effect: "fadeIn"
-                });
-            });
+                                                //autoComplete();
+                                                $(function () {
+                                                    $("img.lazy").lazyload({
+                                                        effect: "fadeIn"
+                                                    });
+                                                });
 
 //            $(function() {
 //                var pusher = new Pusher('ec747a95f1c879f5fd91');
@@ -330,50 +359,50 @@
 
 <script>
 
-    $(document).ready(function() {
+                                                $(document).ready(function () {
 
 <?php if ($this->session->userdata('USER_LOGGED_IN')) { ?>
-            $.ajax({
-                type: "POST",
-                url: site_url + '/vehicle_compare/load_vehicle_popup',
-                success: function(msg) {
-                    if (msg != 0) {
-                        $('#compare_vehicle_list').html(msg);
-                    } else {
-                        alert('Error loading vehicles');
-                    }
-                }
-            });
+                                                        $.ajax({
+                                                            type: "POST",
+                                                            url: site_url + '/vehicle_compare/load_vehicle_popup',
+                                                            success: function (msg) {
+                                                                if (msg != 0) {
+                                                                    $('#compare_vehicle_list').html(msg);
+                                                                } else {
+                                                                    alert('Error loading vehicles');
+                                                                }
+                                                            }
+                                                        });
 
 <?php } else { ?>
-            $.jStorage.flush();
-            var jSindex = $.jStorage.index();
+                                                        $.jStorage.flush();
+                                                        var jSindex = $.jStorage.index();
 
-            var compareBtn = '<li><a href="<?php echo site_url(); ?>/vehicle_compare/load_compare_vehicles_dashboard_unreg_user" class="dealer-name"><button id="compareButton">Compare</button></a></li>';
+                                                        var compareBtn = '<li><a href="<?php echo site_url(); ?>/vehicle_compare/load_compare_vehicles_dashboard_unreg_user" class="dealer-name"><button id="compareButton">Compare</button></a></li>';
 
-            var li_list = '<button style="border:0px solid black; background-color: transparent;" data-toggle="dropdown"><i class="fa fa-road"></i> Compare(' + jSindex.length + ')<span class="caret"></span></button><ul class="dropdown-menu" id="added_vehicle_list">';
+                                                        var li_list = '<button style="border:0px solid black; background-color: transparent;" data-toggle="dropdown"><i class="fa fa-road"></i> Compare(' + jSindex.length + ')<span class="caret"></span></button><ul class="dropdown-menu" id="added_vehicle_list">';
 
-            if (jSindex.length == 0) {
-                li_list += '<li>Add Vehicle</li>';
-            }
+                                                        if (jSindex.length == 0) {
+                                                            li_list += '<li>Add Vehicle</li>';
+                                                        }
 
-            for (i = 0; i < jSindex.length; i++) {
-                li_list += $.jStorage.get(jSindex[i]);
-            }
+                                                        for (i = 0; i < jSindex.length; i++) {
+                                                            li_list += $.jStorage.get(jSindex[i]);
+                                                        }
 
-            if (jSindex.length >= 2) {
-                li_list += compareBtn;
-            }
+                                                        if (jSindex.length >= 2) {
+                                                            li_list += compareBtn;
+                                                        }
 
-            li_list += '</ul>';
-            $('#compare_vehicle_list').html(li_list);
+                                                        li_list += '</ul>';
+                                                        $('#compare_vehicle_list').html(li_list);
 
 <?php } ?>
 
-        function signOut() {
-            var auth2 = gapi.auth2.getAuthInstance();
-            auth2.signOut();
-        }
-    });
+                                                    function signOut() {
+                                                        var auth2 = gapi.auth2.getAuthInstance();
+                                                        auth2.signOut();
+                                                    }
+                                                });
 
 </script>
