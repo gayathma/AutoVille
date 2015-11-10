@@ -4,7 +4,7 @@
     <?php echo $this->load->view('spare_part/content_pages/search_bar'); ?>    
     <!-- end Map -->
     
-    <div id="spareparts_search_results" class="row col-lg-12" style="padding: 15px">
+    <div id="spareparts_search_results" class="row col-lg-12" style="padding: 30px">
         
     </div>    
 

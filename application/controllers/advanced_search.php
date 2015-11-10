@@ -40,6 +40,9 @@ class Advanced_search extends CI_Controller {
 
         $this->load->model('bookmarked_vehicles/bookmarked_vehicles_model');
         $this->load->model('bookmarked_vehicles/bookmarked_vehicles_service');
+
+        $this->load->model('vehicle_likes/vehicle_likes_service');
+        $this->load->model('vehicle_dislikes/vehicle_dislikes_service');
     }
 
     function advanced_search_view() {

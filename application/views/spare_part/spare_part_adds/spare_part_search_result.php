@@ -15,6 +15,7 @@
 
         <?php
         $resultcount = count($results);
+        echo 'adas'.$resultcount;
         if ($resultcount == 0) {
             ?>
             <h4>No Result Found</h4>
@@ -29,6 +30,7 @@
                 $class_no = 3;
             }
             ?>
+            <h4>Results</h4>
             <div class="row">
                 <?php foreach ($results as $result) { ?>
                     <!--one result-->
@@ -91,6 +93,16 @@ function CurrencyFormat($number) {
 }
 ?>
 
+<script type="text/javascript">
 
+    function setting_pagination_content(url) {
+
+        $.post(url, {}, function (msg)
+        {
+            $('#spareparts_search_results').html(msg);
+        });
+    }
+
+</script>
 
 

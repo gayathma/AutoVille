@@ -79,11 +79,12 @@ class Spare_parts_ad_service extends CI_Model {
         $query = $this->db->get();
         return $query->result();
     }
-    
+
     /*
      * This is the service function to get newly arrived spare parts
      * Author Ashani
      */
+
     public function get_new_arrival($limit) {
 
         $this->db->select('spare_parts_advertisements.id,'
@@ -108,7 +109,6 @@ class Spare_parts_ad_service extends CI_Model {
         return $query->result();
     }
 
-
     function search_spare_parts($name, $manufacture_id, $category_id, $maxprice, $minprice, $keyword, $limit, $start) {
 
         $this->db->select('spare_parts_advertisements.id,'
@@ -122,7 +122,7 @@ class Spare_parts_ad_service extends CI_Model {
                 . 'spare_parts_advertisements.is_featured,'
                 . 'spare_parts_cat.name as category');
         $this->db->from('spare_parts_advertisements');
-        $this->db->join('spare_parts_cat', 'spare_parts_cat.id = spare_parts_advertisements.category_id');
+        $this->db->join('spare_parts_cat', 'spare_parts_cat.id = spare_parts_advertisements.category_id','left');
         $this->db->where('spare_parts_advertisements.is_deleted', '0');
         $this->db->where('spare_parts_advertisements.is_published', '1');
 
@@ -149,6 +149,9 @@ class Spare_parts_ad_service extends CI_Model {
             $this->db->limit($limit, $start);
         }
         $query = $this->db->get();
+
+        echo $this->db->last_query();
+        die;
 
         return $query->result();
     }
