@@ -35,7 +35,7 @@
                     <div class="col-md-<?php echo $class_no; ?> col-sm-<?php echo $class_no; ?>">
                         <div class="item" >
                             <div class="image">
-                                <div class="quick-view"><i class="fa fa-plus"></i><span>Park & Compare</span></div>
+                                <div class="quick-view"><i class="fa fa-plus"></i><span>Add To Cart</span></div>
                                 <a href="#">
                                     <div class="overlay">
                                         <div class="inner">
