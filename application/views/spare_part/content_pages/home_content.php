@@ -1,15 +1,17 @@
 <!-- Map Canvas-->
-<div class="map-canvas list-width-30">
+<div class="map-canvas">
     <!-- Map -->
-    <div class="map">
         <!--/#map-->
         <?php echo $this->load->view('spare_part/content_pages/search_bar'); ?>
-        <!-- /.search-bar -->
-    </div>
+        <!-- /.search-bar -->   
     <!-- end Map -->
+    
+    <div id="spare_part_search_result" class="row col-lg-12" style="padding: 15px">
+        
+    </div>
 
     <!--Items List-->
-    <?php echo $this->load->view('spare_part/content_pages/categories'); ?>
+    <?php echo $this->load->view('spare_part/content_pages/categories'); ?>   
     <!--end Items List-->
 </div>
 <!-- end Map Canvas-->
