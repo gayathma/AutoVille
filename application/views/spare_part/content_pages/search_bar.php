@@ -7,7 +7,7 @@
             <div class="form-group">                
                 <select name="category_id" id="category_id" title="Category" data-live-search="true">
                     <option value="">Select Category</option>
-
+                    <option value="1">Test category</option>
                 </select>
             </div>
             <div class="form-group">                
@@ -34,7 +34,7 @@
 
     $(document).ready(function () {
 
-        $("#spare_part_search_form").validate({            
+        $("#spare_part_search_form").validate({
             ignore: "",
             rules: {
                 name: "required"

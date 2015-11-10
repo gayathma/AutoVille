@@ -45,7 +45,7 @@
                                             </div>
                                         </div>
                                     </div>                                                                                             
-                                    <img src="<?php echo base_url() . 'uploads/spare_part_images/vh_' . $result->id . '/' . $result->image; ?>" height="180" width="260" alt=""/>
+                                    <img src="<?php echo base_url() . 'uploads/spare_part_images/spare_part_images_' . $result->id . '/' . $result->image; ?>" height="180" width="260" alt=""/>
                                 </a>
                             </div>
                             <div class="wrapper">
