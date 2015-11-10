@@ -144,7 +144,49 @@
 
             }
         });
+
+
+        $("#subscribe_seller_form").validate({
+            focusInvalid: false,
+            ignore: "",
+            rules: {
+                subscriber_email: "required"
+            }, submitHandler: function (form) {
+
+                var $form = $('#subscribe_seller_form');
+
+                $('#seller_id').val('<?php echo $vehicle_detail->added_by; ?>');
+                $('#seller_name').val('<?php echo $vehicle_detail->added_by_user; ?>');
+
+                $.ajax({
+                    type: "POST",
+                    url: site_url + '/subscribe_seller/add_seller_subscriber',
+                    data: $form.serialize(),
+                    success: function (msg) {
+                        if (msg == '1') {
+                            $('#fade_valid_msg_subsc').html('<div class="alert alert-success"><i class="fa fa-check-circle fa-fw fa-lg"></i>Subscribed Seller!!!</div>');
+                            $('#fade_valid_msg_subsc').fadeIn();
+                            $('#fade_valid_msg_subsc').fadeOut(4000);
+                            $('#subscribe_seller_model').modal('hide');
+
+                            $('#seller_subscription_span').html('<i class="fa fa-check-square"></i><a style="cursor: pointer" title="Unsubscribe Seller" onclick="unsubscribe_seller()">Unsubscribe Seller</a> ');
+                        } else {
+                            $('#fade_valid_msg_subsc').html('<div class="alert alert-danger"><i class="fa fa-times-circle fa-fw fa-lg"></i>Error!!!</div>');
+                            $('#fade_valid_msg_subsc').fadeIn();
+                            $('#fade_valid_msg_subsc').fadeOut(4000);
+                        }
+                    }
+                });
+
+            }
+        });
+
+
     });
+
+    function unsubscribe_seller() {
+
+    }
 
 </script>
 <script>
@@ -441,12 +483,19 @@
                                         $user = $this->session->userdata("USER_ID");
                                         if (empty($user) || ($user != $vehicle_detail->added_by)) {
                                             ?>
+                                            <i class="fa fa-comments"></i>
                                             <a href="#" id="startChat" class="">Chat with seller </a>
                                         <?php } ?>
                                     </div>
-                                    <div class="info">
-                                        <i class="fa fa-comments"></i>
-                                        <a data-toggle="modal" href="#subscribe_seller_model"> Subscribe Seller </a>
+                                    <div class="info">                  
+                                        <?php
+                                        if ($user != $vehicle_detail->added_by) {
+                                            ?>
+                                            <span id="seller_subscription_span">
+                                                <i class="fa fa-check-square-o"></i>
+                                                <a data-toggle="modal" href="#subscribe_seller_model"> Subscribe Seller </a>                                                
+                                            </span>
+                                        <?php } ?>
                                     </div>
                                 </figure>
                             </address>

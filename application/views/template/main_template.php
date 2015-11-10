@@ -260,6 +260,8 @@
                         <div class="modal-body">
                             <p>Enter your e-mail address</p>
                             <input type="text" id="subscriber_email" name="subscriber_email" placeholder="Email" autocomplete="off" class="form-control placeholder-no-fix">
+                            <input type="hidden" id="seller_id" name="seller_id" value=""/>
+                            <input type="hidden" id="seller_name" name="seller_name" value=""/>
                         </div>
                         <div class="modal-footer">
                             <button data-dismiss="modal" class="btn btn-default" type="button">Cancel</button>
@@ -267,7 +269,7 @@
                         </div>
                     </form>
                 </div>
-                <div id="fade_valid_msg" style="display: none">
+                <div id="fade_valid_msg_subsc" style="display: none">
                     <div class="alert alert-success">
                         <i class="fa fa-check-circle fa-fw fa-lg"></i>
                         Subscribed Seller!!
@@ -314,7 +316,7 @@
 
 
         <!--<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;libraries=places"></script>-->
-        <!--<script type="text/javascript" src="<?php // echo base_url();             ?>application_resources/assets/js/richmarker-compiled.js"></script>-->
+        <!--<script type="text/javascript" src="<?php // echo base_url();              ?>application_resources/assets/js/richmarker-compiled.js"></script>-->
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery-migrate-1.2.1.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/bootstrap/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/smoothscroll.js"></script>
@@ -325,7 +327,7 @@
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery.ui.timepicker.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery.nouislider.all.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/custom.js"></script>
-       <!--<script type="text/javascript" src="<?php //echo base_url();             ?>application_resources/assets/js/maps.js"></script>-->
+       <!--<script type="text/javascript" src="<?php //echo base_url();              ?>application_resources/assets/js/maps.js"></script>-->
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/lazy/jquery.lazyload.js"></script>
         <script src="//js.pusher.com/3.0/pusher.min.js"></script>
 
