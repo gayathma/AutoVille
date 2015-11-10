@@ -96,7 +96,7 @@ class Spare_parts_advertisements extends CI_Controller {
 
         $data['results'] = $spare_part_ad_service->search_spare_parts($name, $manufacture_id, $category_id, $maxprice, $minprice, $keyword, $config["per_page"], $start);
 
-        $config["total_rows"] = count($spare_part_ad_service->search_spare_parts($name, $manufacture_id, $category_id, $maxprice, $minprice, $keyword, '', ''));
+        $config["total_rows"] = count($spare_part_ad_service->search_spare_parts($name, $manufacture_id, $category_id, $maxprice, $minprice, $keyword, $config["per_page"], ''));
 
         $this->pagination_custome->initialize($config);
         $data["links"] = $this->pagination_custome->create_links();
