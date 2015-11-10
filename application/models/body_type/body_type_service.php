@@ -22,7 +22,9 @@ class Body_type_service extends CI_Model {
         return $query->result();
     }
 
-    
+    /*
+     * get body type using id
+     */
     function get_body_type_by_id($body_type_model) {
 
         $data = array('id' => $body_type_model->get_id(), 'is_deleted' => '0');

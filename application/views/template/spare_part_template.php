@@ -81,7 +81,7 @@
                                     <!--</div>-->
                                 </ul>
                                 <?php if ($this->session->userdata('USER_LOGGED_IN')) { ?>
-                                    <a href="<?php echo site_url(); ?>/vehicle_advertisements/post_new_advertisement" class="submit-item">
+                                    <a href="<?php echo site_url(); ?>/spare_parts/spare_parts_advertisements/post_new_spare_part_advertisement" class="submit-item">
                                         <div class="content"><span>Submit Your Advertisement</span></div>
                                         <div class="icon">
                                             <i class="fa fa-plus"></i>

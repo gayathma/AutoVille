@@ -15,7 +15,7 @@ class Subscribe extends CI_Controller
         } else {
             $this->load->model('subscribers/subscribers_model');
             $this->load->model('subscribers/subscribers_service');
-            
+
             $this->load->model('newsletters/newsletters_model');
             $this->load->model('newsletters/newsletters_service');
 
@@ -56,18 +56,69 @@ class Subscribe extends CI_Controller
     }
 
     /*
-     * This is to change the published status of the transmission 
+     * Newsletter add view
      */
 
-    function change_publish_status()
+    function add_newsletter_view()
     {
-        $transmission_model = new Transmission_model();
-        $transmission_service = new Transmission_service();
+        $data['heading'] = "Send Newsletter";
 
-        $transmission_model->set_id(trim($this->input->post('id', TRUE)));
-        $transmission_model->set_is_published(trim($this->input->post('value', TRUE)));
+        $parials = array('content' => 'newsletters/add_newsletter');
+        $this->template->load('template/main_template', $parials, $data);
+    }
 
-        echo $transmission_service->publish_transmission($transmission_model);
+    /*
+     * save newsletter in database
+     */
+
+    function add_newsletter()
+    {
+
+        $newsletters_service = new Newsletters_service();
+        $newsletters_model = new Newsletters_model();
+
+        $newsletters_model->set_subject($this->input->post('subject', TRUE));
+        $newsletters_model->set_content($this->input->post('content', TRUE));
+        $newsletters_model->set_added_date(date("Y-m-d H:i:s"));
+
+        echo $newsletters_service->add_newsletter($newsletters_model);
+    }
+
+    /*
+     * save newsletter in database and send to all subscribers
+     */
+
+    function send_newsletter()
+    {
+        $newsletters_service = new Newsletters_service();
+        $newsletters_model = new Newsletters_model();
+        $subscribers_service = new Subscribers_service();
+
+        $newsletters_model->set_subject($this->input->post('subject', TRUE));
+        $newsletters_model->set_content($this->input->post('content', TRUE));
+        $newsletters_model->set_added_date(date("Y-m-d H:i:s"));
+
+        $result = $newsletters_service->add_newsletter($newsletters_model);
+
+        //send newsletters to subscribers
+        $subscribers = $subscribers_service->get_active_subscribers();
+        foreach ($subscribers as $subscriber) {
+            //send email
+            $email_to = $subscriber->email;
+            $email_subject = $this->input->post('subject', TRUE);
+            $data['email'] = $subscriber->email;
+            $data['content'] = $subscriber->content;
+
+            $msg = $this->load->view('template/mail_template/forgot_password', $data, TRUE);
+
+            $headers = 'MIME-Version: 1.0' . "\r\n";
+            $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+            $headers .= 'From: AutoVille <info.autovillle@gmail.com>' . "\r\n";
+            $headers .= 'Cc: gayathma3@gmail.com' . "\r\n";
+
+            $result = mail($email_to, $email_subject, $msg, $headers);
+        }
+        echo $result;
     }
 
 }

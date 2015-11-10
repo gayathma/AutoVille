@@ -18,5 +18,18 @@ class Subscribers_service extends CI_Model {
         $query = $this->db->get();
         return $query->result();
     }
+    
+    /*
+     * get all active subscriber
+     */
+    public function get_active_subscribers() {
+
+        $this->db->select('subscribers.*');
+        $this->db->from('subscribers');
+        $this->db->where('status','1');
+        $this->db->order_by("subscribers.added_date", "desc");
+        $query = $this->db->get();
+        return $query->result();
+    }
 
 }

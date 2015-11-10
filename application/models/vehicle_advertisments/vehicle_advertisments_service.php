@@ -1,27 +1,21 @@
 <?php
 
-class Vehicle_advertisments_service extends CI_Model {
+class Vehicle_advertisments_service extends CI_Model
+{
 
-    function __construct() {
+    function __construct()
+    {
         parent::__construct();
         $this->load->model('vehicle_advertisments/vehicle_advertisments_model');
     }
 
     /*
-     * Ashani
+     * get all popular advertisemnts
+     * @author Ashani
      */
 
-    public function update_views($id) {
-        $this->db->where('id', $id);
-        $this->db->set('views', 'views+1', FALSE);
-        $this->db->update('vehicle_advertisements');
-    }
-
-    /*
-     * Ashani
-     */
-
-    function get_popular_advertisements() {
+    function get_popular_advertisements()
+    {
 
         $this->db->select('searched_vehicles.*,
             count(searched_vehicles.vehicle_id) as no_of_views,
@@ -46,40 +40,14 @@ class Vehicle_advertisments_service extends CI_Model {
         $this->db->limit(4, 0);
         $query = $this->db->get();
         return $query->result();
-
-//        $this->db->select('vehicle_advertisements.id,'
-//                . 'vehicle_advertisements.kilometers,'
-//                . 'vehicle_advertisements.year,'
-//                . 'vehicle_advertisements.description,'
-//                . 'vehicle_images.image_path,'
-//                . 'manufacture.name as manufacture,'
-//                . 'model.name as model,'
-//                . 'fuel_type.name as fuel_type,'
-//                . 'body_type.name as body_type');
-//        $this->db->from('vehicle_advertisements');
-//        $this->db->join('manufacture', 'manufacture.id = vehicle_advertisements.manufacture_id');
-//        $this->db->join('model', 'model.id = vehicle_advertisements.model_id', 'left');
-//        $this->db->join('fuel_type', 'fuel_type.id = vehicle_advertisements.fuel_type_id');
-//        $this->db->join('body_type', 'body_type.id = vehicle_advertisements.body_type_id');
-//        $this->db->join('vehicle_images', 'vehicle_images.vehicle_id = vehicle_advertisements.id');
-//        $this->db->where('vehicle_advertisements.is_deleted', '0');
-//        
-//        $this->db->order_by("views", "desc"); 
-//        
-//        $this->db->group_by('vehicle_advertisements.id');
-//        if ($limit != '') {
-//            $this->db->limit($limit);
-//        }
-//
-//        $query = $this->db->get();
-//        return $query->result();
     }
 
     /*
      * This is the service function to get all advertisements
      */
 
-    public function get_all_advertisements() {
+    public function get_all_advertisements()
+    {
 
         $this->db->select('vehicle_advertisements.*,user.name as added_by_user,'
                 . 'manufacture.name as manufacture,model.name as model,'
@@ -102,7 +70,8 @@ class Vehicle_advertisments_service extends CI_Model {
      * This is the service function to search all advertisements
      */
 
-    public function search_advertisements() {
+    public function search_advertisements()
+    {
 
         $this->db->select('vehicle_advertisements.*,user.name as added_by_user,'
                 . 'manufacture.name as manufacture,model.name as model,'
@@ -125,7 +94,8 @@ class Vehicle_advertisments_service extends CI_Model {
      * This is the service function to get similar suggestions
      */
 
-    public function similar_suggestions($manufacture, $model) {
+    public function similar_suggestions($manufacture, $model)
+    {
 
         $this->db->select('vehicle_advertisements.*,vehicle_images.image_path,user.name as added_by_user,'
                 . 'manufacture.name as manufacture,model.name as model,'
@@ -163,7 +133,8 @@ class Vehicle_advertisments_service extends CI_Model {
      * vehicle specifications
      */
     public function search_vehicle_limit($manufacture, $model, $body_type, $maxyear, $minyear, $fuel_type
-    , $sale_type, $color, $maxprice, $minprice, $transmission, $kilometers, $location, $keyword, $limit, $start, $type) {
+    , $sale_type, $color, $maxprice, $minprice, $transmission, $kilometers, $location, $keyword, $limit, $start, $type)
+    {
 
         $this->db->select('vehicle_advertisements.*,vehicle_images.image_path,user.name as added_by_user,'
                 . 'manufacture.name as manufacture,model.name as model,'
@@ -226,8 +197,7 @@ class Vehicle_advertisments_service extends CI_Model {
             $this->db->limit($limit, $start);
         }
         $query = $this->db->get();
-//        echo $this->db->last_query();
-//        die;
+
         return $query->result();
     }
 
@@ -235,12 +205,17 @@ class Vehicle_advertisments_service extends CI_Model {
      * Add new Vehicle Addvertisement
      */
 
-    function add_new_advertisements($vehicle_advertisement_model) {
+    function add_new_advertisements($vehicle_advertisement_model)
+    {
         $this->db->insert('vehicle_advertisements', $vehicle_advertisement_model);
         return $this->db->insert_id();
     }
 
-    function get_last_advertisement_id() {
+    /*
+     * get last advertisement
+     */
+    function get_last_advertisement_id()
+    {
         $this->db->select('id');
         $this->db->from('vehicle_advertisements');
         $this->db->order_by("id", "desc");
@@ -254,7 +229,8 @@ class Vehicle_advertisments_service extends CI_Model {
      * This is the service function to get recently viewed vehicles
      */
 
-    function get_recently_viewed_vehicles($user_id) {
+    function get_recently_viewed_vehicles($user_id)
+    {
 
         $this->db->select('vehicle_advertisements.id,'
                 . 'vehicle_advertisements.kilometers,'
@@ -285,7 +261,11 @@ class Vehicle_advertisments_service extends CI_Model {
         return $query->result();
     }
 
-    function get_advertisement_by_id($id) {
+    /*
+     * get one advertisement by id
+     */
+    function get_advertisement_by_id($id)
+    {
 
         $this->db->select('vehicle_advertisements.*,user.email as user_email,user.name as added_by_user,'
                 . 'manufacture.name as manufacture,model.name as model,'
@@ -309,7 +289,8 @@ class Vehicle_advertisments_service extends CI_Model {
      * get advertisements for a particular logged user
      */
 
-    function get_advertisements_for_user($limit, $start, $user_id) {
+    function get_advertisements_for_user($limit, $start, $user_id)
+    {
 
         $this->db->select('vehicle_advertisements.*,vehicle_images.image_path,'
                 . 'manufacture.name as manufacture,model.name as model,'
@@ -337,7 +318,8 @@ class Vehicle_advertisments_service extends CI_Model {
      * This service function is to delete a advertisements
      */
 
-    function delete_advertisement($advertisement_id) {
+    function delete_advertisement($advertisement_id)
+    {
         $data = array('is_deleted' => '1');
         $this->db->where('id', $advertisement_id);
         return $this->db->update('vehicle_advertisements', $data);
@@ -349,7 +331,8 @@ class Vehicle_advertisments_service extends CI_Model {
      * 
      */
 
-    function get_featured_advertisements($limit) {
+    function get_featured_advertisements($limit)
+    {
 
         $this->db->select('vehicle_advertisements.id,'
                 . 'vehicle_advertisements.kilometers,'
@@ -377,7 +360,12 @@ class Vehicle_advertisments_service extends CI_Model {
         return $query->result();
     }
 
-    function get_price_drop_vehicles($limit) {
+    /*
+     * get all price dropped vehicles
+     */
+
+    function get_price_drop_vehicles($limit)
+    {
 
         $this->db->select('vehicle_advertisements.id,'
                 . 'vehicle_advertisements.kilometers,'
@@ -406,28 +394,29 @@ class Vehicle_advertisments_service extends CI_Model {
     }
 
     //update vehicle advertisemnt
-    function update_vehicle_advertisement($vehicle_advertisement_model) {
+    function update_vehicle_advertisement($vehicle_advertisement_model)
+    {
 
         $data = array(
-            'model_id'        => $vehicle_advertisement_model->get_model_id(),
-            'manufacture_id'  => $vehicle_advertisement_model->get_manufacture_id(),
-            'description'     => $vehicle_advertisement_model->get_description(),
-            'fuel_type_id'    => $vehicle_advertisement_model->get_fuel_type_id(),
-            'year'            => $vehicle_advertisement_model->get_year(),
+            'model_id' => $vehicle_advertisement_model->get_model_id(),
+            'manufacture_id' => $vehicle_advertisement_model->get_manufacture_id(),
+            'description' => $vehicle_advertisement_model->get_description(),
+            'fuel_type_id' => $vehicle_advertisement_model->get_fuel_type_id(),
+            'year' => $vehicle_advertisement_model->get_year(),
             'transmission_id' => $vehicle_advertisement_model->get_transmission_id(),
-            'body_type_id'    => $vehicle_advertisement_model->get_body_type_id(),
-            'doors'           => $vehicle_advertisement_model->get_doors(),
-            'location_id'     => $vehicle_advertisement_model->get_location_id(),
-            'colour'          => $vehicle_advertisement_model->get_colour(),
-            'sale_type'       => $vehicle_advertisement_model->get_sale_type(),
-            'chassis_no'      => $vehicle_advertisement_model->get_chassis_no(),
-            'kilometers'      => $vehicle_advertisement_model->get_kilometers(),
-            'price'           => $vehicle_advertisement_model->get_price(),
-            'is_price_drop'   => $vehicle_advertisement_model->get_is_price_drop(),
-            'latitude'        => $vehicle_advertisement_model->get_latitude(),
-            'longitude'       => $vehicle_advertisement_model->get_longitude(),
-            'updated_by'      => $vehicle_advertisement_model->get_updated_by(),
-            'updated_date'    => $vehicle_advertisement_model->get_updated_date()
+            'body_type_id' => $vehicle_advertisement_model->get_body_type_id(),
+            'doors' => $vehicle_advertisement_model->get_doors(),
+            'location_id' => $vehicle_advertisement_model->get_location_id(),
+            'colour' => $vehicle_advertisement_model->get_colour(),
+            'sale_type' => $vehicle_advertisement_model->get_sale_type(),
+            'chassis_no' => $vehicle_advertisement_model->get_chassis_no(),
+            'kilometers' => $vehicle_advertisement_model->get_kilometers(),
+            'price' => $vehicle_advertisement_model->get_price(),
+            'is_price_drop' => $vehicle_advertisement_model->get_is_price_drop(),
+            'latitude' => $vehicle_advertisement_model->get_latitude(),
+            'longitude' => $vehicle_advertisement_model->get_longitude(),
+            'updated_by' => $vehicle_advertisement_model->get_updated_by(),
+            'updated_date' => $vehicle_advertisement_model->get_updated_date()
         );
         $this->db->where('id', $vehicle_advertisement_model->get_id());
         return $this->db->update('vehicle_advertisements', $data);
@@ -439,7 +428,8 @@ class Vehicle_advertisments_service extends CI_Model {
      * 
      */
 
-    function request_featured_advertisement($vehicle_advertisement_model) {
+    function request_featured_advertisement($vehicle_advertisement_model)
+    {
         $data = array('is_featured' => $vehicle_advertisement_model->get_is_published());
         $this->db->update('vehicle_advertisements', $data, array('id' => $vehicle_advertisement_model->get_id()));
         return $this->db->affected_rows();
@@ -450,7 +440,8 @@ class Vehicle_advertisments_service extends CI_Model {
      * author-Ishani
      */
 
-    public function get_new_arrival($limit) {
+    public function get_new_arrival($limit)
+    {
 
         $this->db->select('vehicle_advertisements.id,'
                 . 'vehicle_advertisements.year,'
@@ -474,13 +465,13 @@ class Vehicle_advertisments_service extends CI_Model {
         $query = $this->db->get();
         return $query->result();
     }
-    
-    
+
     /*
      * search from ar application
      */
-    
-     public function search($manufacture, $limit, $start, $type) {
+
+    public function search($manufacture, $limit, $start, $type)
+    {
 
         $this->db->select('vehicle_advertisements.*,vehicle_images.image_path,user.name as added_by_user,'
                 . 'manufacture.name as manufacture,model.name as model,'

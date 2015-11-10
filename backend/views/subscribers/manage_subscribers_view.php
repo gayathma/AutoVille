@@ -30,8 +30,11 @@
                                     <td><?php echo $result->email; ?></td>
                                     <td><?php echo $result->added_date; ?></td>
                                     <td align="center">
-                                            <a class="btn btn-success btn-xs" ><i class="fa fa-check"></i></a>
-                                            <a class="btn btn-warning btn-xs" ><i class="fa fa-exclamation-circle"></i></a>
+                                        <?php if ($result->status == '1') { ?>
+                                            <a class="btn btn-success btn-xs" >Subscribed</a>
+                                        <?php } else { ?>
+                                            <a class="btn btn-warning btn-xs" >Unsubscribed</a>
+                                        <?php } ?>
                                     </td>
                                 </tr>
                             <?php } ?>
@@ -50,11 +53,11 @@
 <!--toastr-->
 <script src="<?php echo base_url(); ?>backend_resources/assets/toastr-master/toastr.js"></script>
 <script type="text/javascript">
-                                                $('#campaign_menu').addClass('active');
+    $('#campaign_menu').addClass('active');
 
-                                                $(document).ready(function () {
+    $(document).ready(function () {
 
-                                                    $('#subscribers_table').dataTable();
+        $('#subscribers_table').dataTable();
 
-                                                });
+    });
 </script>
