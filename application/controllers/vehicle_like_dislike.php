@@ -53,9 +53,9 @@ class Vehicle_like_dislike extends CI_Controller {
         $vehicle_dislikes_model->set_added_by($this->session->userdata('USER_ID'));
         $vehicle_dislikes_model->set_added_date(date("Y-m-d H:i:s"));
 
-        $result= $vehicle_dislikes_service->insert_vehicle_dislike($vehicle_dislikes_model);
-        
-         if ($result == '1') {
+        $result = $vehicle_dislikes_service->insert_vehicle_dislike($vehicle_dislikes_model);
+
+        if ($result == '1') {
             $dislikes = $vehicle_dislikes_service->get_dislike_count($this->input->post('vehicle_id', TRUE));
             echo $dislikes->dislike_count;
         } else {

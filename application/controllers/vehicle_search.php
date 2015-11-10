@@ -41,24 +41,27 @@ class Vehicle_search extends CI_Controller {
 
         $this->load->library('pagination');
         $this->load->library('pagination_custome');
+
+        $this->load->model('vehicle_likes/vehicle_likes_service');
+        $this->load->model('vehicle_dislikes/vehicle_dislikes_service');
     }
 
     function load_data() {
 
-        $manufacture_service   = new Manufacture_service();
+        $manufacture_service = new Manufacture_service();
         $vehicle_model_service = new Vehicle_model_service();
-        $body_type_service     = new Body_type_service();
-        $fuel_type_service     = new Fuel_Type_service();
-        $transmission_service  = new Transmission_service();
-        $district_service      = new District_service();
-        $content_service       = new Content_service();
+        $body_type_service = new Body_type_service();
+        $fuel_type_service = new Fuel_Type_service();
+        $transmission_service = new Transmission_service();
+        $district_service = new District_service();
+        $content_service = new Content_service();
 
-        $data['manufactures']  = $manufacture_service->get_all_active_manufactures();
-        $data['models']        = $vehicle_model_service->get_all_active_vehicle_models();
-        $data['body_types']    = $body_type_service->get_all_active_body_types();
-        $data['fuel_types']    = $fuel_type_service->get_all_active_fuel_types();
+        $data['manufactures'] = $manufacture_service->get_all_active_manufactures();
+        $data['models'] = $vehicle_model_service->get_all_active_vehicle_models();
+        $data['body_types'] = $body_type_service->get_all_active_body_types();
+        $data['fuel_types'] = $fuel_type_service->get_all_active_fuel_types();
         $data['transmissions'] = $transmission_service->get_all_active_transmissions();
-        $data['locations']     = $district_service->get_all_districts();
+        $data['locations'] = $district_service->get_all_districts();
 
         return $data;
     }
@@ -66,36 +69,36 @@ class Vehicle_search extends CI_Controller {
     public function search_advertisements($start = 0) {
 
         if ($this->is_first_time) {
-            $data                = $this->load_data();
+            $data = $this->load_data();
             $this->is_first_time = FALSE;
         }
 
-        $vehicle_advertisments_model   = new Vehicle_advertisments_model();
+        $vehicle_advertisments_model = new Vehicle_advertisments_model();
         $vehicle_advertisments_service = new Vehicle_advertisments_service();
-        $data['latest_vehicles']       = $vehicle_advertisments_service->get_new_arrival(2);
+        $data['latest_vehicles'] = $vehicle_advertisments_service->get_new_arrival(2);
 
         $config = array();
 
-        $config["base_url"]    = site_url() . "/vehicle_search/search_advertisements/";
-        $config["per_page"]    = 12;
+        $config["base_url"] = site_url() . "/vehicle_search/search_advertisements/";
+        $config["per_page"] = 12;
         $config["uri_segment"] = 3;
-        $config["num_links"]   = 4;
+        $config["num_links"] = 4;
 
 
-        $manufacture  = trim($this->input->post('manufacturer', TRUE));
-        $model        = trim($this->input->post('model', TRUE));
-        $body_type    = trim($this->input->post('body_type', TRUE));
-        $maxyear      = trim($this->input->post('maxyear', TRUE));
-        $minyear      = trim($this->input->post('minyear', TRUE));
-        $fuel_type    = trim($this->input->post('fuel_type', TRUE));
-        $sale_type    = trim($this->input->post('sale_type', TRUE));
-        $color        = trim($this->input->post('color', TRUE));
-        $maxprice     = trim($this->input->post('maxprice', TRUE));
-        $minprice     = trim($this->input->post('minprice', TRUE));
+        $manufacture = trim($this->input->post('manufacturer', TRUE));
+        $model = trim($this->input->post('model', TRUE));
+        $body_type = trim($this->input->post('body_type', TRUE));
+        $maxyear = trim($this->input->post('maxyear', TRUE));
+        $minyear = trim($this->input->post('minyear', TRUE));
+        $fuel_type = trim($this->input->post('fuel_type', TRUE));
+        $sale_type = trim($this->input->post('sale_type', TRUE));
+        $color = trim($this->input->post('color', TRUE));
+        $maxprice = trim($this->input->post('maxprice', TRUE));
+        $minprice = trim($this->input->post('minprice', TRUE));
         $transmission = trim($this->input->post('transmission', TRUE));
-        $kilometers   = trim($this->input->post('kilometers', TRUE));
-        $location     = trim($this->input->post('location', TRUE));
-        $keyword      = trim($this->input->post('keyword', TRUE));
+        $kilometers = trim($this->input->post('kilometers', TRUE));
+        $location = trim($this->input->post('location', TRUE));
+        $keyword = trim($this->input->post('keyword', TRUE));
 
         $view_no = trim($this->input->post('view_no', TRUE));
 
@@ -116,29 +119,30 @@ class Vehicle_search extends CI_Controller {
             $this->template->load('template/main_template', $parials, $data);
         }
     }
-    
+
     /*
      * ar application search function
      */
+
     public function search($start = 0) {
 
         if ($this->is_first_time) {
-            $data                = $this->load_data();
+            $data = $this->load_data();
             $this->is_first_time = FALSE;
         }
 
         $vehicle_advertisments_service = new Vehicle_advertisments_service();
-        $data['latest_vehicles']       = $vehicle_advertisments_service->get_new_arrival(2);
+        $data['latest_vehicles'] = $vehicle_advertisments_service->get_new_arrival(2);
 
         $config = array();
 
-        $config["base_url"]    = site_url() . "/vehicle_search/search_advertisements/";
-        $config["per_page"]    = 12;
+        $config["base_url"] = site_url() . "/vehicle_search/search_advertisements/";
+        $config["per_page"] = 12;
         $config["uri_segment"] = 3;
-        $config["num_links"]   = 4;
+        $config["num_links"] = 4;
 
 
-        $manufacture  = trim($this->input->get('type', TRUE));
+        $manufacture = trim($this->input->get('type', TRUE));
 
         $view_no = trim($this->input->post('view_no', TRUE));
 
