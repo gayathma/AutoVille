@@ -76,6 +76,10 @@ class Spare_parts_advertisements extends CI_Controller {
         echo $spare_part_ad_service->add_spare_part_advertisement($spare_part_ad_model);
     }
 
+    /**
+     * search spare parts from spare part name,category,manufacture,man price, min price and description
+     * @param type $start
+     */
     function search_spare_part($start = "0") {
 
         $spare_part_ad_service = new Spare_parts_ad_service();

@@ -15,7 +15,7 @@
 
         <?php
         $resultcount = count($results);
-        echo 'adas'.$resultcount;
+
         if ($resultcount == 0) {
             ?>
             <h4>No Result Found</h4>
@@ -60,7 +60,7 @@
                                 <div class="price"><?php echo "Rs. " . CurrencyFormat($result->price); ?></div>
                                 <br>
 
-                                <?php if ($result->is_featured == '2') { ?>
+                                <?php if ($result->is_featured == '1') { ?>
                                     <div class="type label-success label">
                                         <span>Featured</span>
                                     </div>

@@ -8,36 +8,42 @@
                         <div class="overlay">
                             <div class="inner">
                                 <div class="content">
-                                    <h4><?php echo $value->name;?></h4>
-                                    <p>Curabitur odio nibh, luctus non pulvinar a, ultricies ac diam. Donec neque massa</p>
+                                    <h4>Description</h4>
+                                    <p><?php echo $value->description; ?></p>                                   
                                 </div>
                             </div>
                         </div>
-                        <div class="item-specific">
-                            <span title="Bedrooms"><img src="http://themestarz.net/html/spotter/http://themestarz.net/html/spotter/assets/img/bedrooms.png" alt="">2</span>
-                            <span title="Bathrooms"><img src="http://themestarz.net/html/spotter/http://themestarz.net/html/spotter/assets/img/bathrooms.png" alt="">2</span>
-                            <span title="Area"><img src="http://themestarz.net/html/spotter/http://themestarz.net/html/spotter/assets/img/area.png" alt="">240m<sup>2</sup></span>
-                            <span title="Garages"><img src="http://themestarz.net/html/spotter/http://themestarz.net/html/spotter/assets/img/garages.png" alt="">1</span>
+                        <div class="item-specific">                            
                         </div>
                         <div class="icon">
                             <i class="fa fa-thumbs-up"></i>
                         </div>
-                        <img src="http://themestarz.net/html/spotter/http://themestarz.net/html/spotter/assets/img/items/1.jpg" alt="">
+                        <img src="<?php echo base_url() . 'uploads/spare_part_images/' . $value->image; ?>" height="180" width="260" alt=""/>                        
                     </a>
                 </div>
                 <div class="wrapper">
-                    <a href="item-detail.html"><h3><?php echo $value->year;?></h3></a>
-                    <figure>63 Birch Street</figure>
-                    <div class="info">
-                        <div class="type">
-                            <i><img src="assets/icons/restaurants-bars/restaurants/restaurant.png" alt=""></i>
-                            <span>Restaurant</span>
+                    <a href="#"<h3><?php echo $value->name; ?> </h3></h3></a>
+                    <figure><?php echo $value->category; ?></figure>
+                    <div class="price"><?php echo "Rs. " . CurrencyFormat($value->price); ?></div>
+                    <br>
+
+                    <?php if ($value->is_featured == '1') { ?>
+                        <div class="type label-success label">
+                            <span>Featured</span>
                         </div>
-                        <div class="rating" data-rating="4"></div>
-                    </div>
+                    <?php } ?>
                 </div>
             </div>
             <!-- /.item-->
         </div> 
     <?php } ?>
 </div>
+
+<?php
+function CurrencyFormat($number) {
+    $decimalplaces = 2;
+    $decimalcharacter = '.';
+    $thousandseparater = ',';
+    return number_format($number, $decimalplaces, $decimalcharacter, $thousandseparater);
+}
+?>

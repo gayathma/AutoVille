@@ -60,15 +60,23 @@ class Spare_parts_ad_service extends CI_Model {
 
         $this->db->select('spare_parts_advertisements.id,'
                 . 'spare_parts_advertisements.name,'
-                . 'spare_parts_advertisements.year,'
                 . 'spare_parts_advertisements.image,'
+                . 'spare_parts_advertisements.description,'
+                . 'spare_parts_advertisements.manufacture_id,'
+                . 'spare_parts_advertisements.price,'
+                . 'spare_parts_advertisements.category_id,'
+                . 'spare_parts_advertisements.added_by,'
+                . 'spare_parts_advertisements.is_featured,'
+                . 'spare_parts_advertisements.year,'
                 . 'manufacture.name as manufacture,'
                 . 'model.name as model,'
-                . 'fuel_type.name as fuel_type,');
+                . 'fuel_type.name as fuel_type,'
+                . 'spare_parts_cat.name as category');
         $this->db->from('spare_parts_advertisements');
-        $this->db->join('manufacture', 'manufacture.id = spare_parts_advertisements.manufacture_id');
-        $this->db->join('model', 'model.id = spare_parts_advertisements.model_id');
-        $this->db->join('fuel_type', 'fuel_type.id = spare_parts_advertisements.fuel_type_id');
+        $this->db->join('spare_parts_cat', 'spare_parts_cat.id = spare_parts_advertisements.category_id', 'left');
+        $this->db->join('manufacture', 'manufacture.id = spare_parts_advertisements.manufacture_id', 'left');
+        $this->db->join('model', 'model.id = spare_parts_advertisements.model_id', 'left');
+        $this->db->join('fuel_type', 'fuel_type.id = spare_parts_advertisements.fuel_type_id', 'left');
         $this->db->where('spare_parts_advertisements.is_deleted', '0');
         $this->db->where('spare_parts_advertisements.is_featured', '1');
         $this->db->group_by('spare_parts_advertisements.id');
@@ -77,6 +85,9 @@ class Spare_parts_ad_service extends CI_Model {
         }
 
         $query = $this->db->get();
+//        echo $this->db->last_query();
+//        die;
+
         return $query->result();
     }
 
@@ -89,15 +100,23 @@ class Spare_parts_ad_service extends CI_Model {
 
         $this->db->select('spare_parts_advertisements.id,'
                 . 'spare_parts_advertisements.name,'
-                . 'spare_parts_advertisements.year,'
                 . 'spare_parts_advertisements.image,'
+                . 'spare_parts_advertisements.description,'
+                . 'spare_parts_advertisements.manufacture_id,'
+                . 'spare_parts_advertisements.price,'
+                . 'spare_parts_advertisements.category_id,'
+                . 'spare_parts_advertisements.added_by,'
+                . 'spare_parts_advertisements.is_featured,'
+                . 'spare_parts_cat.name as category,'
+                . 'spare_parts_advertisements.year,'
                 . 'manufacture.name as manufacture,'
                 . 'model.name as model,'
                 . 'fuel_type.name as fuel_type,');
         $this->db->from('spare_parts_advertisements');
-        $this->db->join('manufacture', 'manufacture.id = spare_parts_advertisements.manufacture_id');
-        $this->db->join('model', 'model.id = spare_parts_advertisements.model_id');
-        $this->db->join('fuel_type', 'fuel_type.id = spare_parts_advertisements.fuel_type_id');
+        $this->db->join('manufacture', 'manufacture.id = spare_parts_advertisements.manufacture_id', 'left');
+        $this->db->join('spare_parts_cat', 'spare_parts_cat.id = spare_parts_advertisements.category_id', 'left');
+        $this->db->join('model', 'model.id = spare_parts_advertisements.model_id', 'left');
+        $this->db->join('fuel_type', 'fuel_type.id = spare_parts_advertisements.fuel_type_id', 'left');
         $this->db->where('spare_parts_advertisements.is_deleted', '0');
         $this->db->order_by("spare_parts_advertisements.added_date", "desc");
         $this->db->group_by('spare_parts_advertisements.id');
@@ -109,6 +128,18 @@ class Spare_parts_ad_service extends CI_Model {
         return $query->result();
     }
 
+    /**
+     * search spare part according to input values
+     * @param type $name : name of the spare part
+     * @param type $manufacture_id : manufacture of the spare part
+     * @param type $category_id : category of the spare part
+     * @param type $maxprice : maxprice of the spare part
+     * @param type $minprice : minprice of the spare part
+     * @param type $keyword : description of the spare part
+     * @param string $limit
+     * @param type $start
+     * @return type
+     */
     function search_spare_parts($name, $manufacture_id, $category_id, $maxprice, $minprice, $keyword, $limit, $start) {
 
         $this->db->select('spare_parts_advertisements.id,'
@@ -122,7 +153,7 @@ class Spare_parts_ad_service extends CI_Model {
                 . 'spare_parts_advertisements.is_featured,'
                 . 'spare_parts_cat.name as category');
         $this->db->from('spare_parts_advertisements');
-        $this->db->join('spare_parts_cat', 'spare_parts_cat.id = spare_parts_advertisements.category_id','left');
+        $this->db->join('spare_parts_cat', 'spare_parts_cat.id = spare_parts_advertisements.category_id', 'left');
         $this->db->where('spare_parts_advertisements.is_deleted', '0');
         $this->db->where('spare_parts_advertisements.is_published', '1');
 
@@ -150,8 +181,8 @@ class Spare_parts_ad_service extends CI_Model {
         }
         $query = $this->db->get();
 
-        echo $this->db->last_query();
-        die;
+//        echo $this->db->last_query();
+//        die;
 
         return $query->result();
     }
