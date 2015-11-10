@@ -16,7 +16,7 @@ class Vehicle_like_dislike extends CI_Controller {
     }
 
     /**
-     * add vehile like and 
+     * add vehile like and get vehicle likes count and return it
      */
     function add_vehicle_likes() {
 
@@ -39,6 +39,9 @@ class Vehicle_like_dislike extends CI_Controller {
         }
     }
 
+    /**
+     * * add vehile dislike and get vehicle dislikes count and return it
+     */
     function add_vehicle_dislikes() {
 
         $vehicle_dislikes_model = new Vehicle_dislikes_model();
