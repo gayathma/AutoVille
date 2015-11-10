@@ -1,12 +1,10 @@
 <!-- Map Canvas-->
 <div class="map-canvas list-width-30">
-    <!-- Map -->
-    <div class="map">
-        <!--/#map-->
-        <?php echo $this->load->view('spare_part/content_pages/search_bar'); ?>
-        <!-- /.search-bar -->
-    </div>
+    <!-- Map -->     
+    <?php echo $this->load->view('spare_part/content_pages/search_bar'); ?>    
     <!-- end Map -->
+    
+    <div id="search"></div>
 
     <!--Items List-->
     <?php echo $this->load->view('spare_part/content_pages/categories'); ?>

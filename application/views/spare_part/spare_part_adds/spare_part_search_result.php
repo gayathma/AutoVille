@@ -36,7 +36,7 @@
                         <div class="item" >
                             <div class="image">
                                 <div class="quick-view"><i class="fa fa-plus"></i><span>Park & Compare</span></div>
-                                <a href="<?php //echo site_url() ?>/vehicle_advertisements/vehicle_advertisement_detail_view/<?php echo $result->id; ?>">
+                                <a href="<?php //echo site_url()  ?>/vehicle_advertisements/vehicle_advertisement_detail_view/<?php echo $result->id; ?>">
                                     <div class="overlay">
                                         <div class="inner">
                                             <div class="content">
@@ -66,27 +66,27 @@
                     <!--end one result-->
                 <?php } ?>
             </div>
-            <?php }  ?>				
+        <?php } ?>				
 
-        </div>
-
-    </div><!--.layer-two-->
-
-    <div class="layer-three pull-right">
-        <div class="pagination">
-            <?php echo $links; ?>
-        </div>											
     </div>
 
-    <?php
+</div><!--.layer-two-->
 
-    function CurrencyFormat($number) {
-        $decimalplaces = 2;
-        $decimalcharacter = '.';
-        $thousandseparater = ',';
-        return number_format($number, $decimalplaces, $decimalcharacter, $thousandseparater);
-    }
-    ?>
+<div class="layer-three pull-right">
+    <div class="pagination">
+        <?php echo $links; ?>
+    </div>											
+</div>
+
+<?php
+
+function CurrencyFormat($number) {
+    $decimalplaces = 2;
+    $decimalcharacter = '.';
+    $thousandseparater = ',';
+    return number_format($number, $decimalplaces, $decimalcharacter, $thousandseparater);
+}
+?>
 
 
 
