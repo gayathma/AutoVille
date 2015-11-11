@@ -173,7 +173,7 @@ class Spare_parts_ad_service extends CI_Model {
             $this->db->or_where('spare_parts_advertisements.price >=', $minprice);
         }
         if (!empty($keyword) && !is_null($keyword)) {
-            $this->db->like('spare_parts_advertisements.description', $keyword);
+            $this->db->or_like('spare_parts_advertisements.description', $keyword);
         }
 
         $this->db->order_by("spare_parts_advertisements.added_date", "desc");
