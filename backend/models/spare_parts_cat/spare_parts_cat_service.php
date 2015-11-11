@@ -7,73 +7,83 @@ class Spare_parts_cat_service extends CI_Model {
         $this->load->model("spare_parts_cat/category_model");
         
     }
-    
-   
-    /*
-     * Load All spare parts category Details from database     
+           
+    /**
+     * Load All spare parts category Details from database
+     * @return type
      */
 
-    public function get_all_body_types() {
+    public function get_all_categories() {
 
-        $this->db->select('body_type.*,user.name as added_by_user');
-        $this->db->from('body_type');
-        $this->db->join('user', 'user.id =body_type.added_by');
-        $this->db->where('body_type.is_deleted', '0');
-        $this->db->order_by("body_type.added_date", "desc");
+        $this->db->select('name.*,user.name as added_by_user');
+        $this->db->from('spare_parts_cat');
+        $this->db->join('user', 'user.id =spare_parts_cat.added_by');
+        $this->db->where('spare_parts_cat.is_deleted', '0');
+        $this->db->order_by("spare_parts_cat.added_date", "desc");
         $query = $this->db->get();
         return $query->result();
     }
 
-    /*
-     * Add new body type to database     
+        
+    /**
+     * Add new category to database
+     * @param type $spare_parts_cat_model
+     * @return type
      */
 
-    function add_new_body_type($body_type_model) {
-        return $this->db->insert('body_type', $body_type_model);
+    function add_new_category($spare_parts_cat_model) {
+        return $this->db->insert('spare_parts_cat', $spare_parts_cat_model);
     }
 
-    /*
-     * Delete body type from database     
+    /**
+     * Delete category from database 
+     * @param type $category_id
+     * @return type
      */
 
-    function delete_body_type($body_type_id) {
+    function delete_category($category_id) {
         $data = array('is_deleted' => '1');
-        $this->db->where('id', $body_type_id);
-        return $this->db->update('body_type', $data);
+        $this->db->where('id', $category_id);
+        return $this->db->update('spare_parts_cat', $data);
     }
-
-    /*
-     * Change publish status of a body type    
+ 
+    /**
+     * Change publish status of a Category
+     * @param type $spare_parts_cat_model
+     * @return type
      */
 
-    public function publish_body_types($body_type_model) {
-        $data = array('is_published' => $body_type_model->get_is_published());
-        $this->db->update('body_type', $data, array('id' => $body_type_model->get_id()));
+    public function publish_category($spare_parts_cat_model) {
+        $data = array('is_published' => $spare_parts_cat_model->get_is_published());
+        $this->db->update('spare_parts_cat', $data, array('id' => $spare_parts_cat_model->get_id()));
         return $this->db->affected_rows();
     }
-
-    /*
-     * Update body types   
+    
+    /**
+     * Update categories
+     * @param type $spare_parts_cat_model
+     * @return type
      */
 
-    function update_body_type($body_type_model) {
-        $data = array('name' => $body_type_model->get_name(),
-            'updated_date' => $body_type_model->get_updated_date(),
-            'updated_by' => $body_type_model->get_updated_by());
+    function update_category($spare_parts_cat_model) {
+        $data = array('name' => $spare_parts_cat_model->get_name(),
+            'updated_date' => $spare_parts_cat_model->get_updated_date(),
+            'updated_by' => $spare_parts_cat_model->get_updated_by());
 
 
-        $this->db->where('id', $body_type_model->get_id());
-        return $this->db->update('body_type', $data);
+        $this->db->where('id', $spare_parts_cat_model->get_id());
+        return $this->db->update('spare_parts_cat', $data);
     }
 
-    /*
-     * get body types details by passing body_type id as a parameter
+    /**
+     * get categories details by passing category id as a parameter
+     * @param type $spare_parts_cat_model
+     * @return type
      */
+    function get_category_by_id($spare_parts_cat_model) {
 
-    function get_body_type_by_id($body_type_model) {
-
-        $data = array('id' => $body_type_model->get_id(), 'is_deleted' => '0');
-        $query = $this->db->get_where('body_type', $data);
+        $data = array('id' => $spare_parts_cat_model->get_id(), 'is_deleted' => '0');
+        $query = $this->db->get_where('spare_parts_cat', $data);
         return $query->row();
     }
 }
