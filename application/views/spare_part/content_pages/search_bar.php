@@ -34,7 +34,9 @@
                 <label for="category_id">Category</label>
                 <select name="category_id" id="category_id" title="Category" data-live-search="true">
                     <option value="">Select Category</option>
-                    <option value="1">test Category</option>
+                     <?php foreach ($categories as $category) { ?>
+                        <option value="<?php echo $category->id; ?>"><?php echo $category->name; ?></option>
+                    <?php } ?>
                 </select>
             </div>
             <div class="form-group">
