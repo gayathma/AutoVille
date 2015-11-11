@@ -37,7 +37,12 @@
                     <div class="col-md-<?php echo $class_no; ?> col-sm-<?php echo $class_no; ?>">
                         <div class="item" >
                             <div class="image">
-                                <div class="quick-view"><i class="fa fa-plus"></i><span>Add To Cart</span></div>
+                                <div class="quick-view"><i class="fa fa-plus" 
+                                    <?php if (!$this->session->userdata('USER_LOGGED_IN')) { ?>                                                               
+                                                               onclick="add_to_cart(<?php echo $result->id; ?>)"
+                                                           <?php } ?>
+                                                           ></i><span>Add To Cart</span></div>                          
+
                                 <a href="#">
                                     <div class="overlay">
                                         <div class="inner">
@@ -101,6 +106,24 @@ function CurrencyFormat($number) {
         {
             $('#spareparts_search_results').html(msg);
         });
+    }
+
+    //add spare parts to the cart
+    function add_to_cart(id) {
+
+        $.ajax({
+            type: "POST",
+            url: site_url + '/cart/add_items_to_cart',
+            data: "id=" + id,
+            success: function (msg) {
+                if (msg != 0) {
+                    toastr.success("Successfully added to the cart!!", "AutoVille");                    
+                } else {
+                    alert('Error loading vehicles');
+                }
+            }
+        });
+
     }
 
 </script>
