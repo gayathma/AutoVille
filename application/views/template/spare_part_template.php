@@ -50,8 +50,15 @@
                             <div class="wrapper">
                                 <ul class="main-navigation navigation-top-header"></ul>
                                 <ul class="user-area">
-                                    <!--<div class="dealer-login">-->   
-
+                                    <!--cart-->   
+                                    <li>
+                                        <div class="btn-group cd-cart " id="cart_list">                                                
+                                            <button style="border:0px solid black; background-color: transparent;">
+                                                <i class="fa fa-shopping-cart"></i>
+                                                <span>0</span>
+                                            </button>
+                                        </div>
+                                    </li>
                                     <!--cart-->
                                     <li>
                                         <div class="btn-group" id="compare_vehicle_list">                                                
