@@ -12,13 +12,13 @@
                 <div class="adv-table">
                     <div class="clearfix">
                         <div class="btn-group">
-                            <a id="editable-sample_new" class="btn btn-shadow btn-primary" href="#body_type_add_modal" data-toggle="modal">
+                            <a id="editable-sample_new" class="btn btn-shadow btn-primary" href="#category_add_modal" data-toggle="modal">
                                 Add New
                                 <i class="fa fa-plus"></i>
                             </a>
                         </div>
                     </div>
-                    <table  class="display table table-bordered table-striped" id="body_type_table">
+                    <table  class="display table table-bordered table-striped" id="category_table">
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -33,21 +33,21 @@
                             $i = 0;
                             foreach ($results as $result) {
                                 ?>
-                                <tr id="body_type_<?php echo $result->id; ?>">
+                                <tr id="category_<?php echo $result->id; ?>">
                                     <td><?php echo ++$i; ?></td>
                                     <td><?php echo $result->name; ?></td>
                                     <!--<td align="center"><img src="<?php echo base_url(); ?>uploads/body_type_logo/<?php echo $result->logo; ?>" width="60px" /></td>-->
 
                                     <td align="center">
                                         <?php if ($result->is_published) { ?>
-                                            <a class="btn btn-success btn-xs" onclick="change_publish_status(<?php echo $result->id; ?>, 0, this)" title="click to deactivate body type"><i class="fa fa-check"></i></a>
+                                            <a class="btn btn-success btn-xs" onclick="change_publish_status(<?php echo $result->id; ?>, 0, this)" title="click to deactivate category"><i class="fa fa-check"></i></a>
                                         <?php } else { ?>
-                                            <a class="btn btn-warning btn-xs" onclick="change_publish_status(<?php echo $result->id; ?>, 1, this)" title="click to activate body type"><i class="fa fa-exclamation-circle"></i></a>
+                                            <a class="btn btn-warning btn-xs" onclick="change_publish_status(<?php echo $result->id; ?>, 1, this)" title="click to activate category"><i class="fa fa-exclamation-circle"></i></a>
                                         <?php } ?>
                                     </td>
                                     <td align="center">
-                                        <a class="btn btn-primary btn-xs" onclick="display_edit_body_type_pop_up(<?php echo $result->id; ?>)"><i class="fa fa-pencil" title="Update"></i></a>
-                                        <a class="btn btn-danger btn-xs" onclick="delete_body_types(<?php echo $result->id; ?>)"><i class="fa fa-trash-o " title="" title="Remove"></i></a>
+                                        <a class="btn btn-primary btn-xs" onclick="display_edit_category_pop_up(<?php echo $result->id; ?>)"><i class="fa fa-pencil" title="Update"></i></a>
+                                        <a class="btn btn-danger btn-xs" onclick="delete_category(<?php echo $result->id; ?>)"><i class="fa fa-trash-o " title="" title="Remove"></i></a>
 
                                     </td>
                                 </tr>
@@ -62,19 +62,19 @@
     </div>
 </div>
 
-<!--Body Type add model-->
-<div class="modal fade " id="body_type_add_modal" tabindex="-1" role="dialog" aria-labelledby="body_type_add_modal_label" aria-hidden="true">
+<!--category add model-->
+<div class="modal fade " id="category_add_modal" tabindex="-1" role="dialog" aria-labelledby="category_add_modal_label" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Add New Body Type</h4>
+                <h4 class="modal-title">Add New Category</h4>
             </div>
-            <form id="add_body_type_form" name="add_body_type_form">
+            <form id="add_category_form" name="add_category_form">
                 <div class="modal-body">
 <!--                    <script src="<?php echo base_url(); ?>backend_resources/file_upload_plugin/ajaxupload.3.5.js" type="text/javascript"></script>
                     <script>
-                                        //upload body type logo
+                                        //upload category logo
 
                                         $(function () {
                                             var btnUpload = $('#upload');
@@ -114,11 +114,11 @@
                     </script>-->
 
                     <div class="form-group">
-                        <label for="name">Enter Body Type
+                        <label for="name">Enter Category
                              <span class="mandatory">*</span>
                         </label>
                        
-                        <input id="name" class="form-control" name="name" type="text" placeholder="Body Type">
+                        <input id="name" class="form-control" name="name" type="text" placeholder="Category">
                     </div>
                     <div class="form-group">
                         <div id="upload">
@@ -148,10 +148,10 @@
 </div>
         
 
-<!--Transmission Edit Modal -->
-<div class="modal fade "  id="body_type_edit_div" tabindex="-1" role="dialog"  aria-hidden="true">
+<!--Category Edit Modal -->
+<div class="modal fade "  id="category_edit_div" tabindex="-1" role="dialog"  aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content" id="body_type_edit_content">
+        <div class="modal-content" id="category_edit_content">
 
         </div>
     </div>
@@ -165,22 +165,22 @@
     $('#vehicle_spec_menu').addClass('active open');
 
     $(document).ready(function () {
-        $('#body_type_table').dataTable();
+        $('#category_table').dataTable();
 
-        $("#add_body_type_form").validate({
+        $("#add_category_form").validate({
             rules: {
                 name: "required"
             },
             messages: {
-                name: "Please enter a Body Type"
+                name: "Please enter a Category"
             }, submitHandler: function (form)
             {
-                $.post(site_url + '/body_type/add_body_type', $('#add_body_type_form').serialize(), function (msg)
+                $.post(site_url + '/spare_parts_category/add_category', $('#add_category_form').serialize(), function (msg)
                 {
-                    if (msg == 1) {
+                    if (msg == 1) {                        
                         $('#rtn_msg').html('<div class="alert alert-success fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>Successfully saved!!.</strong></div>');
-                        add_body_type_form.reset();
-                        window.location = site_url + '/body_type/manage_body_types';
+                        add_category_form.reset();
+                        window.location = site_url + '/spare_parts_category/manage_categories';
 
 
                     } else {
@@ -194,21 +194,23 @@
 
     });
 
-    //delete body types
-    function delete_body_types(id) {
+    //delete categories
+    function delete_category(id) {
 
-        if (confirm('Are you sure want to delete this Body Type ?')) {
+        if (confirm('Are you sure want to delete this Category ?')) {
 
             $.ajax({
                 type: "POST",
-                url: site_url + '/body_type/delete_body_types',
+                url: site_url + '/spare_parts_category/delete_category',
                 data: "id=" + id,
                 success: function (msg) {
                     //alert(msg);
                     if (msg == 1) {
                         //document.getElementById(trid).style.display='none';
-                        $('#body_type_' + id).hide();
+                        $('#category_' + id).hide();
+                         
                          toastr.success("Successfully deleted !!", "AutoVille");
+                         window.location = site_url + '/spare_parts_category/manage_categories';
                     }
                     else if (msg == 2) {
                         alert('Cannot be deleted as it is already assigned to others. !!');
@@ -219,25 +221,25 @@
     }
 
 
-    //change publish status of body types
-    function change_publish_status(body_type_id, value, element) {
+    //change publish status of categories
+    function change_publish_status(category_id, value, element) {
 
-        var condition = 'Do you want to activate this body type ?';
+        var condition = 'Do you want to activate this category ?';
         if (value == 0) {
-            condition = 'Do you want to deactivate this body type?';
+            condition = 'Do you want to deactivate this category?';
         }
 
         if (confirm(condition)) {
             $.ajax({
                 type: "POST",
-                url: site_url + '/body_type/change_publish_status',
-                data: "id=" + body_type_id + "&value=" + value,
+                url: site_url + '/spare_parts_category/change_publish_status',
+                data: "id=" + category_id + "&value=" + value,
                 success: function (msg) {
                     if (msg == 1) {
                         if (value == 1) {
-                            $(element).parent().html('<a class="btn btn-success btn-xs" onclick="change_publish_status(' + body_type_id + ',0,this)" title="click to deactivate body type"><i class="fa fa-check"></i></a>');
+                            $(element).parent().html('<a class="btn btn-success btn-xs" onclick="change_publish_status(' + category_id + ',0,this)" title="click to deactivate category"><i class="fa fa-check"></i></a>');
                         } else {
-                            $(element).parent().html('<a class="btn btn-warning btn-xs" onclick="change_publish_status(' + body_type_id + ',1,this)" title="click to activate body type"><i class="fa fa-exclamation-circle"></i></a>');
+                            $(element).parent().html('<a class="btn btn-warning btn-xs" onclick="change_publish_status(' + category_id + ',1,this)" title="click to activate category"><i class="fa fa-exclamation-circle"></i></a>');
                         }
 
                     } else if (msg == 2) {
@@ -249,14 +251,14 @@
     }
 
 
-    //Edit body type
-    function  display_edit_body_type_pop_up(body_type_id) {
+    //Edit Category
+    function  display_edit_category_pop_up(category_id) {
 
-        $.post(site_url + '/body_type/load_update_body_type_popup', {body_type_id: body_type_id}, function (msg) {
+        $.post(site_url + '/spare_parts_category/load_update_category_popup', {category_id: category_id}, function (msg) {
 
-            $('#body_type_edit_content').html('');
-            $('#body_type_edit_content').html(msg);
-            $('#body_type_edit_div').modal('show');
+            $('#category_edit_content').html('');
+            $('#category_edit_content').html(msg);
+            $('#category_edit_div').modal('show');
         });
 
 
