@@ -3,7 +3,7 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class spare_parts_category extends CI_Controller {
+class body_type extends CI_Controller {
 
     function __construct() {
         parent::__construct();
