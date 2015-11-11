@@ -11,8 +11,8 @@ class category extends CI_Controller {
         if (!$this->session->userdata('USER_LOGGED_IN')) {
             redirect(site_url() . '/login/load_login');
         } else {
-            $this->load->model('Spare_parts_cat/category_model');
-            $this->load->model('Spare_parts_cat/category_service');
+            $this->load->model('spare_parts_cat/spare_parts_cat_model');
+            $this->load->model('spare_parts_cat/spare_parts_cat_service');
         }
     }
 
