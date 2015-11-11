@@ -47,7 +47,13 @@
                                     <div class="info">
                                         <i class="fa fa-globe"></i>
                                         <a href="#">www.autoville.lankapanel.biz</a>
-                                        
+                                        <?php
+                                        $user = $this->session->userdata("USER_ID");
+                                        if (empty($user) || ($user != $spare_part_detail->added_by)) {
+                                            ?>
+                                            <i class="fa fa-comments"></i>
+                                            <a href="#" id="startChat" class="">Chat with seller </a>
+                                        <?php } ?>
                                     </div>
                                     
                                 </figure>
@@ -55,27 +61,10 @@
                         </section>
                         <!--end Contact-->
                         <!--Share-->
-<!--                        <section class="clearfix">
-                            <header class="pull-left">
-                                <a class="roll" href="#reviews">
-                                    <h3>Share</h3>
-                                </a>
-                            </header>
-                            <figure class="pull-right">
-                                <div class="addthis_sharing_toolbox"></div>
-
-                            </figure>-->
-                        </section>
+                        
                         <!--End Share-->
                         <!--Contact Form-->
-<!--                        <section>
-                            <?php //echo $this->load->view('vehicle_adds/ask_for_price_view'); ?>
-                        </section>-->
-                        <!--end Contact Form-->
-
-<!--                        <section style="background-color: #fff;">
-                            <?php //echo $this->load->view('vehicle_adds/loan_calculator'); ?>
-                        </section>-->
+                        
                     </aside>
                     <!--end Detail Sidebar-->
                     <!--Content-->
@@ -83,35 +72,11 @@
                         <section>
                             <article class="item-gallery">
                                 <div class="owl-carousel item-slider">
-                                    <?php
-                                    //$i = 0;
-//                                    foreach ($images as $image) {
-//                                        ++$i
-//                                        ?>
-<!--                                        <div class="owl-item //<?php if ($i == 1) { ?> active<?php } ?>">
-                                            <div class="slide"><img //<?php if ($i == 1) { ?> itemprop="image" <?php } ?> src="<?php echo base_url() . 'uploads/vehicle_images/vh_' . $vehicle_detail->id . '/' . $image->image_path; ?>" data-hash="<?php echo $i; ?>" alt=""></div>
-                                        </div>-->
-
-                                    <?php// } ?>
                                     
-                                    <a><img src="<?php echo base_url() . 'uploads/spare_part_images/' . $spare_part_detail->image; ?>" height="180" width="260" alt=""/><
-
+                                    <a><img src="<?php echo base_url() . 'uploads/spare_part_images/' . $spare_part_detail->image; ?>" height="180" width="260" alt=""/></a>
                                 </div>
                                 <!-- /.item-slider -->
-<!--                                <div class="thumbnails">
-                                    <span class="expand-content btn framed icon" data-expand="#gallery-thumbnails" >More<i class="fa fa-plus"></i></span>
-                                    <div class="expandable-content height collapsed show-70" id="gallery-thumbnails">
-                                        <div class="content">
-                                            <?php
-                                            $i = 0;
-                                            foreach ($images as $image) {
-                                                ++$i
-                                                ?>
-                                                <a href="#<?php echo $i; ?>" id="thumbnail-<?php echo $i; ?>" <?php if ($i == 1) { ?> class="active" <?php } ?>><img src="<?php echo base_url() . 'uploads/vehicle_images/vh_' . $vehicle_detail->id . '/' . $image->image_path; ?>" alt=""></a>
-                                            <?php } ?>
-                                        </div>
-                                    </div>
-                                </div>-->
+                                
                             </article>
                             <!-- /.item-gallery -->
                             <article class="block">
@@ -132,22 +97,17 @@
                                     <dd><?php echo $spare_part_detail->manufacture; ?></dd>                              
                                 </dl>
                             </article>
-                            <!-- /.block -->
-
                             
-                            <!-- /.block -->
 
                         </section>
-                        <!--Reviews-->                        
-                        <!--end Review Form-->
+                       
                     </div>
                     <!-- /.col-md-8-->
                 </div>
                 <!-- /.row -->
-        </div>
-    </section>
-
+            </section>
             <!-- /#main-content-->
-        
-        
-    
+        </div>
+       
+    </div><!-- /.row-->
+</section>
