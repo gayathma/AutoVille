@@ -55,5 +55,10 @@ class Subscribe_seller extends CI_Controller {
             }
         }       
     }
+    
+    function unsubscribe_sller(){
+        
+        
+    }
 
 }
