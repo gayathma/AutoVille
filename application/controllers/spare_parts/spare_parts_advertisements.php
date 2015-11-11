@@ -77,7 +77,7 @@ class Spare_parts_advertisements extends CI_Controller {
     }
 
     /**
-     * search spare parts from spare part name,category,manufacture,man price, min price and description
+     * search spare parts from spare part name,category,manufacture,max price, min price and description
      * @param type $start
      */
     function search_spare_part($start = "0") {

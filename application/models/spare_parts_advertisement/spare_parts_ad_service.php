@@ -111,7 +111,7 @@ class Spare_parts_ad_service extends CI_Model {
                 . 'spare_parts_advertisements.year,'
                 . 'manufacture.name as manufacture,'
                 . 'model.name as model,'
-                . 'fuel_type.name as fuel_type,');
+                . 'fuel_type.name as fuel_type');
         $this->db->from('spare_parts_advertisements');
         $this->db->join('manufacture', 'manufacture.id = spare_parts_advertisements.manufacture_id', 'left');
         $this->db->join('spare_parts_cat', 'spare_parts_cat.id = spare_parts_advertisements.category_id', 'left');
@@ -119,7 +119,7 @@ class Spare_parts_ad_service extends CI_Model {
         $this->db->join('fuel_type', 'fuel_type.id = spare_parts_advertisements.fuel_type_id', 'left');
         $this->db->where('spare_parts_advertisements.is_deleted', '0');
         $this->db->order_by("spare_parts_advertisements.added_date", "desc");
-        $this->db->group_by('spare_parts_advertisements.id');
+
         if ($limit != '') {
             $this->db->limit($limit);
         }

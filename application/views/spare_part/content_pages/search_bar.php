@@ -43,13 +43,13 @@
 </div>
 
 <script type="text/javascript">
-    $(document).ready(function () {
+    $(document).ready(function() {
 
         $("#spare_parts_search_form").validate({
             focusInvalid: false,
             ignore: "",
             rules: {
-            }, submitHandler: function (form) {
+            }, submitHandler: function(form) {
 
                 var $form = $('#spare_parts_search_form');
 
@@ -57,7 +57,7 @@
                     type: "POST",
                     url: site_url + '/spare_parts/spare_parts_advertisements/search_spare_part',
                     data: $form.serialize(),
-                    success: function (msg) {
+                    success: function(msg) {
                         $('#spareparts_search_results').html(msg);
                     }
                 });

@@ -4,7 +4,7 @@
             <div class="item featured">
                 <div class="image">
                     <div class="quick-view" id="1"><i class="fa fa-eye"></i><span>Quick View</span></div>
-                    <a href="item-detail.html">
+                    <a href="#">
                         <div class="overlay">
                             <div class="inner">
                                 <div class="content">
