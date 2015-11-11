@@ -11,7 +11,7 @@
  *
  * @author nAdEel
  */
-class category_model extends CI_Model {
+class Spare_parts_cat_model extends CI_Model {
     var $id;
     var $name;
     var $is_published;
