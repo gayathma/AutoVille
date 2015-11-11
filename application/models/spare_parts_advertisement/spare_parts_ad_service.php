@@ -169,8 +169,8 @@ class Spare_parts_ad_service extends CI_Model {
             $this->db->where('spare_parts_advertisements.category_id', $category_id);
         }
         if (!empty($maxprice) && !is_null($maxprice)) {
-            $this->db->where('spare_parts_advertisements.price <=', $maxprice);
-            $this->db->where('spare_parts_advertisements.price >=', $minprice);
+            $this->db->where('spare_parts_advertisements.price <', $maxprice);
+            $this->db->or_where('spare_parts_advertisements.price >=', $minprice);
         }
         if (!empty($keyword) && !is_null($keyword)) {
             $this->db->like('spare_parts_advertisements.description', $keyword);
@@ -183,8 +183,8 @@ class Spare_parts_ad_service extends CI_Model {
         }
         $query = $this->db->get();
 
-//        echo $this->db->last_query();
-//        die;
+        echo $this->db->last_query();
+        die;
 
         return $query->result();
     }

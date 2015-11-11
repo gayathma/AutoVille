@@ -23,9 +23,9 @@
         } else {
             //normal search         
             if ($resultcount == 3 || $resultcount > 3) {
-                $class_no = 4;
+                $class_no = 3;
             } else if ($resultcount == 2) {
-                $class_no = 4;
+                $class_no = 3;
             } else if ($resultcount == 1) {
                 $class_no = 3;
             }

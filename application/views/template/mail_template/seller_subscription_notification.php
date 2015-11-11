@@ -213,7 +213,7 @@
                                                                                 <br/>
                                                                                 Thank you for subscribing seller  <?php echo $seller; ?>.
                                                                                 <br/>
-                                                                                <?php echo $seller_title; ?>.<?php echo $seller; ?> has published a new vehicle, click <a href="<?php echo site_url(); ?>/vehicle_advertisements/vehicle_advertisement_detail_view/4">here</a> to see his newest advertisement.
+                                                                                <?php echo $seller_title; ?>.<?php echo $seller; ?> has published a new vehicle, click <a href="<?php echo site_url(); ?>/vehicle_advertisements/vehicle_advertisement_detail_view/<?php echo $vehicle_id; ?>">here</a> to see his newest advertisement.
                                                                             </td>
                                                                         </tr>                                                                        
 

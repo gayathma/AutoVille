@@ -64,7 +64,7 @@ class Subscribe_seller extends CI_Controller {
         echo $seller_subscribers_service->unsubscribe_seller($this->input->post('subscription_id', TRUE));
     }
 
-    function send_notification_for_subscribers($seller_id) {
+    function send_notification_for_subscribers($seller_id, $vehicle_id) {
 
         $seller_subscribers_service = new Seller_subscribers_service();
         $subscribers = $seller_subscribers_service->get_all_subscribers($seller_id);
@@ -76,6 +76,7 @@ class Subscribe_seller extends CI_Controller {
                 $email_to = trim($subscriber->email);
                 $email_subject = "AutoVille Notification";
 
+                $data['vehicle_id'] = $vehicle_id;
                 $data['seller_title'] = $subscriber->title;
                 $data['seller'] = $subscriber->seller_name;
 
