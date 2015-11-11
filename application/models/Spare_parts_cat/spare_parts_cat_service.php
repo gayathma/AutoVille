@@ -1,6 +1,6 @@
 <?php
 
-class category_service extends CI_Model {
+class Spare_parts_cat_service extends CI_Model {
     
     function __construct() {
         parent::__construct();
