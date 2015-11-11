@@ -259,7 +259,7 @@
                     <form id="subscribe_seller_form">
                         <div class="modal-body">
                             <p>Enter your e-mail address</p>
-                            <input type="text" id="subscriber_email" name="subscriber_email" placeholder="Email" autocomplete="off" class="form-control placeholder-no-fix">
+                            <input type="text" id="subscriber_email" name="subscriber_email" placeholder="Email" autocomplete="off" class="form-control placeholder-no-fix" value="<?php echo $this->session->userdata("USER_EMAIL");?>">
                             <input type="hidden" id="seller_id" name="seller_id" value=""/>
                             <input type="hidden" id="seller_name" name="seller_name" value=""/>
                         </div>
