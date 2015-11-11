@@ -4,7 +4,7 @@ class Spare_parts_cat_service extends CI_Model {
     
     function __construct() {
         parent::__construct();
-        $this->load->model("Spare_parts_cat/category_model");
+        $this->load->model("spare_parts_cat/category_model");
         
     }
     
