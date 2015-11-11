@@ -3,7 +3,7 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class body_type extends CI_Controller {
+class Body_type extends CI_Controller {
 
     function __construct() {
         parent::__construct();
