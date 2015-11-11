@@ -78,6 +78,7 @@ class Spare_parts_ad_service extends CI_Model {
         $this->db->join('model', 'model.id = spare_parts_advertisements.model_id', 'left');
         $this->db->join('fuel_type', 'fuel_type.id = spare_parts_advertisements.fuel_type_id', 'left');
         $this->db->where('spare_parts_advertisements.is_deleted', '0');
+        $this->db->where('spare_parts_advertisements.is_published', '1');
         $this->db->where('spare_parts_advertisements.is_featured', '1');
         $this->db->group_by('spare_parts_advertisements.id');
         if ($limit != '') {
@@ -118,6 +119,7 @@ class Spare_parts_ad_service extends CI_Model {
         $this->db->join('model', 'model.id = spare_parts_advertisements.model_id', 'left');
         $this->db->join('fuel_type', 'fuel_type.id = spare_parts_advertisements.fuel_type_id', 'left');
         $this->db->where('spare_parts_advertisements.is_deleted', '0');
+        $this->db->where('spare_parts_advertisements.is_published', '1');
         $this->db->order_by("spare_parts_advertisements.added_date", "desc");
 
         if ($limit != '') {

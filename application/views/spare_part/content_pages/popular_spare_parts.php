@@ -1,5 +1,25 @@
+<script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/owl.carousel.min.js"></script>
+<script>
+    $(window).load(function() {
+
+        if ($('.owl-carousel').length > 0) {
+            if ($('.carousel-full-width').length > 0) {
+                setCarouselWidth();
+            }
+            $(".carousel.wide").owlCarousel({
+                rtl: false,
+                items: 1,
+                responsiveBaseWidth: ".slide",
+                nav: true,
+                navText: ["", ""]
+            });
+        }
+
+    });
+</script>
 <div class="owl-carousel wide carousel">
-    <?php foreach ($new_arrivals as $value) { ?>
+    <?php
+    foreach ($new_arrivals as $value) { ?>
         <div class="slide">
             <div class="inner">
                 <div class="image">
