@@ -7,10 +7,9 @@ class Vehicle_images_temp_service extends CI_Model {
         $this->load->model('vehicle_images_temp/vehicle_images_temp_model');
     }
 
-    /*
+    /**
      * get all temp images for one user
      */
-
     public function get_all_temp_images_for_user($user_id) {
 
         $this->db->select('*');

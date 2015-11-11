@@ -6,31 +6,42 @@ class Register_Users_service extends CI_Model {
         parent::__construct();
         $this->load->model('register_users/register_users_model');
     }
-    
-    function check_email($email){
+
+    /**
+     * check email is already there
+     * @param string $email Input user email
+     * @return boolean
+     */
+    function check_email($email) {
         $this->db->from('user');
         $this->db->where('email', $email);
         $query = $this->db->get();
-        $res  = $query->row();
-        if (empty($res)) 
+        $res   = $query->row();
+        if (empty($res))
             return true;
         return false;
     }
-    
-    function check_username($username){
+
+    /**
+     * check username is already there
+     * @param string $username Input username
+     * @return boolean
+     */
+    function check_username($username) {
         $this->db->from('user');
         $this->db->where('user_name', $username);
         $query = $this->db->get();
-        $res  = $query->row();
-        if (empty($res)) 
+        $res   = $query->row();
+        if (empty($res))
             return true;
         return false;
     }
-    
-    /*
-     * update user
-     */
 
+    /**
+     * update user
+     * @param object $register_users_model Input model
+     * @return boolean
+     */
     function update_user($register_users_model) {
 
         $data = array(//'id'=>$register_users_model->get_id(),
@@ -45,11 +56,6 @@ class Register_Users_service extends CI_Model {
             '$profile_pic'             => $register_users_model->get_profile_pic(),
             '$password'                => $register_users_model->get_password(),
             '$account_activation_code' => $register_users_model->get_account_activation_code(),
-            //'$is_online'=>$register_users_model->get_is_online(),
-            //'$is_published'=>$register_users_model->get_is_published(),
-            //'$is_deleted'=>$register_users_model->get_is_deleted(),
-            //'$added_by'=>$register_users_model->get_added_by(),
-            //'$added_date'=>$register_users_model->get_added_date(),
             '$updated_date'            => $register_users_model->get_updated_date(),
             '$updated_by'              => $register_users_model->get_updated_by());
 
@@ -57,10 +63,11 @@ class Register_Users_service extends CI_Model {
         return $this->db->update('user', $data);
     }
 
-    /*
-     * update user profile
+    /**
+     * update users profile
+     * @param type $register_users_model Input model
+     * @return boolean
      */
-
     function update_user_profile($register_users_model) {
 
         $data = array('name'          => $register_users_model->get_name(),
@@ -74,30 +81,23 @@ class Register_Users_service extends CI_Model {
         return $this->db->update('user', $data);
     }
 
-    /* function update_user_online_status($register_users_model){
-      $data=array('is_online'=>$register_users_model->get_is_online());
-      $this->db->where('id', $register_users_model->get_id());
-      return $this->db->update('user', $data);
-      }
-
-      function authenticate_user_with_password($register_users_model){
-
-      $data=array('user_name'=>$register_users_model->get_user_name(), 'password'=>$register_users_model->get_password(), 'is_deleted'=>'0','is_published'=>'1');
-      $this->db->select('user.*,user_type.type as user_type_name');
-      $this->db->from('user');
-      $this->db->join('user_type', 'user.user_type = user_type.id');
-      $this->db->where($data);
-      $query = $this->db->get();
-      return $query->row();
-      }
+    /**
+     * insert new registered user
+     * @param object $register_users_model Input model
+     * @return integer
      */
-
     function add_new_user_registration($register_users_model) {
 
         $this->db->insert('user', $register_users_model);
         return $this->db->insert_id();
     }
 
+    /**
+     * activate the user
+     * @param string $email Input user email
+     * @param string $token input tocken
+     * @return boolean
+     */
     function activate_user($email, $token) {
 
         $this->db->select('user.id');
@@ -107,8 +107,6 @@ class Register_Users_service extends CI_Model {
         $this->db->where('is_published', '0');
         $query = $this->db->get();
         $user  = $query->row();
-
-        // $user = $this->db->get_where('user', array('email' => $email, 'account_activation_code' => $token, 'is_published' => '0'));
 
         if (!empty($user)) {
             $data = array('is_published' => '1', 'account_activation_code' => 'NULL');

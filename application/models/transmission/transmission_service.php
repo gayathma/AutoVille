@@ -7,10 +7,10 @@ class Transmission_service extends CI_Model {
         $this->load->model('transmission/transmission_model');
     }
 
-    /*
+    /**
      * This is the service function to get all transmissions
+     * @return object
      */
-
     public function get_all_active_transmissions() {
 
         $this->db->select('transmission.*');
@@ -22,12 +22,11 @@ class Transmission_service extends CI_Model {
         return $query->result();
     }
 
-    
-    /*
+    /**
      * This is the service function to get transmission detail by  passing the 
-     * transmission_id as a parameter
+     * @param object $transmission_model Input model
+     * @return object
      */
-
     function get_transmission_by_id($transmission_model) {
 
         $query = $this->db->get_where('transmission', array('id' => $transmission_model->get_id(), 'is_deleted' => '0'));
