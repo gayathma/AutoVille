@@ -94,7 +94,7 @@
 
                                     <?php// } ?>
                                     
-                                    <a><img src="<?php echo base_url() . 'uploads/spare_part_images_/' . $value->image; ?>" height="250" width="250" alt=""></a>
+                                    <a><img src="<?php echo base_url() . 'uploads/spare_part_images/' . $spare_part_detail->image; ?>" height="180" width="260" alt=""/><
 
                                 </div>
                                 <!-- /.item-slider -->
@@ -123,7 +123,7 @@
                                 <header><h2>Info</h2></header>
                                 <dl class="lines">
                                     <dt>Model, Body type</dt>
-                                    <dd><?php echo $spare_part_detail->model . ' , ' . $spare_part_detail->body_type; ?></dd>
+                                    <dd><?php echo $spare_part_detail->model; ?></dd>
                                     <dt>Year</dt>
                                     <dd><?php echo $spare_part_detail->year; ?></dd>
                                     <dt>Fuel</dt>
