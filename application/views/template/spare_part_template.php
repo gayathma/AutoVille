@@ -52,26 +52,13 @@
                                 <ul class="user-area">
                                     <!--cart-->   
                                     <li>
-                                        <div class="btn-group cd-cart " id="cart_list">                                                
-                                            <button style="border:0px solid black; background-color: transparent;">
+                                        <div class="btn-group cd-cart" id="cart_list">                                                
+                                            <button style="border: 0px solid black; background-color: transparent; position: relative;">
                                                 <i class="fa fa-shopping-cart"></i>
-                                                <span>0</span>
+                                                <span style="position: absolute; top: -11px; right: 0px; width: 22px; height: 22px; border-radius: 25px;background:#00A8B3">5</span>
                                             </button>
                                         </div>
-                                    </li>
-                                    <!--cart-->
-                                    <li>
-                                        <div class="btn-group" id="compare_vehicle_list">                                                
-                                            <button style="border:0px solid black; background-color: transparent;" data-toggle="dropdown"><i class="fa fa-road"></i> Compare(0)
-                                                <span class="caret"></span>
-                                            </button>
-                                            <ul class="dropdown-menu" id="added_vehicle_list">  
-                                                <!--One car-->
-                                                <li>Add Vehicle</li>                                                                                                   
-                                                <!--End One car-->                                                                                                        
-                                            </ul>
-                                        </div>
-                                    </li>
+                                    </li>                          
                                     <!--End cart-->
 
                                     <?php if (!$this->session->userdata('USER_LOGGED_IN')) { ?>
@@ -125,7 +112,7 @@
                                     </li>
                                 <?php } ?>
                                 <li>
-                                    <a aria-controls="sub-level-1"  href="<?php echo site_url();?>/home">Vehicles</a>
+                                    <a aria-controls="sub-level-1"  href="<?php echo site_url(); ?>/home">Vehicles</a>
                                 </li>
                                 <li>   
                                     <a href="<?php echo site_url(); ?>/home/about_us">About Us</a>
@@ -293,7 +280,7 @@
 
 
         <!--<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;libraries=places"></script>-->
-        <!--<script type="text/javascript" src="<?php // echo base_url();              ?>application_resources/assets/js/richmarker-compiled.js"></script>-->
+        <!--<script type="text/javascript" src="<?php // echo base_url();                 ?>application_resources/assets/js/richmarker-compiled.js"></script>-->
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery-migrate-1.2.1.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/bootstrap/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/smoothscroll.js"></script>
@@ -305,7 +292,7 @@
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery.nouislider.all.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/custom.js"></script>
         <script src="<?php echo base_url(); ?>application_resources/assets/js/jquery.mCustomScrollbar.concat.min.js" type="text/javascript">
-        <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/lazy/jquery.lazyload.js"></script>
+                                                < script type = "text/javascript" src = "<?php echo base_url(); ?>application_resources/lazy/jquery.lazyload.js" ></script>
         <script src="//js.pusher.com/3.0/pusher.min.js"></script>
 
         <!--[if lte IE 9]>
@@ -320,50 +307,50 @@
 
 <script>
 
-    $(document).ready(function() {
+                                                $(document).ready(function() {
 
 <?php if ($this->session->userdata('USER_LOGGED_IN')) { ?>
-            $.ajax({
-                type: "POST",
-                url: site_url + '/vehicle_compare/load_vehicle_popup',
-                success: function(msg) {
-                    if (msg != 0) {
-                        $('#compare_vehicle_list').html(msg);
-                    } else {
-                        alert('Error loading vehicles');
-                    }
-                }
-            });
+                                                        $.ajax({
+                                                            type: "POST",
+                                                            url: site_url + '/vehicle_compare/load_vehicle_popup',
+                                                            success: function(msg) {
+                                                                if (msg != 0) {
+                                                                    $('#compare_vehicle_list').html(msg);
+                                                                } else {
+                                                                    alert('Error loading vehicles');
+                                                                }
+                                                            }
+                                                        });
 
 <?php } else { ?>
-            $.jStorage.flush();
-            var jSindex = $.jStorage.index();
+                                                        $.jStorage.flush();
+                                                        var jSindex = $.jStorage.index();
 
-            var compareBtn = '<li><a href="<?php echo site_url(); ?>/vehicle_compare/load_compare_vehicles_dashboard_unreg_user" class="dealer-name"><button id="compareButton">Compare</button></a></li>';
+                                                        var compareBtn = '<li><a href="<?php echo site_url(); ?>/vehicle_compare/load_compare_vehicles_dashboard_unreg_user" class="dealer-name"><button id="compareButton">Compare</button></a></li>';
 
-            var li_list = '<button style="border:0px solid black; background-color: transparent;" data-toggle="dropdown"><i class="fa fa-road"></i> Compare(' + jSindex.length + ')<span class="caret"></span></button><ul class="dropdown-menu" id="added_vehicle_list">';
+                                                        var li_list = '<button style="border:0px solid black; background-color: transparent;" data-toggle="dropdown"><i class="fa fa-road"></i> Compare(' + jSindex.length + ')<span class="caret"></span></button><ul class="dropdown-menu" id="added_vehicle_list">';
 
-            if (jSindex.length == 0) {
-                li_list += '<li>Add Vehicle</li>';
-            }
+                                                        if (jSindex.length == 0) {
+                                                            li_list += '<li>Add Vehicle</li>';
+                                                        }
 
-            for (i = 0; i < jSindex.length; i++) {
-                li_list += $.jStorage.get(jSindex[i]);
-            }
+                                                        for (i = 0; i < jSindex.length; i++) {
+                                                            li_list += $.jStorage.get(jSindex[i]);
+                                                        }
 
-            if (jSindex.length >= 2) {
-                li_list += compareBtn;
-            }
+                                                        if (jSindex.length >= 2) {
+                                                            li_list += compareBtn;
+                                                        }
 
-            li_list += '</ul>';
-            $('#compare_vehicle_list').html(li_list);
+                                                        li_list += '</ul>';
+                                                        $('#compare_vehicle_list').html(li_list);
 
 <?php } ?>
 
-        function signOut() {
-            var auth2 = gapi.auth2.getAuthInstance();
-            auth2.signOut();
-        }
-    });
+                                                    function signOut() {
+                                                        var auth2 = gapi.auth2.getAuthInstance();
+                                                        auth2.signOut();
+                                                    }
+                                                });
 
 </script>

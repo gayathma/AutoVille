@@ -77,12 +77,12 @@
         type: "POST",
         url: '<?php echo site_url(); ?>/vehicle_advertisements/add_search_history',
         data: {vehicle_id: <?php echo $vehicle_detail->id; ?>},
-        success: function (msg) {
+        success: function(msg) {
 
         }
     });
 
-    $(window).load(function () {
+    $(window).load(function() {
 
         if ($('.owl-carousel').length > 0) {
             if ($('.carousel-full-width').length > 0) {
@@ -100,13 +100,13 @@
                 navText: ["", ""]
             });
 
-            $('.item-gallery .thumbnails a').on('click', function () {
-                $('.item-gallery .thumbnails a').each(function () {
+            $('.item-gallery .thumbnails a').on('click', function() {
+                $('.item-gallery .thumbnails a').each(function() {
                     $(this).removeClass('active');
                 });
                 $(this).addClass('active');
             });
-            $('.item-slider').on('translated.owl.carousel', function (event) {
+            $('.item-slider').on('translated.owl.carousel', function(event) {
                 var thumbnailNumber = $('.item-slider .owl-item.active img').attr('data-hash');
                 $('.item-gallery .thumbnails #thumbnail-' + thumbnailNumber).trigger('click');
             });
@@ -118,7 +118,7 @@
         itemDetailMap(latitude, longitude);
 
     });
-    $(document).ready(function () {
+    $(document).ready(function() {
 
         //edit review form validation
         $("#edit_review_form").validate({
@@ -127,10 +127,10 @@
             },
             messages: {
                 description: "Please enter a description"
-            }, submitHandler: function (form)
+            }, submitHandler: function(form)
             {
                 var id = $('#vehicle_id').val();
-                $.post(site_url + '/vehicle_reviews/edit_review', $('#edit_review_form').serialize(), function (msg)
+                $.post(site_url + '/vehicle_reviews/edit_review', $('#edit_review_form').serialize(), function(msg)
                 {
                     if (msg == 1) {
                         $('#rtn_msg_edit').html('<div class="alert alert-success fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>Successfully saved!!.</strong></div>');
@@ -151,7 +151,7 @@
             ignore: "",
             rules: {
                 subscriber_email: "required"
-            }, submitHandler: function (form) {
+            }, submitHandler: function(form) {
 
                 var $form = $('#subscribe_seller_form');
 
@@ -162,14 +162,14 @@
                     type: "POST",
                     url: site_url + '/subscribe_seller/add_seller_subscriber',
                     data: $form.serialize(),
-                    success: function (msg) {
+                    success: function(msg) {
                         if (msg == '1') {
                             $('#fade_valid_msg_subsc').html('<div class="alert alert-success"><i class="fa fa-check-circle fa-fw fa-lg"></i>Subscribed Seller!!!</div>');
                             $('#fade_valid_msg_subsc').fadeIn();
                             $('#fade_valid_msg_subsc').fadeOut(4000);
                             $('#subscribe_seller_model').modal('hide');
 
-                            $('#seller_subscription_span').html('<i class="fa fa-check-square"></i><a style="cursor: pointer" title="Unsubscribe Seller" onclick="unsubscribe_seller()">Unsubscribe Seller</a> ');
+                            $('#seller_subscription_span').html('<i class="fa fa-check-square"></i><a style="cursor: pointer" title="Unsubscribe Seller" onclick="unsubscribe_seller()">Unsubscribe Seller</a>');
                         } else {
                             $('#fade_valid_msg_subsc').html('<div class="alert alert-danger"><i class="fa fa-times-circle fa-fw fa-lg"></i>Error!!!</div>');
                             $('#fade_valid_msg_subsc').fadeIn();
@@ -205,7 +205,7 @@
         // Set highest debug level (log everything!).
         debug: 3,
         // Set a logging function:
-        logFunction: function () {
+        logFunction: function() {
             var copy = Array.prototype.slice.call(arguments).join(' ');
             $('.log').append(copy + '<br>');
         }
@@ -213,7 +213,7 @@
     var connectedPeers = {};
 
 // Show this peer's ID.
-    peer.on('open', function (id) {
+    peer.on('open', function(id) {
         $('#pid').text(id);
         var x = '<?php echo $this->session->userdata("USER_ID"); ?>';
         console.log(id + ' ' + x);
@@ -222,7 +222,7 @@
 // Await connections from others
     peer.on('connection', connect);
 
-    peer.on('error', function (err) {
+    peer.on('error', function(err) {
         console.log(err);
         $('#chat_error').modal('toggle');
     })
@@ -253,7 +253,7 @@
             $('.filler').hide();
             $('#ch').append(chatbox);
 
-            c.on('data', function (data) {
+            c.on('data', function(data) {
                 if (isAnn)
                     messages.append('<div><span class="peer">' + c.peer.split("_")[1] + '</span>: ' + data +
                             '</div>');
@@ -261,7 +261,7 @@
                     messages.append('<div><span class="peer">' + 'Anonymous User' + '</span>: ' + data +
                             '</div>');
             });
-            c.on('close', function () {
+            c.on('close', function() {
                 //alert(c.peer + ' has left the chat.');
                 chatbox.remove();
                 if ($('.connection').length === 0) {
@@ -272,7 +272,7 @@
 
 
         } else if (c.label === 'file') {
-            c.on('data', function (data) {
+            c.on('data', function(data) {
                 // If we're getting a file, create a URL for it.
                 if (data.constructor === ArrayBuffer) {
                     var dataView = new Uint8Array(data);
@@ -290,9 +290,9 @@
         connectedPeers[c.peer] = 1;
     }
 
-    $(document).ready(function () {
+    $(document).ready(function() {
 
-        $('body').bind('beforeunload', function () {
+        $('body').bind('beforeunload', function() {
             //do something
             c.close();
         });
@@ -301,10 +301,10 @@
         var box = $('#box');
         box.on('dragenter', doNothing);
         box.on('dragover', doNothing);
-        box.on('drop', function (e) {
+        box.on('drop', function(e) {
             e.originalEvent.preventDefault();
             var file = e.originalEvent.dataTransfer.files[0];
-            eachActiveConnection(function (c, $c) {
+            eachActiveConnection(function(c, $c) {
                 if (c.label === 'file') {
                     c.send(file);
                     $c.find('.messages').append('<div><span class="file">You sent a file.</span></div>');
@@ -319,7 +319,7 @@
 
 
         // Connect to a peer
-        $('#startChat').click(function () {
+        $('#startChat').click(function() {
 
             var requestedPeer = '<?php echo $vehicle_detail->added_by . "_" . $seller_add->user_name; ?>';
             if (!connectedPeers[requestedPeer]) {
@@ -330,19 +330,19 @@
                     serialization: 'none',
                     metadata: {message: 'hi i want to chat with you about this car!'}
                 });
-                c.on('open', function () {
+                c.on('open', function() {
                     connect(c);
                     console.log('stated');
                 });
-                c.on('error', function (err) {
+                c.on('error', function(err) {
                     alert(err);
                 });
                 var f = peer.connect(requestedPeer, {label: 'file', reliable: true});
-                f.on('open', function () {
+                f.on('open', function() {
                     connect(f);
 
                 });
-                f.on('error', function (err) {
+                f.on('error', function(err) {
                     alert(err);
                 });
             } else {
@@ -353,19 +353,19 @@
         });
 
         // Close a connection.
-        $('#close').click(function () {
-            eachActiveConnection(function (c) {
+        $('#close').click(function() {
+            eachActiveConnection(function(c) {
                 c.close();
             });
         });
 
         // Send a chat message to all active connections.
-        $(document).on('click', '#send', function (e) {
+        $(document).on('click', '#send', function(e) {
 
             //e.preventDefault();
             // For each active connection, send the message.
             var msg = $('#text').val();
-            eachActiveConnection(function (c, $c) {
+            eachActiveConnection(function(c, $c) {
                 console.log('a');
                 if (c.label === 'chat') {
 
@@ -378,7 +378,7 @@
             $('#text').focus();
 
         });
-        $(document).on('change', '#chkbx', function () {
+        $(document).on('change', '#chkbx', function() {
 
             if (this.checked) {
                 $('#text').show();
@@ -393,7 +393,7 @@
         function eachActiveConnection(fn) {
             var actives = $('.active1');
             var checkedIds = {};
-            actives.each(function () {
+            actives.each(function() {
                 var peerId = $(this).attr('id');
 
                 if (!checkedIds[peerId]) {
@@ -416,7 +416,7 @@
 
 // Make sure things clean up properly.
 
-    window.onunload = window.onbeforeunload = function (e) {
+    window.onunload = window.onbeforeunload = function(e) {
         if (!!peer && !peer.destroyed) {
             peer.destroy();
         }
