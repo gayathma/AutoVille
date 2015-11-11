@@ -4,7 +4,7 @@
             <div class="item featured">
                 <div class="image">
                     <div class="quick-view" id="1"><i class="fa fa-eye"></i><span>Quick View</span></div>
-                    <a href="#">
+                    <a href="<?php echo site_url() ?>/spare_parts_advertisements/spare_part_advertisement_detail_view/<?php echo $value->id; ?>">
                         <div class="overlay">
                             <div class="inner">
                                 <div class="content">

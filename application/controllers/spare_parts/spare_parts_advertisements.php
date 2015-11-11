@@ -15,6 +15,9 @@ class Spare_parts_advertisements extends CI_Controller {
 
         $this->load->model('vehicle_advertisments/vehicle_advertisments_model');
         $this->load->model('vehicle_advertisments/vehicle_advertisments_service');
+        
+        $this->load->model('users/user_model');
+        $this->load->model('users/user_service');
     }
 
     function post_new_spare_part_advertisement() {
@@ -106,6 +109,23 @@ class Spare_parts_advertisements extends CI_Controller {
         $data["links"] = $this->pagination_custome->create_links();
 
         echo $this->load->view('spare_part/spare_part_adds/spare_part_search_result', $data);
+    }
+
+    /*
+     * load spare part advertisement detail view
+     * @param integer $id Input spare part id
+     * Author Ashani
+     */
+
+    public function spare_part_advertisement_detail_view($id) {
+        $spare_parts_ad_service = new Spare_parts_ad_service();
+        $user_service = new User_service();
+
+        $data['spare_part_detail'] = $spare_parts_ad_service->get_spare_part_advertisement_by_id($id);
+        $data['seller_add'] = $user_service->get_user($data['spare_part_detail']->added_by);
+
+        $parials = array('content' => 'spare_part/content_pages/spare_part_detail_view');
+        $this->template->load('template/spare_part_template', $parials, $data);
     }
 
 }
