@@ -43,7 +43,7 @@
                                                            <?php } ?>
                                                            ></i><span>Add To Cart</span></div>                          
 
-                                <a href="#">
+                                <a href="<?php echo site_url() ?>/spare_parts/spare_parts_advertisements/spare_part_advertisement_detail_view/<?php echo $result->id; ?>">
                                     <div class="overlay">
                                         <div class="inner">
                                             <div class="content">
