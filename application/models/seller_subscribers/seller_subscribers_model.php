@@ -6,8 +6,17 @@ class Seller_subscribers_model extends CI_Model {
     var $email;
     var $seller_id;
     var $is_deleted;
+    var $added_by;
     var $added_date;
-    
+
+    function get_added_by() {
+        return $this->added_by;
+    }
+
+    function set_added_by($added_by) {
+        $this->added_by = $added_by;
+    }
+
     function get_id() {
         return $this->id;
     }
@@ -47,7 +56,5 @@ class Seller_subscribers_model extends CI_Model {
     function set_added_date($added_date) {
         $this->added_date = $added_date;
     }
-
-
 
 }
