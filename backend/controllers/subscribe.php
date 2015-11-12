@@ -69,6 +69,7 @@ class Subscribe extends CI_Controller {
 
         $newsletters_model->set_subject($this->input->post('subject', TRUE));
         $newsletters_model->set_content($this->input->post('content', TRUE));
+        $newsletters_model->set_status('0');//not sent
         $newsletters_model->set_added_date(date("Y-m-d H:i:s"));
 
         echo $newsletters_service->add_newsletter($newsletters_model);
@@ -85,6 +86,7 @@ class Subscribe extends CI_Controller {
         $newsletters_model->set_subject($this->input->post('subject', TRUE));
         $newsletters_model->set_content($this->input->post('content', TRUE));
         $newsletters_model->set_added_date(date("Y-m-d H:i:s"));
+        $newsletters_model->set_status('1');// sent
 
         $result = $newsletters_service->add_newsletter($newsletters_model);
 
