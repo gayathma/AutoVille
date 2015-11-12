@@ -26,7 +26,7 @@
 <!--Popular-->
 <section id="popular" class="block background-color-white">
     <div class="container">
-        <header><h2>Popular</h2></header>
+        <header><h2>New Arrivals- Spare Parts</h2></header>
         <?php echo $this->load->view('spare_part/content_pages/popular_spare_parts'); ?>
         <!--/.owl-carousel-->
     </div>

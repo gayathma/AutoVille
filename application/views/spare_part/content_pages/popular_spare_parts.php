@@ -30,11 +30,11 @@
                             </div>
                         </div>
                     </div>
-                    <img src="http://themestarz.net/html/spotter/http://themestarz.net/html/spotter/assets/img/items/restaurant/8.jpg" alt="">
+                    <img  src="<?php echo base_url() . 'uploads/spare_part_images/' . $value->image; ?>" height="180" width="260" alt=""/>
                 </div>
                 <div class="wrapper">
                     <a href="item-detail.html"><h3><?php echo $value->name; ?></h3></a>
-                    <figure>
+<!--                    <figure>
                         <i class="fa fa-map-marker"></i>
                         <span>970 Chapel Street, Rosenberg, TX 77471</span>
                     </figure>
@@ -46,13 +46,11 @@
                             <i><img src="assets/icons/restaurants-bars/restaurants/restaurant.png" alt=""></i>
                             <span>Restaurant</span>
                         </div>
-                    </div>
+                    </div>-->
                     <!--/.info-->
-                    <p>Curabitur odio nibh, luctus non pulvinar a, ultricies ac diam. Donec neque massa, viverra interdum eros ut,
-                        imperdiet pellentesque mauris. Proin sit amet scelerisque risus. Donec semper semper erat ut mollis.
-                        Curabitur suscipit, justo eu dignissim lacinia, ante sapien pharetra dui...
+                    <p><?php echo $value->description;?>
                     </p>
-                    <a href="item-detail.html" class="read-more icon">Read More</a>
+                    <a href="<?php echo site_url() ?>/spare_parts/spare_parts_advertisements/spare_part_advertisement_detail_view/<?php echo $value->id; ?>" class="read-more icon">Read More</a>
                 </div>
                 <!--/.wrapper-->
             </div>
