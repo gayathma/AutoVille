@@ -29,6 +29,11 @@ class Subscribers_service extends CI_Model {
         return $query->row();
     }
     
+    /**
+     * unsubscribe the user
+     * @param string $email Input email
+     * @return boolean
+     */
     function unsubscribe($email) {
 
         $this->db->select('subscribers.id');
