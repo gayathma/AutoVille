@@ -40,7 +40,7 @@
                                         <?php if($result->status == '1'){ ?>
                                             sent
                                         <?php }else{ ?>
-                                            failed
+                                            saved
                                         <?php } ?>
                                     </td>
                                     <td><?php echo $result->added_date; ?></td>

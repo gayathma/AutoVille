@@ -16,7 +16,7 @@
                     <form class="cmxform form-horizontal tasi-form" name="frm_content" id="frm_content" method="post" >
                         <div class="form-group ">
                             <div class="col-lg-12">
-                                <input type="text" id="subject" name="subject" >
+                                <input type="text" id="subject" name="subject" class="form-control">
                             </div>
                         </div>
 
@@ -28,9 +28,9 @@
                         </div>
 
                         <div class="form-group">
-                            <div class="col-lg-offset-11 col-lg-10">
+                            <div class="col-lg-offset-10 col-lg-8">
                                 <button class="btn btn-info" type="button" onclick="save()">Save</button>
-                                <button class="btn btn-info" type="button" onclick="send()">Send</button>
+                                <button class="btn btn-success" type="button" onclick="send()">Send</button>
                             </div>
                         </div>
                         <span id="rtn_msg"></span>
@@ -81,7 +81,7 @@
                                             $.ajax({
                                                 type: "POST",
                                                 url: site_url + '/subscribe/add_newsletter',
-                                                data: "content=" + content_text ,
+                                                data: "content=" + content_text +'&subject='+$('#subject').val(),
                                                 success: function (msg) {
                                                     if (msg == 1) {
                                                         $('#rtn_msg').html('<div class="alert alert-success fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>Successfully saved!!.</strong></div>');
@@ -100,7 +100,7 @@
                                             $.ajax({
                                                 type: "POST",
                                                 url: site_url + '/subscribe/send_newsletter',
-                                                data: "content=" + content_text ,
+                                                data: "content=" + content_text +'&subject='+$('#subject').val(),
                                                 success: function (msg) {
                                                     if (msg == 1) {
                                                         $('#rtn_msg').html('<div class="alert alert-success fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>Successfully sent!!.</strong></div>');

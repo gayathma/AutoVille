@@ -92,12 +92,13 @@ class Subscribe extends CI_Controller {
         $subscribers = $subscribers_service->get_active_subscribers();
         foreach ($subscribers as $subscriber) {
             //send email
+            $token = $this->generate_random_string(); //generate account activation token
             $email_to        = $subscriber->email;
             $email_subject   = $this->input->post('subject', TRUE);
-            $data['email']   = $subscriber->email;
+            $data['link']   = site_url() . '/home/unsubscribe?email=' . $subscriber->email . '&token=' . $token;
             $data['content'] = $subscriber->content;
 
-            $msg = $this->load->view('template/mail_template/forgot_password', $data, TRUE);
+            $msg = $this->load->view('template/mail_template/newsletter', $data, TRUE);
 
             $headers = 'MIME-Version: 1.0' . "\r\n";
             $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
@@ -108,5 +109,19 @@ class Subscribe extends CI_Controller {
         }
         echo $result;
     }
+    
 
+    /**
+     * generate random string for url tocken
+     * @param integer $length Input tocken length
+     * @return string tocken
+     */
+    public function generate_random_string($length = 10) {
+        $characters    = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $random_string = '';
+        for ($i = 0; $i < $length; $i++) {
+            $random_string .= $characters[rand(0, strlen($characters) - 1)];
+        }
+        return $random_string;
+    }
 }

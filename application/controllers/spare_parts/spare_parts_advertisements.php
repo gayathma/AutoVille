@@ -19,6 +19,10 @@ class Spare_parts_advertisements extends CI_Controller {
         $this->load->model('users/user_model');
         $this->load->model('users/user_service');
     }
+    
+    /**
+     * This function to uplpad spare part image
+     */
 
     function post_new_spare_part_advertisement() {
         $vehicle_advertisement_service = new Vehicle_advertisments_service();
@@ -28,12 +32,15 @@ class Spare_parts_advertisements extends CI_Controller {
         $data['manufactures'] = $spare_part_ad_service->get_manufactures();
         $data['models'] = $spare_part_ad_service->get_model();
         $data['fuel_types'] = $spare_part_ad_service->get_fuel_type();
+        $data['categories']=$spare_part_ad_service->get_category_type();
         $data['heading'] = "Promote your business";
+        
         $parials = array('content' => 'spare_part/content_pages/add_new_spare_part_advertisement', 'new_arrivals' => 'vehicle_adds/new_arrivals');
         $this->template->load('template/spare_part_template', $parials, $data);
     }
+    
 
-    /*
+    /**
      * This function is to upload spare part image
      */
 
@@ -52,7 +59,7 @@ class Spare_parts_advertisements extends CI_Controller {
         }
     }
 
-    /*
+    /**
      * This service function to insert a spare parts
      */
 
@@ -111,7 +118,7 @@ class Spare_parts_advertisements extends CI_Controller {
         echo $this->load->view('spare_part/spare_part_adds/spare_part_search_result', $data);
     }
 
-    /*
+    /**
      * load spare part advertisement detail view
      * @param integer $id Input spare part id
      * Author Ashani
@@ -119,12 +126,14 @@ class Spare_parts_advertisements extends CI_Controller {
 
     public function spare_part_advertisement_detail_view($id) {
         $spare_parts_ad_service = new Spare_parts_ad_service();
+        $vehicle_advertisement_service = new Vehicle_advertisments_service();
         $user_service = new User_service();
 
+        $data['latest_vehicles'] = $vehicle_advertisement_service->get_new_arrival(2);
         $data['spare_part_detail'] = $spare_parts_ad_service->get_spare_part_advertisement_by_id($id);
         $data['seller_add'] = $user_service->get_user($data['spare_part_detail']->added_by);
 
-        $parials = array('content' => 'spare_part/content_pages/spare_part_detail_view');
+        $parials = array('content' => 'spare_part/content_pages/spare_part_detail_view', 'new_arrivals' => 'vehicle_adds/new_arrivals');
         $this->template->load('template/spare_part_template', $parials, $data);
     }
 

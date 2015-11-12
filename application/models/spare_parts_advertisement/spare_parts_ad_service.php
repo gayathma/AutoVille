@@ -7,7 +7,7 @@ class Spare_parts_ad_service extends CI_Model {
         $this->load->model('spare_parts_advertisement/spare_parts_ad_model');
     }
 
-    /*
+    /**
      * This service function to add a spare part advertisement
      */
 
@@ -15,7 +15,7 @@ class Spare_parts_ad_service extends CI_Model {
         return $this->db->insert('spare_parts_advertisements', $spare_part_advertisement);
     }
 
-    /*
+    /**
      * This service function to get all manufactures
      */
 
@@ -27,7 +27,7 @@ class Spare_parts_ad_service extends CI_Model {
         return $query->result();
     }
 
-    /*
+    /**
      * This service function to get all model
      */
 
@@ -39,7 +39,7 @@ class Spare_parts_ad_service extends CI_Model {
         return $query->result();
     }
 
-    /*
+    /**
      * This service function to get all fuel type
      */
 
@@ -50,8 +50,21 @@ class Spare_parts_ad_service extends CI_Model {
         $query = $this->db->get();
         return $query->result();
     }
+    
+    /**
+     * This service function to get all categories
+     */
 
-    /*
+    function get_category_type() {
+        $this->db->select('spare_parts_cat.*');
+        $this->db->from('spare_parts_cat');
+        $this->db->where('spare_parts_cat.is_deleted', '0');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+
+    /**
      * This is the service function to get price drop spare parts
      * Author Ashani
      */
@@ -86,13 +99,11 @@ class Spare_parts_ad_service extends CI_Model {
         }
 
         $query = $this->db->get();
-//        echo $this->db->last_query();
-//        die;
 
         return $query->result();
     }
 
-    /*
+    /**
      * This is the service function to get newly arrived spare parts
      * Author Ashani
      */
@@ -106,8 +117,8 @@ class Spare_parts_ad_service extends CI_Model {
                 . 'spare_parts_advertisements.price,'
                 . 'spare_parts_cat.name as category,'
                 . 'spare_parts_advertisements.year');
-        $this->db->from('spare_parts_advertisements');       
-        $this->db->join('spare_parts_cat', 'spare_parts_cat.id = spare_parts_advertisements.category_id', 'left');            
+        $this->db->from('spare_parts_advertisements');
+        $this->db->join('spare_parts_cat', 'spare_parts_cat.id = spare_parts_advertisements.category_id', 'left');
         $this->db->where('spare_parts_advertisements.is_deleted', '0');
         $this->db->where('spare_parts_advertisements.is_published', '1');
         $this->db->order_by("spare_parts_advertisements.added_date", "desc");
@@ -119,7 +130,6 @@ class Spare_parts_ad_service extends CI_Model {
         $query = $this->db->get();
         return $query->result();
     }
-
 
     /**
      * search spare part according to input values
@@ -173,14 +183,15 @@ class Spare_parts_ad_service extends CI_Model {
             $this->db->limit($limit, $start);
         }
         $query = $this->db->get();
+       // echo $this->db->last_query();
+       // die;
 
-//        echo $this->db->last_query();
-//        die;
 
         return $query->result();
+        
     }
-    
-    /*
+
+    /**
      * get one spare part advertisement by id
      * @param integer $id Input advertisement id
      * @return object
@@ -191,8 +202,7 @@ class Spare_parts_ad_service extends CI_Model {
 
         $this->db->select('spare_parts_advertisements.*,user.email as user_email,user.name as added_by_user,'
                 . 'manufacture.name as manufacture,model.name as model,'
-                . 'fuel_type.name as fuel_type,'
-                . 'body_type.name as body_type');
+                . 'fuel_type.name as fuel_type,');
         $this->db->from('spare_parts_advertisements');
         $this->db->join('manufacture', 'manufacture.id = spare_parts_advertisements.manufacture_id');
         $this->db->join('model', 'model.id = spare_parts_advertisements.model_id', 'left');
@@ -204,6 +214,5 @@ class Spare_parts_ad_service extends CI_Model {
         $query = $this->db->get();
         return $query->row();
     }
-
 
 }

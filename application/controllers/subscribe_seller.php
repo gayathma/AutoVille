@@ -17,7 +17,7 @@ class Subscribe_seller extends CI_Controller {
      */
     function add_seller_subscriber() {
 
-        $seller_subscribers_model = new Seller_subscribers_model();
+        $seller_subscribers_model   = new Seller_subscribers_model();
         $seller_subscribers_service = new Seller_subscribers_service();
 
         $seller_subscribers_model->set_email($this->input->post('subscriber_email', TRUE));
@@ -30,7 +30,7 @@ class Subscribe_seller extends CI_Controller {
 
         if ($msg == '1') {
             //send email
-            $email_to = trim($this->input->post('subscriber_email', TRUE)); //'heshani7.herath@gmail.com';
+            $email_to      = trim($this->input->post('subscriber_email', TRUE)); //'heshani7.herath@gmail.com';
             $email_subject = "AutoVille Subscription Notification";
 
             if ($this->session->userdata('USER_LOGGED_IN')) {
@@ -59,43 +59,12 @@ class Subscribe_seller extends CI_Controller {
         echo '3';
     }
 
+    /**
+     * delete subscribed seller details
+     */
     function unsubscribe_sller() {
         $seller_subscribers_service = new Seller_subscribers_service();
         echo $seller_subscribers_service->unsubscribe_seller($this->input->post('subscription_id', TRUE));
     }
-
-    function send_notification_for_subscribers($seller_id, $vehicle_id) {
-
-        $seller_subscribers_service = new Seller_subscribers_service();
-        $subscribers = $seller_subscribers_service->get_all_subscribers($seller_id);
-
-        if (empty($subscribers)) {
-
-            foreach ($subscribers as $subscriber) {
-
-                $email_to = trim($subscriber->email);
-                $email_subject = "AutoVille Notification";
-
-                $data['vehicle_id'] = $vehicle_id;
-                $data['seller_title'] = $subscriber->title;
-                $data['seller'] = $subscriber->seller_name;
-
-                $msg = $this->load->view('template/mail_template/seller_subscription', $data, TRUE);
-
-                $headers = 'MIME-Version: 1.0' . "\r\n";
-                $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-                $headers .= 'From: AutoVille <info.autovillle@gmail.com>' . "\r\n";
-                $headers .= 'Cc: heshani7.herath@gmail.com' . "\r\n";
-
-                if (mail($email_to, $email_subject, $msg, $headers)) {
-                    echo "1";
-                    die();
-                } else {
-                    echo "2";
-                    die();
-                }
-            }
-        }
-    }
-
+   
 }

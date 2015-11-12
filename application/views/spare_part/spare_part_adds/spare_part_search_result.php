@@ -37,13 +37,11 @@
                     <div class="col-md-<?php echo $class_no; ?> col-sm-<?php echo $class_no; ?>">
                         <div class="item" >
                             <div class="image">
-                                <div class="quick-view"><i class="fa fa-plus" 
-                                    <?php if (!$this->session->userdata('USER_LOGGED_IN')) { ?>                                                               
-                                                               onclick="add_to_cart(<?php echo $result->id; ?>)"
-                                                           <?php } ?>
-                                                           ></i><span>Add To Cart</span></div>                          
+                                <div class="quick-view">
+                                    <i class="fa fa-plus" <?php if (!$this->session->userdata('USER_LOGGED_IN')) { ?> onclick="add_to_cart('<?php echo $result->id; ?>')" <?php } ?>></i><span>Add To Cart</span>
+                                </div>       
 
-                                <a href="#">
+                                <a href="<?php echo site_url() ?>/spare_parts/spare_parts_advertisements/spare_part_advertisement_detail_view/<?php echo $result->id; ?>">
                                     <div class="overlay">
                                         <div class="inner">
                                             <div class="content">
@@ -62,7 +60,7 @@
                                 <h3><?php echo $result->name; ?> </h3>
 
                                 <figure><?php echo $result->category; ?></figure>
-                                <div class="price"><?php echo "Rs. " . CurrencyFormat($result->price); ?></div>
+                                <div class="price"><?php echo "Rs. " . number_format($result->price,2); ?></div>
                                 <br>
 
                                 <?php if ($result->is_featured == '1') { ?>
@@ -88,15 +86,6 @@
     </div>											
 </div>
 
-<?php
-
-function CurrencyFormat($number) {
-    $decimalplaces = 2;
-    $decimalcharacter = '.';
-    $thousandseparater = ',';
-    return number_format($number, $decimalplaces, $decimalcharacter, $thousandseparater);
-}
-?>
 
 <script type="text/javascript">
 
@@ -111,13 +100,15 @@ function CurrencyFormat($number) {
     //add spare parts to the cart
     function add_to_cart(id) {
 
+        //alert('added');
+
         $.ajax({
             type: "POST",
-            url: site_url + '/cart/add_items_to_cart',
+            url: site_url + '/spare_parts/cart/add_items_to_cart',
             data: "id=" + id,
             success: function (msg) {
                 if (msg != 0) {
-                    toastr.success("Successfully added to the cart!!", "AutoVille");                    
+                    toastr.success("Successfully added to the cart!!", "AutoVille");
                 } else {
                     alert('Error loading vehicles');
                 }

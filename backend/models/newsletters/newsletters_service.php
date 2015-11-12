@@ -14,6 +14,7 @@ class Newsletters_service extends CI_Model {
 
         $this->db->select('newsletters.*');
         $this->db->from('newsletters');
+        $this->db->where('status != 2');
         $this->db->order_by("newsletters.added_date", "desc");
         $query = $this->db->get();
         return $query->result();

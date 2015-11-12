@@ -1,3 +1,37 @@
+<script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/owl.carousel.min.js"></script>
+<script>
+    $(window).load(function () {
+
+        if ($('.owl-carousel').length > 0) {
+            if ($('.carousel-full-width').length > 0) {
+                setCarouselWidth();
+            }
+            $(".item-slider").owlCarousel({
+                rtl: false,
+                items: 1,
+                lazyLoad: true,
+                autoHeight: true,
+                responsiveBaseWidth: ".slide",
+                nav: false,
+                callbacks: true,
+                URLhashListener: true,
+                navText: ["", ""]
+            });
+
+            $('.item-gallery .thumbnails a').on('click', function () {
+                $('.item-gallery .thumbnails a').each(function () {
+                    $(this).removeClass('active');
+                });
+                $(this).addClass('active');
+            });
+            $('.item-slider').on('translated.owl.carousel', function (event) {
+                var thumbnailNumber = $('.item-slider .owl-item.active img').attr('data-hash');
+                $('.item-gallery .thumbnails #thumbnail-' + thumbnailNumber).trigger('click');
+            });
+        }
+    });
+
+</script>
 <section class="container page-item-detail">
     <div class="row">
         <!--Item Detail Content-->
@@ -47,35 +81,17 @@
                                     <div class="info">
                                         <i class="fa fa-globe"></i>
                                         <a href="#">www.autoville.lankapanel.biz</a>
-                                        
                                     </div>
-                                    
+
                                 </figure>
                             </address>
                         </section>
                         <!--end Contact-->
                         <!--Share-->
-<!--                        <section class="clearfix">
-                            <header class="pull-left">
-                                <a class="roll" href="#reviews">
-                                    <h3>Share</h3>
-                                </a>
-                            </header>
-                            <figure class="pull-right">
-                                <div class="addthis_sharing_toolbox"></div>
 
-                            </figure>-->
-                        </section>
                         <!--End Share-->
                         <!--Contact Form-->
-<!--                        <section>
-                            <?php //echo $this->load->view('vehicle_adds/ask_for_price_view'); ?>
-                        </section>-->
-                        <!--end Contact Form-->
 
-<!--                        <section style="background-color: #fff;">
-                            <?php //echo $this->load->view('vehicle_adds/loan_calculator'); ?>
-                        </section>-->
                     </aside>
                     <!--end Detail Sidebar-->
                     <!--Content-->
@@ -83,35 +99,14 @@
                         <section>
                             <article class="item-gallery">
                                 <div class="owl-carousel item-slider">
-                                    <?php
-                                    //$i = 0;
-//                                    foreach ($images as $image) {
-//                                        ++$i
-//                                        ?>
-<!--                                        <div class="owl-item //<?php if ($i == 1) { ?> active<?php } ?>">
-                                            <div class="slide"><img //<?php if ($i == 1) { ?> itemprop="image" <?php } ?> src="<?php echo base_url() . 'uploads/vehicle_images/vh_' . $vehicle_detail->id . '/' . $image->image_path; ?>" data-hash="<?php echo $i; ?>" alt=""></div>
-                                        </div>-->
-
-                                    <?php// } ?>
-                                    
-                                    <a><img src="<?php echo base_url() . 'uploads/spare_part_images_/' . $value->image; ?>" height="250" width="250" alt=""></a>
-
-                                </div>
-                                <!-- /.item-slider -->
-<!--                                <div class="thumbnails">
-                                    <span class="expand-content btn framed icon" data-expand="#gallery-thumbnails" >More<i class="fa fa-plus"></i></span>
-                                    <div class="expandable-content height collapsed show-70" id="gallery-thumbnails">
-                                        <div class="content">
-                                            <?php
-                                            $i = 0;
-                                            foreach ($images as $image) {
-                                                ++$i
-                                                ?>
-                                                <a href="#<?php echo $i; ?>" id="thumbnail-<?php echo $i; ?>" <?php if ($i == 1) { ?> class="active" <?php } ?>><img src="<?php echo base_url() . 'uploads/vehicle_images/vh_' . $vehicle_detail->id . '/' . $image->image_path; ?>" alt=""></a>
-                                            <?php } ?>
+                                    <div class="owl-item">
+                                        <div class="slide">
+                                            <a><img  src="<?php echo base_url() . 'uploads/spare_part_images/' . $spare_part_detail->image; ?>" height="180" width="260" alt=""/></a>
                                         </div>
                                     </div>
-                                </div>-->
+                                </div>
+                                <!-- /.item-slider -->
+
                             </article>
                             <!-- /.item-gallery -->
                             <article class="block">
@@ -123,7 +118,7 @@
                                 <header><h2>Info</h2></header>
                                 <dl class="lines">
                                     <dt>Model, Body type</dt>
-                                    <dd><?php echo $spare_part_detail->model . ' , ' . $spare_part_detail->body_type; ?></dd>
+                                    <dd><?php echo $spare_part_detail->model; ?></dd>
                                     <dt>Year</dt>
                                     <dd><?php echo $spare_part_detail->year; ?></dd>
                                     <dt>Fuel</dt>
@@ -132,22 +127,17 @@
                                     <dd><?php echo $spare_part_detail->manufacture; ?></dd>                              
                                 </dl>
                             </article>
-                            <!-- /.block -->
 
-                            
-                            <!-- /.block -->
 
                         </section>
-                        <!--Reviews-->                        
-                        <!--end Review Form-->
+
                     </div>
                     <!-- /.col-md-8-->
                 </div>
                 <!-- /.row -->
-        </div>
-    </section>
-
+            </section>
             <!-- /#main-content-->
-        
-        
-    
+        </div>
+
+    </div><!-- /.row-->
+</section>
