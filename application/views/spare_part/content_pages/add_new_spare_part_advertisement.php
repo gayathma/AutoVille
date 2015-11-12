@@ -28,9 +28,9 @@
                                 <div id="model_wrapper">
                                     <select name="category" id="category" title="This field is required." data-live-search="true" class="live_select">
                                         <option value="">Select Category</option>
-                                        <?php //foreach ($models as $model) { ?>
-                                        <option value="1">Test category</option>
-                                        <?php //} ?>
+                                        <?php foreach ($categories as $category) { ?>
+                                        <option value="<?php echo $category->id; ?>"><?php echo $category->name; ?>Test category</option>
+                                        <?php } ?>
 
                                     </select>
                                 </div>
