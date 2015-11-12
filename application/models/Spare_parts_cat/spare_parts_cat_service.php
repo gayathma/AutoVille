@@ -14,6 +14,7 @@ class Spare_parts_cat_service extends CI_Model {
     
     public function get_all_active_categories(){
         $this->db->select('spare_parts_cat.name,
+            spare_parts_cat.image,
             spare_parts_cat.id');
         $this->db->from('spare_parts_cat');
         $this->db->where('spare_parts_cat.is_deleted', '0');
