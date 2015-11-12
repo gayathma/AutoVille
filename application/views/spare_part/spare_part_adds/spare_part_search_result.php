@@ -111,11 +111,11 @@ function CurrencyFormat($number) {
     //add spare parts to the cart
     function add_to_cart(id) {
         
-        alert('added');
+        //alert('added');
 
         $.ajax({
             type: "POST",
-            url: site_url + '/cart/add_items_to_cart',
+            url: site_url + '/spare_parts/cart/add_items_to_cart',
             data: "id=" + id,
             success: function (msg) {
                 if (msg != 0) {
