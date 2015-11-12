@@ -211,8 +211,8 @@
                                                                         <tr>
                                                                             <td style="text-align:left;">
                                                                                 <br/>
-                                                                                Thank you for subscribing seller  <?php echo $subscriber; ?> on <?php echo date('Y-m-d H:i:s'); ?>.
-                                                                                From now on you will receive notifications.
+                                                                                Thank you for subscribing seller  <?php echo $seller; ?> on <?php echo date('Y-m-d H:i:s'); ?>.
+                                                                                From now on you will receive notifications on his/her updates.
                                                                             </td>
                                                                         </tr>                                                                        
 

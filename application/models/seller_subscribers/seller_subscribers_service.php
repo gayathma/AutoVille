@@ -8,7 +8,8 @@ class Seller_subscribers_service extends CI_Model {
     }
 
     function insert_seller_subscriber($seller_subscribers_model) {
-        return $this->db->insert('seller_subscribers', $seller_subscribers_model);
+        $this->db->insert('seller_subscribers', $seller_subscribers_model);
+        return $this->db->insert_id();
     }
 
     function unsubscribe_seller($id) {
