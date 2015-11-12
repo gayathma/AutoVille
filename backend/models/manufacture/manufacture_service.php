@@ -56,6 +56,7 @@ class Manufacture_service extends CI_Model {
 
     function update_manufacure($manufacture_model) {
         $data = array('name' => $manufacture_model->get_name(),
+            'logo' => $manufacture_model->get_logo(),
             'updated_date' => $manufacture_model->get_updated_date(),
             'updated_by' => $manufacture_model->get_updated_by()
         );

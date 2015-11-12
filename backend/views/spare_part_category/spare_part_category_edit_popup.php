@@ -4,7 +4,44 @@
 </div>
 <form id="edit_category_form" name="edit_category_form">
     <div class="modal-body">
+        <script src="<?php echo base_url(); ?>backend_resources/file_upload_plugin/ajaxupload.3.5.js" type="text/javascript"></script>
+        <script>
+            //upload category logo
+         
+              
+                var btnUpload = $('#browse_edit');
+                var status = $('#status_edit');
+                new AjaxUpload(btnUpload, {
+                    action: '<?php echo site_url(); ?>/spare_parts_category/upload_category_image',
+                    name: 'uploadfile',
+                    onSubmit: function (file, ext) {
+                        if (!(ext && /^(jpg|png|jpeg|gif)$/.test(ext))) {
+                            // extension is not allowed 
+                            status.text('Only JPG, PNG or GIF files are allowed');
+                            return false;
+                        }
+                        //status.text('Uploading...Please wait');
+                        //                                            $("#files").html("<i id='animate-icon' class='fa fa-spinner fa fa-2x fa-spin'></i>");
 
+                    },
+                    onComplete: function (file, response) {
+                        //On completion clear the status
+                        //status.text('');
+                        $("#files_edit").html("");
+                        $("#sta_edit").html("");
+                        //Add uploaded file to list
+                        if (response != "error") {
+                            $('#files_edit').html("");
+                            $('<div></div>').appendTo('#files_edit').html('<img src="<?php echo base_url(); ?>uploads/spare_part_category/' + response + '"   width="100px" height="68px" /><br />');
+                            picFileName = response;
+                            document.getElementById('logo_edit').value = response;
+                            //                    document.getElementById('cover_image').value = response;
+                        } else {
+                            $('<div></div>').appendTo('#files_edit').text(file).addClass('error');
+                        }
+                    }
+                });
+        </script>
         <div class="form-group">
             <label for="name">Category<span class="mandatory">*</span></label>
             <input id="name" class="form-control" name="name" type="text" value="<?php echo $category->name; ?>">
@@ -14,14 +51,16 @@
             <div id="upload">
 
                 <label class="form-label">Upload Image</label>
-                <button type="button" class="btn btn-info" id="browse">Browse</button>
-                <input type="text" id="logo" name="logo" style="visibility: hidden" value=""/>
+                <button type="button" class="btn btn-info" id="browse_edit">Browse</button>
+                <input type="text" id="logo_edit" name="logo" style="visibility: hidden" value=""/>
             </div>
-            <div id="sta"><span id="status" ></span></div>
+            <div id="sta_edit"><span id="status_edit" ></span></div>
         </div>
         <div class="form-group">
-            <div id="files" class="project-logo">
-                <img src="<?php echo base_url(); ?>uploads/spare_part_category/<?php echo $category->image; ?>"   width="100px" height="68px" /><br />
+            <div id="files_edit" class="project-logo">
+                <?php if (!empty($category->image)) { ?>
+                    <img src="<?php echo base_url(); ?>uploads/spare_part_category/<?php echo $category->image; ?>"   width="100px" height="68px" /><br />
+                <?php } ?>
             </div>
         </div>
         <span id="rtn_msg_edit"></span>

@@ -12,78 +12,87 @@
  * @author nAdEel
  */
 class Spare_parts_cat_model extends CI_Model {
+
     var $id;
     var $name;
+    var $image;
     var $is_published;
     var $is_deleted;
     var $added_date;
     var $added_by;
     var $updated_date;
     var $updated_by;
-    
-    function getId() {
+
+    function get_id() {
         return $this->id;
     }
 
-    function getName() {
+    function get_name() {
         return $this->name;
     }
 
-    function getIs_published() {
+    function get_image() {
+        return $this->image;
+    }
+
+    function get_is_published() {
         return $this->is_published;
     }
 
-    function getIs_deleted() {
+    function get_is_deleted() {
         return $this->is_deleted;
     }
 
-    function getAdded_date() {
+    function get_added_date() {
         return $this->added_date;
     }
 
-    function getAdded_by() {
+    function get_added_by() {
         return $this->added_by;
     }
 
-    function getUpdated_date() {
+    function get_updated_date() {
         return $this->updated_date;
     }
 
-    function getUpdated_by() {
+    function get_updated_by() {
         return $this->updated_by;
     }
 
-    function setId($id) {
+    function set_id($id) {
         $this->id = $id;
     }
 
-    function setName($name) {
+    function set_name($name) {
         $this->name = $name;
     }
 
-    function setIs_published($is_published) {
+    function set_image($image) {
+        $this->image = $image;
+    }
+
+    function set_is_published($is_published) {
         $this->is_published = $is_published;
     }
 
-    function setIs_deleted($is_deleted) {
+    function set_is_deleted($is_deleted) {
         $this->is_deleted = $is_deleted;
     }
 
-    function setAdded_date($added_date) {
+    function set_added_date($added_date) {
         $this->added_date = $added_date;
     }
 
-    function setAdded_by($added_by) {
+    function set_added_by($added_by) {
         $this->added_by = $added_by;
     }
 
-    function setUpdated_date($updated_date) {
+    function set_updated_date($updated_date) {
         $this->updated_date = $updated_date;
     }
 
-    function setUpdated_by($updated_by) {
+    function set_updated_by($updated_by) {
         $this->updated_by = $updated_by;
     }
-
 
 }

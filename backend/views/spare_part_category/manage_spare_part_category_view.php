@@ -36,7 +36,7 @@
                                 <tr id="category_<?php echo $result->id; ?>">
                                     <td><?php echo ++$i; ?></td>
                                     <td><?php echo $result->name; ?></td>
-                                    <td align="center"><img src="<?php echo base_url(); ?>uploads/spare_part_category/<?php echo $result->image; ?>" width="60px" /></td>
+                                    <td align="center"><?php if(!empty($result->image)){ ?><img src="<?php echo base_url(); ?>uploads/spare_part_category/<?php echo $result->image; ?>" width="60px" /><?php } ?></td>
 
                                     <td align="center">
                                         <?php if ($result->is_published) { ?>

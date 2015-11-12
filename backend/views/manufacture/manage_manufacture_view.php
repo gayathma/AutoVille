@@ -36,7 +36,7 @@
                                 <tr id="manufacture_<?php echo $result->id; ?>">
                                     <td><?php echo ++$i; ?></td>
                                     <td><?php echo $result->name; ?></td>
-                                    <td align="center"><img src="<?php echo base_url(); ?>uploads/manufacture_logo/<?php echo $result->logo; ?>" width="60px" /></td>
+                                    <td align="center"><?php if(!empty($result->logo)){ ?><img src="<?php echo base_url(); ?>uploads/manufacture_logo/<?php echo $result->logo; ?>" width="60px" /><?php } ?></td>
     <!--                                        <td><?php echo $result->added_by_user; ?></td>-->
     <!--                                        <td><?php echo $result->added_date; ?></td>-->
                                     <td align="center">
