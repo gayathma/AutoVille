@@ -70,6 +70,7 @@ class Vehicle_advertisements extends CI_Controller {
 
     /*
      * This is to approve or reject advertisement
+     * If advertisement is approved send notification to seller's all subscribers
      */
 
     function change_publish_status() {

@@ -62,7 +62,7 @@
                                 <h3><?php echo $result->name; ?> </h3>
 
                                 <figure><?php echo $result->category; ?></figure>
-                                <div class="price"><?php echo "Rs. " . CurrencyFormat($result->price); ?></div>
+                                <div class="price"><?php echo "Rs. " . number_format($result->price,2); ?></div>
                                 <br>
 
                                 <?php if ($result->is_featured == '1') { ?>
@@ -87,16 +87,6 @@
         <?php echo $links; ?>
     </div>											
 </div>
-
-<?php
-
-function CurrencyFormat($number) {
-    $decimalplaces = 2;
-    $decimalcharacter = '.';
-    $thousandseparater = ',';
-    return number_format($number, $decimalplaces, $decimalcharacter, $thousandseparater);
-}
-?>
 
 <script type="text/javascript">
 

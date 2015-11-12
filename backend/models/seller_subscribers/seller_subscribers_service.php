@@ -7,10 +7,20 @@ class Seller_subscribers_service extends CI_Model {
         $this->load->model('seller_subscribers/seller_subscribers_model');
     }
 
+    /**
+     * insert a new subscriber for seller
+     * @param type $seller_subscribers_model
+     * @return type
+     */
     function insert_seller_subscriber($seller_subscribers_model) {
         return $this->db->insert('seller_subscribers', $seller_subscribers_model);
     }
 
+    /**
+     * delete subscribed seller details
+     * @param type $id
+     * @return type
+     */
     function unsubscribe_seller($id) {
 
         $data = array(

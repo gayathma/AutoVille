@@ -18,6 +18,9 @@ class Vehicle_compare extends CI_Controller {
         $this->load->model('vehicle_advertisments/vehicle_advertisments_service');
     }
 
+    /**
+     * This is the controller function to add a vehicle to compare
+     */
     function add_vehicle_to_compare() {
 
         $vehicle_compare_model = new Vehicle_compare_model();
