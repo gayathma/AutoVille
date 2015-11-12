@@ -50,6 +50,19 @@ class Spare_parts_ad_service extends CI_Model {
         $query = $this->db->get();
         return $query->result();
     }
+    
+    /**
+     * This service function to get all categories
+     */
+
+    function get_category_type() {
+        $this->db->select('spare_parts_cat.*');
+        $this->db->from('spare_parts_cat');
+        $this->db->where('spare_parts_cat.is_deleted', '0');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
 
     /**
      * This is the service function to get price drop spare parts

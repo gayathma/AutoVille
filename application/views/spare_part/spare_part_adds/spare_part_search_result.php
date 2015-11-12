@@ -39,7 +39,7 @@
                             <div class="image">
                                 <div class="quick-view"><i class="fa fa-plus" 
                                     <?php if (!$this->session->userdata('USER_LOGGED_IN')) { ?>                                                               
-                                                               onclick="add_to_cart(<?php echo $result->id; ?>)"
+                                                               onclick="add_to_cart('<?php echo $result->id; ?>')"
                                                            <?php } ?>
                                                            ></i><span>Add To Cart</span></div>                          
 
@@ -88,6 +88,7 @@
     </div>											
 </div>
 
+
 <script type="text/javascript">
 
     function setting_pagination_content(url) {
@@ -100,7 +101,7 @@
 
     //add spare parts to the cart
     function add_to_cart(id) {
-        
+
         //alert('added');
 
         $.ajax({
@@ -109,7 +110,7 @@
             data: "id=" + id,
             success: function (msg) {
                 if (msg != 0) {
-                    toastr.success("Successfully added to the cart!!", "AutoVille");                    
+                    toastr.success("Successfully added to the cart!!", "AutoVille");
                 } else {
                     alert('Error loading vehicles');
                 }

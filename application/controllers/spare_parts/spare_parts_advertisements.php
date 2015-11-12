@@ -32,6 +32,7 @@ class Spare_parts_advertisements extends CI_Controller {
         $data['manufactures'] = $spare_part_ad_service->get_manufactures();
         $data['models'] = $spare_part_ad_service->get_model();
         $data['fuel_types'] = $spare_part_ad_service->get_fuel_type();
+        $data['categories']=$spare_part_ad_service->get_category_type();
         $data['heading'] = "Promote your business";
         $parials = array('content' => 'spare_part/content_pages/add_new_spare_part_advertisement', 'new_arrivals' => 'vehicle_adds/new_arrivals');
         $this->template->load('template/spare_part_template', $parials, $data);

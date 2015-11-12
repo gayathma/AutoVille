@@ -28,5 +28,24 @@ class Subscribers_service extends CI_Model {
         $query = $this->db->get();
         return $query->row();
     }
+    
+    function unsubscribe($email) {
+
+        $this->db->select('subscribers.id');
+        $this->db->from('subscribers');
+        $this->db->where('email', $email);
+        $this->db->where('is_published', '0');
+        $query = $this->db->get();
+        $user  = $query->row();
+
+        if (!empty($user)) {
+            $data = array('is_published' => '1', 'account_activation_code' => 'NULL');
+            $this->db->where('id', $user->id);
+            $this->db->update('user', $data);
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 }
