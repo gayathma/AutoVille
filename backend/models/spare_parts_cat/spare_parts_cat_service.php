@@ -15,7 +15,7 @@ class Spare_parts_cat_service extends CI_Model {
 
     public function get_all_categories() {
 
-        $this->db->select('name.*,user.name as added_by_user');
+        $this->db->select('spare_parts_cat.*,user.name as added_by_user');
         $this->db->from('spare_parts_cat');
         $this->db->join('user', 'user.id =spare_parts_cat.added_by');
         $this->db->where('spare_parts_cat.is_deleted', '0');
@@ -66,12 +66,12 @@ class Spare_parts_cat_service extends CI_Model {
      */
 
     function update_category($spare_parts_cat_model) {
-        $data = array('name' => $spare_parts_cat_model->get_name(),
-            'updated_date' => $spare_parts_cat_model->get_updated_date(),
-            'updated_by' => $spare_parts_cat_model->get_updated_by());
+        $data = array('name' => $spare_parts_cat_model->getName(),
+            'updated_date' => $spare_parts_cat_model->getUpdated_date(),
+            'updated_by' => $spare_parts_cat_model->getUpdated_by());
 
 
-        $this->db->where('id', $spare_parts_cat_model->get_id());
+        $this->db->where('id', $spare_parts_cat_model->getId());
         return $this->db->update('spare_parts_cat', $data);
     }
 
@@ -82,7 +82,7 @@ class Spare_parts_cat_service extends CI_Model {
      */
     function get_category_by_id($spare_parts_cat_model) {
 
-        $data = array('id' => $spare_parts_cat_model->get_id(), 'is_deleted' => '0');
+        $data = array('id' => $spare_parts_cat_model->getId(), 'is_deleted' => '0');
         $query = $this->db->get_where('spare_parts_cat', $data);
         return $query->row();
     }

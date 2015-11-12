@@ -39,13 +39,13 @@ class Spare_parts_category extends CI_Controller {
         $spare_parts_cat_model = new Spare_parts_cat_model();
         $spare_parts_cat_service = new Spare_parts_cat_service();
 
-        $spare_parts_cat_model->set_name($this->input->post('name', TRUE));
-        $spare_parts_cat_model->set_added_by(3);
-        $spare_parts_cat_model->set_added_date(date("Y-m-d H:i:s"));
-        $spare_parts_cat_model->set_is_published('1');
-        $spare_parts_cat_model->set_is_deleted('0');
+        $spare_parts_cat_model->setName($this->input->post('name', TRUE));
+        $spare_parts_cat_model->setAdded_by(3);
+        $spare_parts_cat_model->setAdded_date(date("Y-m-d H:i:s"));
+        $spare_parts_cat_model->setIs_published('1');
+        $spare_parts_cat_model->setIs_deleted('0');
 
-        echo $spare_parts_cat_service->add_new_body_type($spare_parts_cat_model);
+        echo $spare_parts_cat_service->add_new_category($spare_parts_cat_model);
     }
 
     /**
@@ -64,8 +64,8 @@ class Spare_parts_category extends CI_Controller {
         $spare_parts_cat_model = new Spare_parts_cat_model();
         $spare_parts_cat_service = new Spare_parts_cat_service();
 
-        $spare_parts_cat_model->set_id(trim($this->input->post('id', TRUE)));
-        $spare_parts_cat_model->set_is_published(trim($this->input->post('value', TRUE)));
+        $spare_parts_cat_model->setId(trim($this->input->post('id', TRUE)));
+        $spare_parts_cat_model->setIs_published(trim($this->input->post('value', TRUE)));
 
         echo $spare_parts_cat_service->publish_category($spare_parts_cat_model);
     }
@@ -77,7 +77,7 @@ class Spare_parts_category extends CI_Controller {
         $spare_parts_cat_model = new Spare_parts_cat_model();
         $spare_parts_cat_service = new Spare_parts_cat_service();
 
-        $spare_parts_cat_model->set_id(trim($this->input->post('category_id', TRUE)));
+        $spare_parts_cat_model->setId(trim($this->input->post('category_id', TRUE)));
         $category = $spare_parts_cat_service->get_category_by_id($spare_parts_cat_model);
         $data['category'] = $category;
 
@@ -93,11 +93,11 @@ class Spare_parts_category extends CI_Controller {
         $spare_parts_cat_model = new Spare_parts_cat_model();
         $spare_parts_cat_service = new Spare_parts_cat_service();
 
-        $spare_parts_cat_model->set_id($this->input->post('category_id', TRUE));
-        $spare_parts_cat_model->set_name($this->input->post('name', TRUE));
-        $spare_parts_cat_model->set_updated_date(date("Y-m-d H:i:s"));
+        $spare_parts_cat_model->setId($this->input->post('category_id', TRUE));
+        $spare_parts_cat_model->setName($this->input->post('name', TRUE));
+        $spare_parts_cat_model->setUpdated_date(date("Y-m-d H:i:s"));
 
-        echo $spare_parts_cat_service->update_body_type($spare_parts_cat_model);
+        echo $spare_parts_cat_service->update_category($spare_parts_cat_model);
     }
 
 }

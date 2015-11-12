@@ -18,9 +18,11 @@
         </ul>
     </li>
 
+
     <?php
     $perm = Access_controll_service::check_access('ADD_ADVERTISEMENT');
-    if ($perm) {
+    if ($perm) 
+        {
         ?>
         <li class="sub-menu">
             <a href="javascript:;" id="advertisements_menu">
@@ -88,6 +90,7 @@
             <li><a  href="<?php echo site_url(); ?>/fuel_type/manage_fuel_types">Manage Fuel Types</a></li>
             <li><a  href="<?php echo site_url(); ?>/equipment/manage_equipment">Manage Equipments</a></li>
             <li><a  href="<?php echo site_url(); ?>/celebrity/manage_celebrity">Manage Celebrity</a></li>
+            <li><a  href="<?php echo site_url(); ?>/spare_parts_category/manage_categories">Manage Spare Parts Categories</a></li>
         </ul>        
     </li>
 
