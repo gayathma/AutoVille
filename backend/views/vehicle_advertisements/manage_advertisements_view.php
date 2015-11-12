@@ -21,11 +21,11 @@
                     </div>
                     <div class="col-lg-7">
                         <div class="col-md-5">
-                        <input type="text" placeholder="Search Here" class="input-sm form-control">
+                            <input type="text" placeholder="Search Here" class="input-sm form-control">
                         </div>
                         <div class="col-md-2">
-                        <span class="input-group-btn">
-                            <button type="button" class="btn btn-sm btn-success"> Go!</button> </span>
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-sm btn-success"> Go!</button> </span>
                         </div>
                     </div>
                 </div>
@@ -80,10 +80,10 @@
                         <td>
                             <?php if ($result->is_published == '1') { ?>
                                 <span class="label label-primary">Active</span>
-                                <a class="btn btn-success btn-xs"  onclick="change_advertisement_status(<?php echo $result->id; ?>, 2, this);"><i class="fa fa-arrow-up " title="Reject Advertisement"></i></a> 
+                                <a class="btn btn-success btn-xs"  onclick="change_advertisement_status(<?php echo $result->id; ?>, 2, this, '<?php echo $result->added_by_user; ?>', '<?php echo $result->id; ?>');"><i class="fa fa-arrow-up " title="Reject Advertisement"></i></a> 
                             <?php } elseif ($result->is_published == '0') { ?>
                                 <span class="label label-default">Pending</span> 
-                                <a class="btn btn-success btn-xs"  onclick="change_advertisement_status(<?php echo $result->id; ?>, 1, this);"><i class="fa fa-arrow-up " title="Approve Advertisement"></i></a> 
+                                <a class="btn btn-success btn-xs"  onclick="change_advertisement_status(<?php echo $result->id; ?>, 1, this, '<?php echo $result->added_by_user; ?>', '<?php echo $result->id; ?>');"><i class="fa fa-arrow-up " title="Approve Advertisement"></i></a> 
                             <?php } else { ?>
                                 <span class="label label-danger">Rejected</span>  
                             <?php } ?>
@@ -131,7 +131,7 @@
         }
     }
 
-    function change_advertisement_status(advertisement_id, value, element) {
+    function change_advertisement_status(advertisement_id, value, element, seller_id, vehicle_id) {
 
         var condition = 'Do you want to approve this advertisement ?';
         if (value == 2) {
@@ -142,11 +142,11 @@
             $.ajax({
                 type: "POST",
                 url: site_url + '/vehicle_advertisements/change_publish_status',
-                data: "id=" + advertisement_id + "&value=" + value,
+                data: "id=" + advertisement_id + "&value=" + value + '&seller_id=' + seller_id + '&vehicle_id=' + vehicle_id,
                 success: function(msg) {
                     if (msg == 1) {
                         if (value == 1) {
-                            $(element).parent().html('<span class="label label-primary">Active</span><a class="btn btn-success btn-xs"  onclick="change_advertisement_status('+advertisement_id+', 2, this);"><i class="fa fa-arrow-up " title="Reject Advertisement"></i></a> ');
+                            $(element).parent().html('<span class="label label-primary">Active</span><a class="btn btn-success btn-xs"  onclick="change_advertisement_status(' + advertisement_id + ', 2, this,' + seller_id + ',' + vehicle_id + ');"><i class="fa fa-arrow-up " title="Reject Advertisement"></i></a> ');
                         } else {
                             $(element).parent().html('<span class="label label-danger">Rejected</span> ');
                         }
