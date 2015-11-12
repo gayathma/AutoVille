@@ -60,7 +60,7 @@
                                 <h3><?php echo $result->name; ?> </h3>
 
                                 <figure><?php echo $result->category; ?></figure>
-                                <div class="price"><?php echo "Rs. " . number_format($result->price,2); ?></div>
+                                <div class="price"><?php echo "Rs. " . number_format($result->price, 2); ?></div>
                                 <br>
 
                                 <?php if ($result->is_featured == '1') { ?>
@@ -68,6 +68,46 @@
                                         <span>Featured</span>
                                     </div>
                                 <?php } ?>
+                            </div>
+
+                            <div class="wrapper">
+                                <h3>
+
+                                    <?php if ($this->session->userdata('USER_LOGGED_IN')) { ?>
+
+                                        <!--Bookmark-->
+                                        <?php
+                                        $bookmarked_spare_parts_service = new Bookmarked_spare_parts_service();
+                                        $bookmarked_spare_part_det = $bookmarked_spare_parts_service->get_bookmarkd_spare_part($this->session->userdata('USER_ID'), $result->id);
+                                        ?>                                        
+
+                                        <!--Add New Bookmark-->
+                                        <?php if (empty($bookmarked_spare_part_det)) { ?>
+
+                                            <input type="hidden" id="bookmark_id_<?php echo $result->id; ?>" value="0">
+                                            <input type="hidden" id="bookmark_status_<?php echo $result->id; ?>" value="0">
+
+                                            <span id="add_bookmark_div_<?php echo $result->id; ?>">
+                                                <a class="star_class" style="cursor: pointer" onclick="bookmark('<?php echo $result->id; ?>')">              
+                                                    <img alt="1" id="star_img_<?php echo $result->id; ?>" src="<?php echo base_url(); ?>application_resources/raty/images/star-off.png" title="Bookmark">
+                                                </a>                                         
+                                            </span> 
+
+                                            <!--Remove Bookmark-->
+                                        <?php } else { ?>
+                                            <input type="hidden" id="bookmark_id_<?php echo $result->id; ?>" value="<?php echo $bookmarked_spare_part_det->bookmarked_id; ?>">
+                                            <input type="hidden" id="bookmark_status_<?php echo $result->id; ?>" value="1">
+
+                                            <span id="bookmarked_div_<?php echo $result->id; ?>">
+                                                <a class="star_class" style="cursor: pointer" onclick="bookmark('<?php echo $result->id; ?>')">              
+                                                    <img alt="1" id="star_img_<?php echo $result->id; ?>" src="<?php echo base_url(); ?>application_resources/raty/images/star-on.png" title="Remove Bookmark">
+                                                </a>
+                                            </span>
+                                        <?php } ?>
+                                        <!--End Bookmark-->
+
+                                    <?php } ?>
+                                </h3>    
                             </div>
                         </div>                
                     </div>
@@ -114,6 +154,59 @@
                 }
             }
         });
+
+    }
+
+//bookmark spare part
+    function bookmark(spare_part_id) {
+
+        var bookmark_status = $('#bookmark_status_' + spare_part_id).val();
+        var bookmark_id = $('#bookmark_id_' + spare_part_id).val();
+
+        if (bookmark_status == '0') {
+            //add bookmark
+            if (confirm('Bookmark this Vehicle?')) {
+
+                $.ajax({
+                    type: "POST",
+                    url: site_url + '/bookmarked_spare_parts/bookmark_spare_part',
+                    data: "spare_part_id=" + spare_part_id,
+                    success: function (msg) {
+                        if (msg != 0) {
+                            toastr.success("Successfully Bookmarked!!", "AutoVille");
+                            $('#bookmark_status_' + spare_part_id).val('1');
+                            $('#bookmark_id_' + spare_part_id).val(msg);
+                            $('#star_img_' + spare_part_id).attr('src', '<?php echo base_url(); ?>application_resources/raty/images/star-on.png');
+                            $('#star_img_' + spare_part_id).attr('title', 'Remove Bookmark');
+                        } else {
+                            alert('Error!');
+                        }
+                    }
+                });
+            }
+
+        } else if (bookmark_status == '1') {
+            //remove bookmark
+            if (confirm('Remove Bookmark?')) {
+
+                $.ajax({
+                    type: "POST",
+                    url: site_url + '/bookmarked_spare_parts/remove_bookmark',
+                    data: "bookmark_id=" + bookmark_id,
+                    success: function (msg) {
+                        if (msg != 0) {
+                            toastr.success("Bookmark Removed Successfully!!", "AutoVille");
+                            $('#bookmark_status_' + spare_part_id).val('0');
+                            $('#bookmark_id_' + spare_part_id).val('0');
+                            $('#star_img_' + spare_part_id).attr('src', '<?php echo base_url(); ?>application_resources/raty/images/star-off.png');
+                            $('#star_img_' + spare_part_id).attr('title', 'Bookmark');
+                        } else {
+                            alert('Error!');
+                        }
+                    }
+                });
+            }
+        }
 
     }
 
