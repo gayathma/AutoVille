@@ -7,7 +7,7 @@ class Spare_parts_ad_service extends CI_Model {
         $this->load->model('spare_parts_advertisement/spare_parts_ad_model');
     }
 
-    /*
+    /**
      * This service function to add a spare part advertisement
      */
 
@@ -15,7 +15,7 @@ class Spare_parts_ad_service extends CI_Model {
         return $this->db->insert('spare_parts_advertisements', $spare_part_advertisement);
     }
 
-    /*
+    /**
      * This service function to get all manufactures
      */
 
@@ -27,7 +27,7 @@ class Spare_parts_ad_service extends CI_Model {
         return $query->result();
     }
 
-    /*
+    /**
      * This service function to get all model
      */
 
@@ -39,7 +39,7 @@ class Spare_parts_ad_service extends CI_Model {
         return $query->result();
     }
 
-    /*
+    /**
      * This service function to get all fuel type
      */
 
@@ -51,7 +51,7 @@ class Spare_parts_ad_service extends CI_Model {
         return $query->result();
     }
 
-    /*
+    /**
      * This is the service function to get price drop spare parts
      * Author Ashani
      */
@@ -86,13 +86,11 @@ class Spare_parts_ad_service extends CI_Model {
         }
 
         $query = $this->db->get();
-//        echo $this->db->last_query();
-//        die;
 
         return $query->result();
     }
 
-    /*
+    /**
      * This is the service function to get newly arrived spare parts
      * Author Ashani
      */
@@ -173,13 +171,11 @@ class Spare_parts_ad_service extends CI_Model {
         }
         $query = $this->db->get();
 
-//        echo $this->db->last_query();
-//        die;
 
         return $query->result();
     }
 
-    /*
+    /**
      * get one spare part advertisement by id
      * @param integer $id Input advertisement id
      * @return object
