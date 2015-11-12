@@ -52,8 +52,15 @@ class Subscribe extends CI_Controller {
     /**
      * Newsletter add view
      */
-    function add_newsletter_view() {
+    function add_newsletter_view($id) {
+        $newsletters_service = new Newsletters_service();
+
         $data['heading'] = "Send Newsletter";
+        if ($id == '0') {
+            $data['newsletter'] = NULL;
+        } else {
+            $data['newsletter'] = $newsletters_service->get_newsletter_by_id($id);
+        }
 
         $parials = array('content' => 'newsletters/add_newsletter');
         $this->template->load('template/main_template', $parials, $data);
@@ -67,12 +74,21 @@ class Subscribe extends CI_Controller {
         $newsletters_service = new Newsletters_service();
         $newsletters_model   = new Newsletters_model();
 
+        $id = $this->input->post('newsletter_id', TRUE);
+
         $newsletters_model->set_subject($this->input->post('subject', TRUE));
         $newsletters_model->set_content($this->input->post('content', TRUE));
-        $newsletters_model->set_status('0');//not sent
+        $newsletters_model->set_status('0'); //not sent
         $newsletters_model->set_added_date(date("Y-m-d H:i:s"));
-
-        echo $newsletters_service->add_newsletter($newsletters_model);
+        
+        if ($id == '') {
+            $result = $newsletters_service->add_newsletter($newsletters_model);
+        } else {
+            $newsletters_model->set_id($id);
+            
+            $result = $newsletters_service->update_newsletter($newsletters_model);
+        }
+        echo $result;
     }
 
     /**
@@ -82,22 +98,30 @@ class Subscribe extends CI_Controller {
         $newsletters_service = new Newsletters_service();
         $newsletters_model   = new Newsletters_model();
         $subscribers_service = new Subscribers_service();
+        
+        $id = $this->input->post('newsletter_id', TRUE);
 
         $newsletters_model->set_subject($this->input->post('subject', TRUE));
         $newsletters_model->set_content($this->input->post('content', TRUE));
         $newsletters_model->set_added_date(date("Y-m-d H:i:s"));
-        $newsletters_model->set_status('1');// sent
+        $newsletters_model->set_status('1'); // sent
 
-        $result = $newsletters_service->add_newsletter($newsletters_model);
+        if ($id == '') {
+            $result = $newsletters_service->add_newsletter($newsletters_model);
+        } else {
+            $newsletters_model->set_id($id);
+            
+            $result = $newsletters_service->update_newsletter($newsletters_model);
+        }
 
         //send newsletters to subscribers
         $subscribers = $subscribers_service->get_active_subscribers();
         foreach ($subscribers as $subscriber) {
             //send email
-            $token = $this->generate_random_string(); //generate account activation token
+            $token           = $this->generate_random_string(); //generate account activation token
             $email_to        = $subscriber->email;
             $email_subject   = $this->input->post('subject', TRUE);
-            $data['link']   = site_url() . '/home/unsubscribe?email=' . $subscriber->email . '&token=' . $token;
+            $data['link']    = site_url() . '/home/unsubscribe?email=' . $subscriber->email . '&token=' . $token;
             $data['content'] = $subscriber->content;
 
             $msg = $this->load->view('template/mail_template/newsletter', $data, TRUE);
@@ -111,7 +135,6 @@ class Subscribe extends CI_Controller {
         }
         echo $result;
     }
-    
 
     /**
      * generate random string for url tocken
@@ -126,4 +149,43 @@ class Subscribe extends CI_Controller {
         }
         return $random_string;
     }
+
+    /**
+     * This is to delete a transmission
+     */
+    function delete_newsletter() {
+        $newsletters_service = new Newsletters_service();
+
+        echo $newsletters_service->delete_newsletter(trim($this->input->post('id', TRUE)));
+    }
+
+    /**
+     * send newsletter to all subscribers
+     */
+    function send_newsletter_again() {
+        $subscribers_service = new Subscribers_service();
+
+        //send newsletters to subscribers
+        $result      = 0;
+        $subscribers = $subscribers_service->get_active_subscribers();
+        foreach ($subscribers as $subscriber) {
+            //send email
+            $token           = $this->generate_random_string(); //generate account activation token
+            $email_to        = $subscriber->email;
+            $email_subject   = $this->input->post('subject', TRUE);
+            $data['link']    = site_url() . '/home/unsubscribe?email=' . $subscriber->email . '&token=' . $token;
+            $data['content'] = $subscriber->content;
+
+            $msg = $this->load->view('template/mail_template/newsletter', $data, TRUE);
+
+            $headers = 'MIME-Version: 1.0' . "\r\n";
+            $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+            $headers .= 'From: AutoVille <info.autovillle@gmail.com>' . "\r\n";
+            $headers .= 'Cc: gayathma3@gmail.com' . "\r\n";
+
+            $result = mail($email_to, $email_subject, $msg, $headers);
+        }
+        echo $result;
+    }
+
 }

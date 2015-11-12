@@ -12,7 +12,7 @@
                 <div class="adv-table">
                     <div class="clearfix">
                         <div class="btn-group">
-                            <a id="editable-sample_new" class="btn btn-shadow btn-primary" href="<?php echo site_url(); ?>/subscribe/add_newsletter_view" data-toggle="modal">
+                            <a id="editable-sample_new" class="btn btn-shadow btn-primary" href="<?php echo site_url(); ?>/subscribe/add_newsletter_view/0" data-toggle="modal">
                                 Send New Newsletter
                                 <i class="fa fa-plus"></i>
                             </a>
@@ -37,17 +37,20 @@
                                     <td><?php echo ++$i; ?></td>
                                     <td><?php echo $result->subject; ?></td>
                                     <td>
-                                        <?php if($result->status == '1'){ ?>
+                                        <?php if ($result->status == '1') { ?>
                                             sent
-                                        <?php }else{ ?>
+                                        <?php } else { ?>
                                             saved
                                         <?php } ?>
                                     </td>
                                     <td><?php echo $result->added_date; ?></td>
 
                                     <td align="center">
-                                        <a class="btn btn-primary btn-xs" onclick="display_edit_transmission_pop_up(<?php echo $result->id; ?>)"><i class="fa fa-pencil"  title="Update"></i></a>
-                                        <a class="btn btn-danger btn-xs" onclick="delete_transmission(<?php echo $result->id; ?>)"><i class="fa fa-trash-o " title="" title="Remove"></i></a>
+                                        <?php if ($result->status == '0') { ?>
+                                            <a class="btn btn-info btn-xs" onclick="send_email(<?php echo $result->id; ?>)"><i class="fa fa-envelope"  title="Send"></i></a>
+                                        <?php } ?>
+                                        <a class="btn btn-primary btn-xs" href="<?php echo site_url(); ?>/subscribe/add_newsletter_view/<?php echo $result->id; ?>"><i class="fa fa-pencil"  title="Update"></i></a>
+                                        <a class="btn btn-danger btn-xs" onclick="delete_newsletter(<?php echo $result->id; ?>)"><i class="fa fa-trash-o " title="" title="Remove"></i></a>
 
                                     </td>
                                 </tr>
@@ -76,20 +79,40 @@
 
 
 
-                                            //delete newsletter
-                                            function delete_transmission(id) {
+                                            //send newsletter
+                                            function send_email(id) {
 
-                                                if (confirm('Are you sure want to delete this Transmission ?')) {
+                                                if (confirm('Are you sure want to send this Newsletter ?')) {
 
                                                     $.ajax({
                                                         type: "POST",
-                                                        url: site_url + '/transmission/delete_transmissions',
+                                                        url: site_url + '/subscribe/send_newsletter_again',
                                                         data: "id=" + id,
                                                         success: function (msg) {
-                                                            //alert(msg);
                                                             if (msg == 1) {
-                                                                //document.getElementById(trid).style.display='none';
-                                                                $('#transmission_' + id).hide();
+                                                                $('#newsletter_' + id).hide();
+                                                                toastr.success("Successfully deleted !!", "AutoVille");
+                                                            }
+                                                            else if (msg == 2) {
+                                                                toastr.error("Cannot be deleted as it is already assigned to others. !!", "AutoVille");
+                                                            }
+                                                        }
+                                                    });
+                                                }
+                                            }
+                                            
+                                            //delete newsletter
+                                            function delete_newsletter(id) {
+
+                                                if (confirm('Are you sure want to delete this Newsletter ?')) {
+
+                                                    $.ajax({
+                                                        type: "POST",
+                                                        url: site_url + '/subscribe/delete_newsletter',
+                                                        data: "id=" + id,
+                                                        success: function (msg) {
+                                                            if (msg == 1) {
+                                                                $('#newsletter_' + id).hide();
                                                                 toastr.success("Successfully deleted !!", "AutoVille");
                                                             }
                                                             else if (msg == 2) {
