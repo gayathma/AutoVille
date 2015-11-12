@@ -11,12 +11,12 @@
         <link rel="stylesheet" href="<?php echo base_url(); ?>application_resources/assets/bootstrap/css/bootstrap.css" type="text/css">
         <link rel="stylesheet" href="<?php echo base_url(); ?>application_resources/assets/css/bootstrap-select.min.css" type="text/css">
         <link rel="stylesheet" href="<?php echo base_url(); ?>application_resources/assets/css/owl.carousel.css" type="text/css">
+        <link type="text/css" href="<?php echo base_url(); ?>application_resources/assets/css/jquery.mCustomScrollbar.css" rel="stylesheet">
         <link rel="stylesheet" href="<?php echo base_url(); ?>application_resources/assets/css/dropzone.css" type="text/css">
         <link rel="stylesheet" href="<?php echo base_url(); ?>application_resources/assets/css/jquery.ui.timepicker.css" type="text/css">
         <link rel="stylesheet" href="<?php echo base_url(); ?>application_resources/assets/css/style.css" type="text/css">
         <link rel="stylesheet" href="<?php echo base_url(); ?>application_resources/assets/css/jquery.nouislider.min.css" type="text/css">
         <link rel="stylesheet" href="<?php echo base_url(); ?>application_resources/assets/css/colors/blue.css" type="text/css">
-        <link type="text/css" href="<?php echo base_url(); ?>application_resources/assets/css/jquery.mCustomScrollbar.css" rel="stylesheet">
         <link href="<?php echo base_url(); ?>application_resources/pusher/pusher-chat-widget.css" rel="stylesheet" />
 
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery-2.1.0.min.js"></script>       
@@ -279,8 +279,6 @@
 
 
 
-        <!--<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;libraries=places"></script>-->
-        <!--<script type="text/javascript" src="<?php // echo base_url();                 ?>application_resources/assets/js/richmarker-compiled.js"></script>-->
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery-migrate-1.2.1.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/bootstrap/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/smoothscroll.js"></script>
@@ -290,10 +288,10 @@
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/dropzone.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery.ui.timepicker.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery.nouislider.all.min.js"></script>
+        <script src="<?php echo base_url(); ?>application_resources/assets/js/jquery.mCustomScrollbar.concat.min.js" type="text/javascript"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/custom.js"></script>
-        <script src="<?php echo base_url(); ?>application_resources/assets/js/jquery.mCustomScrollbar.concat.min.js" type="text/javascript">
-                                                < script type = "text/javascript" src = "<?php echo base_url(); ?>application_resources/lazy/jquery.lazyload.js" ></script>
-        <script src="//js.pusher.com/3.0/pusher.min.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/lazy/jquery.lazyload.js" ></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/maps.js"></script>
 
         <!--[if lte IE 9]>
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/ie-scripts.js"></script>
@@ -307,50 +305,50 @@
 
 <script>
 
-                                                $(document).ready(function() {
+            $(document).ready(function() {
 
 <?php if ($this->session->userdata('USER_LOGGED_IN')) { ?>
-                                                        $.ajax({
-                                                            type: "POST",
-                                                            url: site_url + '/vehicle_compare/load_vehicle_popup',
-                                                            success: function(msg) {
-                                                                if (msg != 0) {
-                                                                    $('#compare_vehicle_list').html(msg);
-                                                                } else {
-                                                                    alert('Error loading vehicles');
-                                                                }
-                                                            }
-                                                        });
+                    $.ajax({
+                        type: "POST",
+                        url: site_url + '/vehicle_compare/load_vehicle_popup',
+                        success: function(msg) {
+                            if (msg != 0) {
+                                $('#compare_vehicle_list').html(msg);
+                            } else {
+                                alert('Error loading vehicles');
+                            }
+                        }
+                    });
 
 <?php } else { ?>
-                                                        $.jStorage.flush();
-                                                        var jSindex = $.jStorage.index();
+                    $.jStorage.flush();
+                    var jSindex = $.jStorage.index();
 
-                                                        var compareBtn = '<li><a href="<?php echo site_url(); ?>/vehicle_compare/load_compare_vehicles_dashboard_unreg_user" class="dealer-name"><button id="compareButton">Compare</button></a></li>';
+                    var compareBtn = '<li><a href="<?php echo site_url(); ?>/vehicle_compare/load_compare_vehicles_dashboard_unreg_user" class="dealer-name"><button id="compareButton">Compare</button></a></li>';
 
-                                                        var li_list = '<button style="border:0px solid black; background-color: transparent;" data-toggle="dropdown"><i class="fa fa-road"></i> Compare(' + jSindex.length + ')<span class="caret"></span></button><ul class="dropdown-menu" id="added_vehicle_list">';
+                    var li_list = '<button style="border:0px solid black; background-color: transparent;" data-toggle="dropdown"><i class="fa fa-road"></i> Compare(' + jSindex.length + ')<span class="caret"></span></button><ul class="dropdown-menu" id="added_vehicle_list">';
 
-                                                        if (jSindex.length == 0) {
-                                                            li_list += '<li>Add Vehicle</li>';
-                                                        }
+                    if (jSindex.length == 0) {
+                        li_list += '<li>Add Vehicle</li>';
+                    }
 
-                                                        for (i = 0; i < jSindex.length; i++) {
-                                                            li_list += $.jStorage.get(jSindex[i]);
-                                                        }
+                    for (i = 0; i < jSindex.length; i++) {
+                        li_list += $.jStorage.get(jSindex[i]);
+                    }
 
-                                                        if (jSindex.length >= 2) {
-                                                            li_list += compareBtn;
-                                                        }
+                    if (jSindex.length >= 2) {
+                        li_list += compareBtn;
+                    }
 
-                                                        li_list += '</ul>';
-                                                        $('#compare_vehicle_list').html(li_list);
+                    li_list += '</ul>';
+                    $('#compare_vehicle_list').html(li_list);
 
 <?php } ?>
 
-                                                    function signOut() {
-                                                        var auth2 = gapi.auth2.getAuthInstance();
-                                                        auth2.signOut();
-                                                    }
-                                                });
+                function signOut() {
+                    var auth2 = gapi.auth2.getAuthInstance();
+                    auth2.signOut();
+                }
+            });
 
 </script>

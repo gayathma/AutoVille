@@ -174,7 +174,7 @@
                                             <img src="<?php echo base_url(); ?>application_resources/assets/img/logo.png" alt="logo"></a>
                                         </td>
                                         <td style="background-color:#3bcdb0;">
-                                            <strong>Autoville Subscription Notification</strong>
+                                            <strong>Autoville Notification</strong>
                                         </td>
                                     </tr>
                                 </table>
@@ -205,14 +205,15 @@
                                                                     <table cellspacing="10" cellpadding="10" class="force-full-width">
                                                                         <tr>
                                                                             <td style="border-bottom:1px solid #e3e3e3; font-weight: bold; text-align:left">
-                                                                                Dear <?php echo $subscriber; ?>,
+                                                                                Dear Sir/Madam,
                                                                             </td>
                                                                         </tr>
                                                                         <tr>
                                                                             <td style="text-align:left;">
                                                                                 <br/>
-                                                                                Thank you for subscribing seller  <?php echo $subscriber; ?> on <?php echo date('Y-m-d H:i:s'); ?>.
-                                                                                From now on you will receive notifications.
+                                                                                Thank you for subscribing seller  <?php echo $seller; ?>.
+                                                                                <br/>
+                                                                                <?php echo $seller_title; ?>.<?php echo $seller; ?> has published a new vehicle, click <a href="<?php echo site_url(); ?>/vehicle_advertisements/vehicle_advertisement_detail_view/<?php echo $vehicle_id; ?>">here</a> to see his newest advertisement.
                                                                             </td>
                                                                         </tr>                                                                        
 

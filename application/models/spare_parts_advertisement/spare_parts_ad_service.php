@@ -103,21 +103,11 @@ class Spare_parts_ad_service extends CI_Model {
                 . 'spare_parts_advertisements.name,'
                 . 'spare_parts_advertisements.image,'
                 . 'spare_parts_advertisements.description,'
-                . 'spare_parts_advertisements.manufacture_id,'
                 . 'spare_parts_advertisements.price,'
-                . 'spare_parts_advertisements.category_id,'
-                . 'spare_parts_advertisements.added_by,'
-                . 'spare_parts_advertisements.is_featured,'
                 . 'spare_parts_cat.name as category,'
-                . 'spare_parts_advertisements.year,'
-                . 'manufacture.name as manufacture,'
-                . 'model.name as model,'
-                . 'fuel_type.name as fuel_type');
-        $this->db->from('spare_parts_advertisements');
-        $this->db->join('manufacture', 'manufacture.id = spare_parts_advertisements.manufacture_id', 'left');
-        $this->db->join('spare_parts_cat', 'spare_parts_cat.id = spare_parts_advertisements.category_id', 'left');
-        $this->db->join('model', 'model.id = spare_parts_advertisements.model_id', 'left');
-        $this->db->join('fuel_type', 'fuel_type.id = spare_parts_advertisements.fuel_type_id', 'left');
+                . 'spare_parts_advertisements.year');
+        $this->db->from('spare_parts_advertisements');       
+        $this->db->join('spare_parts_cat', 'spare_parts_cat.id = spare_parts_advertisements.category_id', 'left');            
         $this->db->where('spare_parts_advertisements.is_deleted', '0');
         $this->db->where('spare_parts_advertisements.is_published', '1');
         $this->db->order_by("spare_parts_advertisements.added_date", "desc");
@@ -129,6 +119,7 @@ class Spare_parts_ad_service extends CI_Model {
         $query = $this->db->get();
         return $query->result();
     }
+
 
     /**
      * search spare part according to input values
@@ -169,11 +160,11 @@ class Spare_parts_ad_service extends CI_Model {
             $this->db->where('spare_parts_advertisements.category_id', $category_id);
         }
         if (!empty($maxprice) && !is_null($maxprice)) {
-            $this->db->where('spare_parts_advertisements.price <=', $maxprice);
-            $this->db->where('spare_parts_advertisements.price >=', $minprice);
+            $this->db->where('spare_parts_advertisements.price <', $maxprice);
+            $this->db->or_where('spare_parts_advertisements.price >=', $minprice);
         }
         if (!empty($keyword) && !is_null($keyword)) {
-            $this->db->like('spare_parts_advertisements.description', $keyword);
+            $this->db->or_like('spare_parts_advertisements.description', $keyword);
         }
 
         $this->db->order_by("spare_parts_advertisements.added_date", "desc");
@@ -188,5 +179,31 @@ class Spare_parts_ad_service extends CI_Model {
 
         return $query->result();
     }
+    
+    /*
+     * get one spare part advertisement by id
+     * @param integer $id Input advertisement id
+     * @return object
+     * Author Ashani
+     */
+
+    function get_spare_part_advertisement_by_id($id) {
+
+        $this->db->select('spare_parts_advertisements.*,user.email as user_email,user.name as added_by_user,'
+                . 'manufacture.name as manufacture,model.name as model,'
+                . 'fuel_type.name as fuel_type,'
+                . 'body_type.name as body_type');
+        $this->db->from('spare_parts_advertisements');
+        $this->db->join('manufacture', 'manufacture.id = spare_parts_advertisements.manufacture_id');
+        $this->db->join('model', 'model.id = spare_parts_advertisements.model_id', 'left');
+        $this->db->join('fuel_type', 'fuel_type.id = spare_parts_advertisements.fuel_type_id');
+        $this->db->join('user', 'user.id = spare_parts_advertisements.added_by');
+        $this->db->where('spare_parts_advertisements.is_deleted', '0');
+        $this->db->where('spare_parts_advertisements.id', $id);
+
+        $query = $this->db->get();
+        return $query->row();
+    }
+
 
 }

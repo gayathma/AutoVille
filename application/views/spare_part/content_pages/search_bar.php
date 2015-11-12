@@ -1,3 +1,9 @@
+<style>
+    #spareparts_search_results{
+        margin-top: 155px;
+        min-height: 100px;
+    }
+</style>
 <div class="search-bar horizontal">
     <form id="spare_parts_search_form" class="main-search border-less-inputs" role="form" method="post">
         <div class="input-row">
@@ -28,7 +34,9 @@
                 <label for="category_id">Category</label>
                 <select name="category_id" id="category_id" title="Category" data-live-search="true">
                     <option value="">Select Category</option>
-                    <option value="1">test Category</option>
+                     <?php foreach ($categories as $category) { ?>
+                        <option value="<?php echo $category->id; ?>"><?php echo $category->name; ?></option>
+                    <?php } ?>
                 </select>
             </div>
             <div class="form-group">
@@ -40,6 +48,9 @@
             </div>           
         </div>        
     </form>    
+</div>
+<div id="spareparts_search_results" class="inner col-lg-12" style="padding: 30px">
+
 </div>
 
 <script type="text/javascript">

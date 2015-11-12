@@ -56,6 +56,8 @@ class Vehicle_advertisements extends CI_Controller {
 
         $this->load->library('email');
         $this->load->library('sms_handler');
+        
+        $this->load->model('seller_subscribers/seller_subscribers_service');
     }
 
     /**
