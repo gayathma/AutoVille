@@ -110,6 +110,8 @@ function CurrencyFormat($number) {
 
     //add spare parts to the cart
     function add_to_cart(id) {
+        
+        alert('added');
 
         $.ajax({
             type: "POST",

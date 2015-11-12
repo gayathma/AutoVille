@@ -19,6 +19,10 @@ class Spare_parts_advertisements extends CI_Controller {
         $this->load->model('users/user_model');
         $this->load->model('users/user_service');
     }
+    
+    /**
+     * This function to uplpad spare part image
+     */
 
     function post_new_spare_part_advertisement() {
         $vehicle_advertisement_service = new Vehicle_advertisments_service();
@@ -32,8 +36,9 @@ class Spare_parts_advertisements extends CI_Controller {
         $parials = array('content' => 'spare_part/content_pages/add_new_spare_part_advertisement', 'new_arrivals' => 'vehicle_adds/new_arrivals');
         $this->template->load('template/spare_part_template', $parials, $data);
     }
+    
 
-    /*
+    /**
      * This function is to upload spare part image
      */
 
@@ -52,7 +57,7 @@ class Spare_parts_advertisements extends CI_Controller {
         }
     }
 
-    /*
+    /**
      * This service function to insert a spare parts
      */
 
@@ -111,7 +116,7 @@ class Spare_parts_advertisements extends CI_Controller {
         echo $this->load->view('spare_part/spare_part_adds/spare_part_search_result', $data);
     }
 
-    /*
+    /**
      * load spare part advertisement detail view
      * @param integer $id Input spare part id
      * Author Ashani
