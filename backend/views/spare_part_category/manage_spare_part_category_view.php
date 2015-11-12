@@ -23,7 +23,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>Name</th>
-                                <!--<th>Logo</th>-->
+                                <th>Image</th>
                                 <th>Active Status</th>
                                 <th>Actions</th>
                             </tr>
@@ -36,7 +36,7 @@
                                 <tr id="category_<?php echo $result->id; ?>">
                                     <td><?php echo ++$i; ?></td>
                                     <td><?php echo $result->name; ?></td>
-                                    <!--<td align="center"><img src="<?php echo base_url(); ?>uploads/body_type_logo/<?php echo $result->logo; ?>" width="60px" /></td>-->
+                                    <td align="center"><img src="<?php echo base_url(); ?>uploads/spare_part_category/<?php echo $result->image; ?>" width="60px" /></td>
 
                                     <td align="center">
                                         <?php if ($result->is_published) { ?>
@@ -72,7 +72,7 @@
             </div>
             <form id="add_category_form" name="add_category_form">
                 <div class="modal-body">
-<!--                    <script src="<?php echo base_url(); ?>backend_resources/file_upload_plugin/ajaxupload.3.5.js" type="text/javascript"></script>
+                    <script src="<?php echo base_url(); ?>backend_resources/file_upload_plugin/ajaxupload.3.5.js" type="text/javascript"></script>
                     <script>
                                         //upload category logo
 
@@ -80,7 +80,7 @@
                                             var btnUpload = $('#upload');
                                             var status = $('#status');
                                             new AjaxUpload(btnUpload, {
-                                                action: '<?php echo site_url(); ?>/body_type/upload_body_type_logo',
+                                                action: '<?php echo site_url(); ?>/spare_parts_category/upload_category_image',
                                                 name: 'uploadfile',
                                                 onSubmit: function (file, ext) {
                                                     if (!(ext && /^(jpg|png|jpeg|gif)$/.test(ext))) {
@@ -100,7 +100,7 @@
                                                     //Add uploaded file to list
                                                     if (response != "error") {
                                                         $('#files').html("");
-                                                        $('<div></div>').appendTo('#files').html('<img src="<?php echo base_url(); ?>uploads/body_type_logo/' + response + '"   width="100px" height="68px" /><br />');
+                                                        $('<div></div>').appendTo('#files').html('<img src="<?php echo base_url(); ?>uploads/spare_part_category/' + response + '"   width="100px" height="68px" /><br />');
                                                         picFileName = response;
                                                         document.getElementById('logo').value = response;
                                                         //                    document.getElementById('cover_image').value = response;
@@ -111,7 +111,7 @@
                                             });
 
                                         });
-                    </script>-->
+                    </script>
 
                     <div class="form-group">
                         <label for="name">Enter Category
@@ -122,8 +122,7 @@
                     </div>
                     <div class="form-group">
                         <div id="upload">
-<!--
-                            <label class="form-label">Upload Logo</label>
+                          <label class="form-label">Upload Image</label>
                             <button type="button" class="btn btn-info" id="browse">Browse</button>
                             <input type="text" id="logo" name="logo" style="visibility: hidden" value=""/>
                         </div>
@@ -132,7 +131,7 @@
                     <div class="form-group">
                         <div id="files" class="project-logo">
                         </div>
-                    </div>-->
+                    </div>
                     <span id="rtn_msg"></span>
                 </div>
                 <div class="modal-footer">

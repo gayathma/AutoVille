@@ -142,4 +142,44 @@ class Home extends CI_Controller {
         }
     }
 
+    /**
+     * unsubscribe the user
+     */
+    function unsubscribe() {
+        $subscribers_service = new Subscribers_service();
+        if ($subscribers_service->unsubscribe($_GET['email'])) {
+            redirect(site_url() . '/home/unsubscribe_success');
+        } else {
+            redirect(site_url() . '/home/unsubscribe_failed');
+        }
+    }
+
+    /**
+     * unsubscribe success message
+     */
+    function unsubscribe_success() {
+        $vehicle_advertisments_service = new Vehicle_advertisments_service();
+        
+        $data['status']  = 'success';
+        $data['message'] = "Your email address has been removed from our distribution list. We are sorry for any inconvenience we may have caused you.";
+        $data['latest_vehicles']      = $vehicle_advertisments_service->get_new_arrival(2);  //author-Ishani
+
+        $parials = array('content' => 'messages/unsubscribe_message', 'new_arrivals' => 'vehicle_adds/new_arrivals');
+        $this->template->load('template/main_template', $parials, $data);
+    }
+
+    /**
+     * unsubscribe failed message
+     */
+    function unsubscribe_failed() {
+        $vehicle_advertisments_service = new Vehicle_advertisments_service();
+        
+        $data['status']  = 'failed';
+        $data['message'] = "Your email address has been already removed from our distribution list. We are sorry for any inconvenience we may have caused you.";
+        $data['latest_vehicles']      = $vehicle_advertisments_service->get_new_arrival(2);  //author-Ishani
+        
+        $parials = array('content' => 'messages/unsubscribe_message', 'new_arrivals' => 'vehicle_adds/new_arrivals');
+        $this->template->load('template/main_template', $parials, $data);
+    }
+
 }

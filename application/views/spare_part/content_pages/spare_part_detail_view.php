@@ -1,3 +1,37 @@
+<script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/owl.carousel.min.js"></script>
+<script>
+    $(window).load(function () {
+
+        if ($('.owl-carousel').length > 0) {
+            if ($('.carousel-full-width').length > 0) {
+                setCarouselWidth();
+            }
+            $(".item-slider").owlCarousel({
+                rtl: false,
+                items: 1,
+                lazyLoad: true,
+                autoHeight: true,
+                responsiveBaseWidth: ".slide",
+                nav: false,
+                callbacks: true,
+                URLhashListener: true,
+                navText: ["", ""]
+            });
+
+            $('.item-gallery .thumbnails a').on('click', function () {
+                $('.item-gallery .thumbnails a').each(function () {
+                    $(this).removeClass('active');
+                });
+                $(this).addClass('active');
+            });
+            $('.item-slider').on('translated.owl.carousel', function (event) {
+                var thumbnailNumber = $('.item-slider .owl-item.active img').attr('data-hash');
+                $('.item-gallery .thumbnails #thumbnail-' + thumbnailNumber).trigger('click');
+            });
+        }
+    });
+
+</script>
 <section class="container page-item-detail">
     <div class="row">
         <!--Item Detail Content-->
@@ -47,24 +81,17 @@
                                     <div class="info">
                                         <i class="fa fa-globe"></i>
                                         <a href="#">www.autoville.lankapanel.biz</a>
-                                        <?php
-                                        $user = $this->session->userdata("USER_ID");
-                                        if (empty($user) || ($user != $spare_part_detail->added_by)) {
-                                            ?>
-                                            <i class="fa fa-comments"></i>
-                                            <a href="#" id="startChat" class="">Chat with seller </a>
-                                        <?php } ?>
                                     </div>
-                                    
+
                                 </figure>
                             </address>
                         </section>
                         <!--end Contact-->
                         <!--Share-->
-                        
+
                         <!--End Share-->
                         <!--Contact Form-->
-                        
+
                     </aside>
                     <!--end Detail Sidebar-->
                     <!--Content-->
@@ -72,11 +99,14 @@
                         <section>
                             <article class="item-gallery">
                                 <div class="owl-carousel item-slider">
-                                    
-                                    <a><img src="<?php echo base_url() . 'uploads/spare_part_images/' . $spare_part_detail->image; ?>" height="180" width="260" alt=""/></a>
+                                    <div class="owl-item">
+                                        <div class="slide">
+                                            <a><img  src="<?php echo base_url() . 'uploads/spare_part_images/' . $spare_part_detail->image; ?>" height="180" width="260" alt=""/></a>
+                                        </div>
+                                    </div>
                                 </div>
                                 <!-- /.item-slider -->
-                                
+
                             </article>
                             <!-- /.item-gallery -->
                             <article class="block">
@@ -97,10 +127,10 @@
                                     <dd><?php echo $spare_part_detail->manufacture; ?></dd>                              
                                 </dl>
                             </article>
-                            
+
 
                         </section>
-                       
+
                     </div>
                     <!-- /.col-md-8-->
                 </div>
@@ -108,6 +138,6 @@
             </section>
             <!-- /#main-content-->
         </div>
-       
+
     </div><!-- /.row-->
 </section>

@@ -99,5 +99,20 @@ class Spare_parts_category extends CI_Controller {
 
         echo $spare_parts_cat_service->update_category($spare_parts_cat_model);
     }
+    
+    function upload_category_image() {
+
+        $uploaddir = './uploads/spare_part_category/';
+        $unique_tag = 'spare_part_category';
+
+        $filename = $unique_tag . time() . '-' . basename($_FILES['uploadfile']['name']); //this is the file name
+        $file = $uploaddir . $filename; // this is the full path of the uploaded file
+
+        if (move_uploaded_file($_FILES['uploadfile']['tmp_name'], $file)) {
+            echo $filename;
+        } else {
+            echo "error";
+        }
+    }
 
 }
