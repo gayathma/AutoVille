@@ -19,7 +19,7 @@ $(document).ready(function($) {
 
     $('.quick-view, .results .item').live('click', function() {
         var id = $(this).attr('id');
-        quickView(id);
+        //quickView(id);
         return false;
     });
 

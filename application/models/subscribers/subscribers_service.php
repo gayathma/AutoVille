@@ -34,14 +34,14 @@ class Subscribers_service extends CI_Model {
         $this->db->select('subscribers.id');
         $this->db->from('subscribers');
         $this->db->where('email', $email);
-        $this->db->where('is_published', '0');
+        $this->db->where('status', '1');
         $query = $this->db->get();
-        $user  = $query->row();
+        $subscriber  = $query->row();
 
-        if (!empty($user)) {
-            $data = array('is_published' => '1', 'account_activation_code' => 'NULL');
-            $this->db->where('id', $user->id);
-            $this->db->update('user', $data);
+        if (!empty($subscriber)) {
+            $data = array('status' => '0');
+            $this->db->where('id', $subscriber->id);
+            $this->db->update('subscribers', $data);
             return true;
         } else {
             return false;

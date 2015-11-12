@@ -37,11 +37,9 @@
                     <div class="col-md-<?php echo $class_no; ?> col-sm-<?php echo $class_no; ?>">
                         <div class="item" >
                             <div class="image">
-                                <div class="quick-view"><i class="fa fa-plus" 
-                                    <?php if (!$this->session->userdata('USER_LOGGED_IN')) { ?>                                                               
-                                                               onclick="add_to_cart('<?php echo $result->id; ?>')"
-                                                           <?php } ?>
-                                                           ></i><span>Add To Cart</span></div>                          
+                                <div class="quick-view">
+                                    <i class="fa fa-plus" <?php if (!$this->session->userdata('USER_LOGGED_IN')) { ?> onclick="add_to_cart('<?php echo $result->id; ?>')" <?php } ?>></i><span>Add To Cart</span>
+                                </div>       
 
                                 <a href="<?php echo site_url() ?>/spare_parts/spare_parts_advertisements/spare_part_advertisement_detail_view/<?php echo $result->id; ?>">
                                     <div class="overlay">
