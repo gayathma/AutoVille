@@ -1,4 +1,4 @@
-added_by_user<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html lang="en-US">
     <head>
