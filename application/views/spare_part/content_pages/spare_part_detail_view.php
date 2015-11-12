@@ -81,13 +81,6 @@
                                     <div class="info">
                                         <i class="fa fa-globe"></i>
                                         <a href="#">www.autoville.lankapanel.biz</a>
-                                        <?php
-                                        $user = $this->session->userdata("USER_ID");
-                                        if (empty($user) || ($user != $spare_part_detail->added_by)) {
-                                            ?>
-                                            <i class="fa fa-comments"></i>
-                                            <a href="#" id="startChat" class="">Chat with seller </a>
-                                        <?php } ?>
                                     </div>
 
                                 </figure>
