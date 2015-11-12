@@ -12,6 +12,9 @@ class Home extends CI_Controller {
         $this->load->model('spare_parts_advertisement/spare_parts_ad_service');
     }
 
+    /**
+     * spare part home page
+     */
     function index() {
 
         $spare_part_ad_service = new Spare_parts_ad_service();
