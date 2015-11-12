@@ -10,6 +10,20 @@
             <input id="name" class="form-control" name="name" type="text" value="<?php echo $category->name; ?>">
             <input id="category_id"  name="category_id" type="hidden" value="<?php echo $category->id; ?>">
         </div>
+        <div class="form-group">
+            <div id="upload">
+
+                <label class="form-label">Upload Image</label>
+                <button type="button" class="btn btn-info" id="browse">Browse</button>
+                <input type="text" id="logo" name="logo" style="visibility: hidden" value=""/>
+            </div>
+            <div id="sta"><span id="status" ></span></div>
+        </div>
+        <div class="form-group">
+            <div id="files" class="project-logo">
+                <img src="<?php echo base_url(); ?>uploads/spare_part_category/<?php echo $category->image; ?>"   width="100px" height="68px" /><br />
+            </div>
+        </div>
         <span id="rtn_msg_edit"></span>
     </div>
     <div class="modal-footer">
