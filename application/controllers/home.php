@@ -142,4 +142,29 @@ class Home extends CI_Controller {
         }
     }
 
+    function unsubscribe() {
+        $subscribers_service = new Subscribers_service();
+        if ($subscribers_service->unsubscribe($_GET['email'])) {
+            redirect(site_url() . '/home/unsubscribe_success');
+        } else {
+            redirect(site_url() . '/home/unsubscribe_failed');
+        }
+    }
+
+    function unsubscribe_success() {
+        $data['status']  = 'success';
+        $data['message'] = "Your email address has been removed from our distribution list. We are sorry for any inconvenience we may have caused you.";
+
+        $parials = array('content' => 'messages/unsubscribe_message');
+        $this->template->load('template/main_template', $parials, $data);
+    }
+
+    function unsubscribe_failed() {
+        $data['status']  = 'failed';
+        $data['message'] = "Your email address has been already removed from our distribution list. We are sorry for any inconvenience we may have caused you.";
+
+        $parials = array('content' => 'messages/unsubscribe_message');
+        $this->template->load('template/main_template', $parials, $data);
+    }
+
 }
