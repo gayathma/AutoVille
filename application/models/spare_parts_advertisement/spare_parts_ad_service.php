@@ -170,9 +170,12 @@ class Spare_parts_ad_service extends CI_Model {
             $this->db->limit($limit, $start);
         }
         $query = $this->db->get();
+       // echo $this->db->last_query();
+       // die;
 
 
         return $query->result();
+        
     }
 
     /**
