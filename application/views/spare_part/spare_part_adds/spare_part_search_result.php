@@ -57,22 +57,7 @@
                                 </a>
                             </div>
                             <div class="wrapper">
-                                <h3><?php echo $result->name; ?> </h3>
-
-                                <figure><?php echo $result->category; ?></figure>
-                                <div class="price"><?php echo "Rs. " . number_format($result->price, 2); ?></div>
-                                <br>
-
-                                <?php if ($result->is_featured == '1') { ?>
-                                    <div class="type label-success label">
-                                        <span>Featured</span>
-                                    </div>
-                                <?php } ?>
-                            </div>
-
-                            <div class="wrapper">
-                                <h3>
-
+                                <h3><?php echo $result->name; ?> 
                                     <?php if ($this->session->userdata('USER_LOGGED_IN')) { ?>
 
                                         <!--Bookmark-->
@@ -107,6 +92,23 @@
                                         <!--End Bookmark-->
 
                                     <?php } ?>
+                                </h3>
+
+                                <figure><?php echo $result->category; ?></figure>
+                                <div class="price"><?php echo "Rs. " . number_format($result->price, 2); ?></div>
+                                <br>
+
+                                <?php if ($result->is_featured == '1') { ?>
+                                    <div class="type label-success label">
+                                        <span>Featured</span>
+                                    </div>
+                                <?php } ?>
+                            </div>
+
+                            <div class="wrapper">
+                                <h3>
+
+                                    
                                 </h3>    
                             </div>
                         </div>                
@@ -169,7 +171,7 @@
 
                 $.ajax({
                     type: "POST",
-                    url: site_url + '/bookmarked_spare_parts/bookmark_spare_part',
+                    url: site_url + '/spare_parts/bookmarked_spare_parts/bookmark_spare_part',
                     data: "spare_part_id=" + spare_part_id,
                     success: function (msg) {
                         if (msg != 0) {
