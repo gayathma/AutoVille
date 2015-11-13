@@ -65,11 +65,12 @@ class Spare_parts_ad_service extends CI_Model {
 
 
     /**
-     * This is the service function to get price drop spare parts
+     * This is the service function to get featured spare parts
+     * @param type $limit
+     * @return type
      * Author Ashani
      */
-
-    function get_featured_vehicles($limit) {
+    function get_featured_spare_parts($limit) {
 
         $this->db->select('spare_parts_advertisements.id,'
                 . 'spare_parts_advertisements.name,'
@@ -105,9 +106,10 @@ class Spare_parts_ad_service extends CI_Model {
 
     /**
      * This is the service function to get newly arrived spare parts
+     * @param type $limit
+     * @return type
      * Author Ashani
      */
-
     public function get_new_arrival($limit) {
 
         $this->db->select('spare_parts_advertisements.id,'
