@@ -399,7 +399,11 @@ class Vehicle_advertisements extends CI_Controller {
         $data['latest_vehicles']    = $vehicle_advertisments_service->get_new_arrival(2);
 
         $data['commercial_images'] = $website_advertisement_service->get_advertisement_image();
-
+        $year=$data['vehicle_detail']->year;
+        $manufacture_id=$data['vehicle_detail']->manufacture_id;
+        $model_id=$data['vehicle_detail']->model_id;
+        $data['celebrity']=$website_advertisement_service->get_celebrity($manufacture_id, $model_id, $year);
+        
         $parials = array('content' => 'vehicle_adds/vehicle_detail_view', 'new_arrivals' => 'vehicle_adds/new_arrivals');
         $this->template->load('template/main_template', $parials, $data);
     }

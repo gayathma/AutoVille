@@ -19,3 +19,12 @@
     <?php } ?>
 </div>
 <!-- /.list-slider -->
+<br>
+<br>
+<div class="list-slider owl-carousel">
+    <?php foreach ($celebrity as $value) { ?>
+        <div class="slide">
+            <a><img src="<?php echo base_url() . 'uploads/commercial_images/' . $value->image; ?>" height="250" width="250" alt=""></a>
+        </div>
+    <?php } ?>
+</div>
