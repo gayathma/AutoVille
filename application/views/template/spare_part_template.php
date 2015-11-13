@@ -53,7 +53,7 @@
                                     <!--cart-->   
                                     <li>
                                         <div class="btn-group cd-cart" id="cart_list">                                                
-                                            <a href="<?php echo site_url(); ?>/cart/load_cart_view" style="text-decoration: none;color: white">
+                                            <a href="<?php echo site_url(); ?>/spare_parts/cart/load_cart_view" style="text-decoration: none;color: white">
                                                 <button style="border: 0px solid black; background-color: transparent; position: relative;">
                                                     <i class="fa fa-shopping-cart"></i>
                                                     <span style="position: absolute; top: -11px; right: 0px; width: 22px; height: 22px; border-radius: 25px;background:#00A8B3">5</span>
