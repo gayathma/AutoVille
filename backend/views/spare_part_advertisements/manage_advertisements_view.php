@@ -51,9 +51,7 @@
                         <td class="p-team">
                             <?php echo $result->name; ?>
                         </td>
-                        <td class="p-team">
-                            <?php echo $result->image; ?>
-                        </td>
+                        <td align="center"><img src="<?php echo base_url(); ?>uploads/spare_part_images/<?php echo $result->image; ?>" width="60px" /></td>
                         <td class="p-team">
                             <?php echo $result->price; ?>
                         </td>

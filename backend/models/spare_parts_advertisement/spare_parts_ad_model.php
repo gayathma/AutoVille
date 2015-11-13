@@ -18,6 +18,8 @@ class Spare_parts_ad_model extends CI_Model {
     var $added_by;
     var $updated_date;
     var $updated_by;
+    var $is_featured;
+    var $is_price_drop;
     
     function get_id() {
         return $this->id;
@@ -146,6 +148,26 @@ class Spare_parts_ad_model extends CI_Model {
     function set_updated_by($updated_by) {
         $this->updated_by = $updated_by;
     }
+    
+    function get_is_featured() {
+        return $this->is_featured;
+    }
+
+    function get_is_price_drop() {
+        return $this->is_price_drop;
+    }
+
+    function set_is_featured($is_featured) {
+        $this->is_featured = $is_featured;
+    }
+
+    function set_is_price_drop($is_price_drop) {
+        $this->is_price_drop = $is_price_drop;
+    }
+
+
+
+
 
 
 

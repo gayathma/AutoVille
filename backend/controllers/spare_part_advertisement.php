@@ -79,5 +79,42 @@ class Spare_part_advertisement extends CI_Controller{
 
         $this->load->view('spare_part_advertisements/search_results_advertisements', $data);
     }
+    
+    /**
+     * Function to get approved advertisements for featured advertisements
+     * Author Ashani
+     */
+    
+    function get_Approved_advertisements() {
+
+        $perm = Access_controll_service::check_access('ADD_ADVERTISEMENT');
+        if ($perm) {
+            $spare_parts_advertisments_service = new Spare_parts_ad_service();
+            $user_service                  = new User_service();
+
+            $data['heading']      = "Advertisements";
+            $data['reg_users']    = $user_service->get_all_active_registered_users();
+            $data['approved_ads'] = $spare_parts_advertisments_service->get_approved_advertisements_for_featured();
+
+
+            $parials = array('content' => 'spare_part_advertisements/featured_advertisements_view');
+            $this->template->load('template/main_template', $parials, $data);
+        }
+    }
+    
+    /*
+     * change featured status of an advertisment
+     * author - Ashani
+     */
+
+    function change_featured_status() {
+        $spare_parts_advertisments_model = new Spare_parts_ad_model();
+        $spare_parts_advertisments_service = new Spare_parts_ad_service();
+
+        $spare_parts_advertisments_model->set_id(trim($this->input->post('id', TRUE)));
+        $spare_parts_advertisments_model->set_is_featured(trim($this->input->post('value', TRUE)));
+
+        echo $spare_parts_advertisments_service->featured_spare_part_advertisement($spare_parts_advertisments_model);
+    }
 }
 

@@ -92,7 +92,7 @@ class Spare_parts_ad_service extends CI_Model {
         $this->db->join('fuel_type', 'fuel_type.id = spare_parts_advertisements.fuel_type_id', 'left');
         $this->db->where('spare_parts_advertisements.is_deleted', '0');
         $this->db->where('spare_parts_advertisements.is_published', '1');
-        $this->db->where('spare_parts_advertisements.is_featured', '1');
+        $this->db->where('spare_parts_advertisements.is_featured', '2');
         $this->db->group_by('spare_parts_advertisements.id');
         if ($limit != '') {
             $this->db->limit($limit);

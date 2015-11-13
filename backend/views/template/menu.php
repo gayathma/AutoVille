@@ -34,6 +34,7 @@
                 <li><a  href="<?php echo site_url(); ?>/vehicle_advertisements/get_Approved_advertisements">Featured Advertisements</a></li>
                 <li><a  href="<?php echo site_url(); ?>/website_advertisements/manage_advertisements">Website Advertisements</a></li>
                 <li><a  href="<?php echo site_url(); ?>/spare_part_advertisement/manage_advertisements">Spare parts Advertisements</a></li>
+                <li><a  href="<?php echo site_url(); ?>/spare_part_advertisement/get_Approved_advertisements">Featured Spare parts</a></li>
             </ul>
         </li>
     <?php } ?>
