@@ -80,10 +80,10 @@
                         <td>
                             <?php if ($result->is_published == '1') { ?>
                                 <span class="label label-primary">Active</span>
-                                <a class="btn btn-success btn-xs"  onclick="change_advertisement_status('<?php echo $result->id; ?>', '2', this, '<?php echo $result->added_by_user; ?>', '<?php echo $result->id; ?>');"><i class="fa fa-arrow-up " title="Reject Advertisement"></i></a> 
+                                <a class="btn btn-success btn-xs"  onclick="change_advertisement_status('<?php echo $result->id; ?>', '2', this, '<?php echo $result->added_by; ?>', '<?php echo $result->id; ?>');"><i class="fa fa-arrow-up " title="Reject Advertisement"></i></a> 
                             <?php } elseif ($result->is_published == '0') { ?>
                                 <span class="label label-default">Pending</span> 
-                                <a class="btn btn-success btn-xs"  onclick="change_advertisement_status('<?php echo $result->id; ?>', '1', this, '<?php echo $result->added_by_user; ?>', '<?php echo $result->id; ?>');"><i class="fa fa-arrow-up " title="Approve Advertisement"></i></a> 
+                                <a class="btn btn-success btn-xs"  onclick="change_advertisement_status('<?php echo $result->id; ?>', '1', this, '<?php echo $result->added_by; ?>', '<?php echo $result->id; ?>');"><i class="fa fa-arrow-up " title="Approve Advertisement"></i></a> 
                             <?php } else { ?>
                                 <span class="label label-danger">Rejected</span>  
                             <?php } ?>

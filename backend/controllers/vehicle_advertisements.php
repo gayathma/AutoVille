@@ -80,7 +80,7 @@ class Vehicle_advertisements extends CI_Controller {
         $vehicle_advertisments_model->set_id(trim($this->input->post('id', TRUE)));
         $vehicle_advertisments_model->set_is_published(trim($this->input->post('value', TRUE)));
 
-        echo $vehicle_advertisments_service->publish_advertisement($vehicle_advertisments_model);
+        $vehicle_advertisments_service->publish_advertisement($vehicle_advertisments_model);
 
         //if publish advetisement success send email to all subscribers
         if (trim($this->input->post('value', TRUE)) == '1') {
@@ -88,7 +88,7 @@ class Vehicle_advertisements extends CI_Controller {
             $seller_subscribers_service = new Seller_subscribers_service();
             $subscribers                = $seller_subscribers_service->get_all_subscribers(trim($this->input->post('seller_id', TRUE)));
 
-            if (empty($subscribers)) {
+            if (!empty($subscribers)) {
 
                 foreach ($subscribers as $subscriber) {
 
@@ -107,7 +107,7 @@ class Vehicle_advertisements extends CI_Controller {
                     $headers .= 'Cc: heshani7.herath@gmail.com' . "\r\n";
 
                     if (mail($email_to, $email_subject, $msg, $headers)) {
-                        echo "3"; //mail sent
+                        echo "1"; //mail sent
                         die();
                     } else {
                         echo "4"; //mail not sent
@@ -116,6 +116,8 @@ class Vehicle_advertisements extends CI_Controller {
                 }
             }
         }
+
+        echo '1';
     }
 
     /*
