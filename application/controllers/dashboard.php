@@ -18,6 +18,7 @@ class Dashboard extends CI_Controller {
         $this->load->model('vehicle_images/vehicle_images_service');
 
         $this->load->model('bookmarked_vehicles/bookmarked_vehicles_service');
+        $this->load->model('bookmarked_spare_parts/bookmarked_spare_parts_service');
 
         $this->load->library('pagination');
         $this->load->library('pagination_custome');
@@ -33,17 +34,17 @@ class Dashboard extends CI_Controller {
 
         $config = array();
 
-        $config["base_url"]    = site_url() . "/dashboard/load_my_advertisements/";
-        $config["per_page"]    = 8;
+        $config["base_url"] = site_url() . "/dashboard/load_my_advertisements/";
+        $config["per_page"] = 8;
         $config["uri_segment"] = 3;
-        $config["num_links"]   = 4;
-        $config["total_rows"]  = count($vehicle_advertisements_service->get_advertisements_for_user('', '', $this->session->userdata('USER_ID')));
+        $config["num_links"] = 4;
+        $config["total_rows"] = count($vehicle_advertisements_service->get_advertisements_for_user('', '', $this->session->userdata('USER_ID')));
 
         $this->pagination_custome->initialize($config);
 
         $data['my_advertisements'] = $vehicle_advertisements_service->get_advertisements_for_user($config["per_page"], $start, $this->session->userdata('USER_ID'));
-        $data["links"]             = $this->pagination_custome->create_links();
-        $data['latest_vehicles']   = $vehicle_advertisements_service->get_new_arrival(2);
+        $data["links"] = $this->pagination_custome->create_links();
+        $data['latest_vehicles'] = $vehicle_advertisements_service->get_new_arrival(2);
 
 
         $parials = array('content' => 'my_dashboard/my_dashboard', 'new_arrivals' => 'vehicle_adds/new_arrivals');
@@ -60,16 +61,16 @@ class Dashboard extends CI_Controller {
 
         $config = array();
 
-        $config["base_url"]    = site_url() . "/dashboard/load_my_advertisements/";
-        $config["per_page"]    = 8;
+        $config["base_url"] = site_url() . "/dashboard/load_my_advertisements/";
+        $config["per_page"] = 8;
         $config["uri_segment"] = 3;
-        $config["num_links"]   = 4;
-        $config["total_rows"]  = count($vehicle_advertisements_service->get_advertisements_for_user('', '', $this->session->userdata('USER_ID')));
+        $config["num_links"] = 4;
+        $config["total_rows"] = count($vehicle_advertisements_service->get_advertisements_for_user('', '', $this->session->userdata('USER_ID')));
 
         $this->pagination_custome->initialize($config);
 
         $data['my_advertisements'] = $vehicle_advertisements_service->get_advertisements_for_user($config["per_page"], $start, $this->session->userdata('USER_ID'));
-        $data["links"]             = $this->pagination_custome->create_links();
+        $data["links"] = $this->pagination_custome->create_links();
 
         echo $this->load->view('my_dashboard/my_advertisements', $data);
     }
@@ -87,16 +88,16 @@ class Dashboard extends CI_Controller {
 
         $config = array();
 
-        $config["base_url"]    = site_url() . "/dashboard/load_saved_searches/";
-        $config["per_page"]    = 8;
+        $config["base_url"] = site_url() . "/dashboard/load_saved_searches/";
+        $config["per_page"] = 8;
         $config["uri_segment"] = 3;
-        $config["num_links"]   = 4;
-        $config["total_rows"]  = count($searched_vehicles_service->get_searched_vehicles_for_user('', '', $this->session->userdata('USER_ID')));
+        $config["num_links"] = 4;
+        $config["total_rows"] = count($searched_vehicles_service->get_searched_vehicles_for_user('', '', $this->session->userdata('USER_ID')));
 
         $this->pagination_custome->initialize($config);
 
         $data['my_advertisements'] = $searched_vehicles_service->get_searched_vehicles_for_user($config["per_page"], $start, $this->session->userdata('USER_ID'));
-        $data["links"]             = $this->pagination_custome->create_links();
+        $data["links"] = $this->pagination_custome->create_links();
 
         echo $this->load->view('my_dashboard/saved_searches', $data);
     }
@@ -122,18 +123,43 @@ class Dashboard extends CI_Controller {
 
         $config = array();
 
-        $config["base_url"]    = site_url() . "/dashboard/load_bookmarked_vehicles/";
-        $config["per_page"]    = 8;
+        $config["base_url"] = site_url() . "/dashboard/load_bookmarked_vehicles/";
+        $config["per_page"] = 8;
         $config["uri_segment"] = 3;
-        $config["num_links"]   = 4;
-        $config["total_rows"]  = count($bookmarked_vehicles_service->get_bookmarked_vehicles('', '', $this->session->userdata('USER_ID')));
+        $config["num_links"] = 4;
+        $config["total_rows"] = count($bookmarked_vehicles_service->get_bookmarked_vehicles('', '', $this->session->userdata('USER_ID')));
 
         $this->pagination_custome->initialize($config);
 
         $data['bookmarked_vehicles'] = $bookmarked_vehicles_service->get_bookmarked_vehicles($config["per_page"], $start, $this->session->userdata('USER_ID'));
-        $data["links"]               = $this->pagination_custome->create_links();
+        $data["links"] = $this->pagination_custome->create_links();
 
         echo $this->load->view('my_dashboard/bookmarked_vehicles', $data);
+    }
+
+    /**
+     * 
+     * load all bookmarked spare parts for a user
+     * @param string $start Input starting value
+     */
+    function load_bookmarked_spare_parts($start = "0") {
+
+        $bookmarked_spare_part_service = new Bookmarked_spare_parts_service();
+
+        $config = array();
+
+        $config["base_url"] = site_url() . "/dashboard/load_bookmarked_spare_parts/";
+        $config["per_page"] = 8;
+        $config["uri_segment"] = 3;
+        $config["num_links"] = 4;
+        $config["total_rows"] = count($bookmarked_spare_part_service->get_bookmarked_spare_parts('', '', $this->session->userdata('USER_ID')));
+
+        $this->pagination_custome->initialize($config);
+
+        $data['bookmarked_spare_parts'] = $bookmarked_spare_part_service->get_bookmarked_spare_parts($config["per_page"], $start, $this->session->userdata('USER_ID'));
+        $data["links"] = $this->pagination_custome->create_links();
+
+        echo $this->load->view('my_dashboard/bookmarked_spare_parts', $data);
     }
 
 }

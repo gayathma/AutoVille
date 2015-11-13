@@ -26,6 +26,7 @@
                     <?php if ($this->session->userdata('USER_LOGGED_IN')) { ?>    
                         <li class="dash_items"> <a id="searched_view" href="#"><i class="fa fa-star"></i> <span>Saved Searches</span></a></li>
                         <li class="dash_items"> <a id="bookmarked_vehicles_view" href="#"><i class="fa fa-bookmark"></i><span> Bookmarks</span></a></li>
+                        <li class="dash_items"> <a id="bookmarked_spare_part_view" href="#"><i class="fa fa-bookmark"></i><span> Bookmarked Spare Parts</span></a></li>
                         <li class="dash_items"> <a id="profile_link" href="#" ><i class="fa fa-user"></i> <span>My Profile</span></a></li>
                     <?php } ?>
 
@@ -98,6 +99,16 @@
         $('.dash_items').removeClass('active');
         $(this).parent().addClass('active');
         $.post('<?php echo site_url(); ?>/dashboard/load_bookmarked_vehicles', {}, function(msg)
+        {
+            $('#dashboard_right_content').html(msg);
+        });
+    });
+    
+    //load bookmarked spare parts view
+    $('#bookmarked_spare_part_view').on('click', function(e) {
+        $('.dash_items').removeClass('active');
+        $(this).parent().addClass('active');
+        $.post('<?php echo site_url(); ?>/dashboard/load_bookmarked_spare_parts', {}, function(msg)
         {
             $('#dashboard_right_content').html(msg);
         });

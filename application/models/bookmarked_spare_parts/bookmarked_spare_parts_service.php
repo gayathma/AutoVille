@@ -4,6 +4,8 @@ class Bookmarked_spare_parts_service extends CI_Model {
 
     function __construct() {
         parent::__construct();
+        
+         $this->load->model('bookmarked_spare_parts/bookmarked_spare_parts_model');
     }
 
     function insert_bookmarked_spare_part($bookmarked_spare_parts_model) {
@@ -18,7 +20,7 @@ class Bookmarked_spare_parts_service extends CI_Model {
     }
 
     function get_bookmarked_spare_parts($limit, $start, $user_id) {
-
+        
         $this->db->select('bookmarked_spare_parts.id as bookmark_id,'
                 . 'spare_parts_advertisements.id,'
                 . 'spare_parts_advertisements.description,'
@@ -27,11 +29,11 @@ class Bookmarked_spare_parts_service extends CI_Model {
                 . 'spare_parts_advertisements.image,'
                 . 'manufacture.name as manufacture,'
                 . 'model.name as model,' 
-                . 'fuel_type.name as fuel_type,');
+                . 'fuel_type.name as fuel_type');
         $this->db->from('bookmarked_spare_parts');
         $this->db->join('spare_parts_advertisements', 'spare_parts_advertisements.id = bookmarked_spare_parts.spare_part_id');
         $this->db->join('manufacture', 'manufacture.id = spare_parts_advertisements.manufacture_id');
-        $this->db->join('model', 'model.id = spare_parts_advertisements.model_id', 'left');        
+        $this->db->join('model', 'model.id = spare_parts_advertisements.model_id');        
         $this->db->join('fuel_type', 'fuel_type.id = spare_parts_advertisements.fuel_type_id');
         $this->db->where('bookmarked_spare_parts.is_deleted', '0');
         $this->db->where('spare_parts_advertisements.is_deleted', '0');
@@ -42,6 +44,7 @@ class Bookmarked_spare_parts_service extends CI_Model {
         }
 
         $query = $this->db->get();
+        echo $this->db->last_query();
         return $query->result();
     }
 
