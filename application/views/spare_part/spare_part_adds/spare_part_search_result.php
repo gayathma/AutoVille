@@ -99,7 +99,7 @@
                                 <div class="price"><?php echo "Rs. " . number_format($result->price, 2); ?></div>
                                 <br>
 
-                                <?php if ($result->is_featured == '1') { ?>
+                                <?php if ($result->is_featured == '2') { ?>
                                     <div class="type label-success label">
                                         <span>Featured</span>
                                     </div>

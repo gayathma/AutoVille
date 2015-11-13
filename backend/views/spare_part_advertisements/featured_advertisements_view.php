@@ -71,10 +71,6 @@
                             <?php } else { ?>
                                 <span class="label label-danger">Disable</span>  
                             <?php } ?> 
-
-
-
-
                         </td>
     <!--                        <td>
                             <a class="btn btn-danger btn-xs"  onclick="delete_advertisement(<?php echo $result->id; ?>);"><i class="fa fa-trash-o " title="Remove"></i></a>

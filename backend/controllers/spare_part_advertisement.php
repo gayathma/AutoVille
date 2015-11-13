@@ -85,7 +85,7 @@ class Spare_part_advertisement extends CI_Controller{
      * Author Ashani
      */
     
-    function get_Approved_advertisements() {
+    function get_approved_advertisements() {
 
         $perm = Access_controll_service::check_access('ADD_ADVERTISEMENT');
         if ($perm) {

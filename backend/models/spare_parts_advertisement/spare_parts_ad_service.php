@@ -68,7 +68,7 @@ class Spare_parts_ad_service extends CI_Model{
         $this->db->join('user', 'user.id = spare_parts_advertisements.added_by');
         $this->db->where('spare_parts_advertisements.is_deleted', '0');
         $this->db->where('spare_parts_advertisements.is_published', '1');
-        $this->db->where('spare_parts_advertisements.is_featured in (2,1)');
+        //$this->db->where('spare_parts_advertisements.is_featured','0');
         $this->db->order_by("spare_parts_advertisements.added_date", "desc");
         $query = $this->db->get();
         return $query->result();
