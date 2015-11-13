@@ -26,7 +26,7 @@ class Bookmarked_spare_parts extends CI_Controller {
         $bookmarked_spare_parts_model->set_added_by($this->session->userdata('USER_ID'));
         $bookmarked_spare_parts_model->set_added_date(date("Y-m-d H:i:s"));
 
-        echo $bookmarked_spare_parts_service->insert_bookmarked_vehicle($bookmarked_spare_parts_model);
+        echo $bookmarked_spare_parts_service->insert_bookmarked_spare_part($bookmarked_spare_parts_model);
     }
 
     /**
