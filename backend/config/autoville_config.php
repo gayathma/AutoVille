@@ -25,3 +25,5 @@ $config['CARS']       = 1;
 $config['BIKES']      = 2;
 $config['COMMERCIAL'] = 3;
 
+$config['URL'] = 'http://autoville.lankapanel.biz/index.php';
+

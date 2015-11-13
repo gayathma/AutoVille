@@ -121,7 +121,7 @@ class Subscribe extends CI_Controller {
             $token           = $this->generate_random_string(); //generate account activation token
             $email_to        = $subscriber->email;
             $email_subject   = $this->input->post('subject', TRUE);
-            $data['link']    = site_url() . '/home/unsubscribe?email=' . $subscriber->email . '&token=' . $token;
+            $data['link']    = $this->config->item('URL') . '/home/unsubscribe?email=' . $subscriber->email . '&token=' . $token;
             $data['content'] = $subscriber->content;
 
             $msg = $this->load->view('template/mail_template/newsletter', $data, TRUE);
@@ -173,7 +173,7 @@ class Subscribe extends CI_Controller {
             $token           = $this->generate_random_string(); //generate account activation token
             $email_to        = $subscriber->email;
             $email_subject   = $this->input->post('subject', TRUE);
-            $data['link']    = site_url() . '/home/unsubscribe?email=' . $subscriber->email . '&token=' . $token;
+            $data['link']    = $this->config->item('URL') . '/home/unsubscribe?email=' . $subscriber->email . '&token=' . $token;
             $data['content'] = $subscriber->content;
 
             $msg = $this->load->view('template/mail_template/newsletter', $data, TRUE);
