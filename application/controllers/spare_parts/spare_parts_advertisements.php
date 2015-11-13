@@ -16,6 +16,9 @@ class Spare_parts_advertisements extends CI_Controller {
         $this->load->model('vehicle_advertisments/vehicle_advertisments_model');
         $this->load->model('vehicle_advertisments/vehicle_advertisments_service');
         
+        $this->load->model('bookmarked_spare_parts/bookmarked_spare_parts_model');
+        $this->load->model('bookmarked_spare_parts/bookmarked_spare_parts_service');
+        
         $this->load->model('users/user_model');
         $this->load->model('users/user_service');
     }

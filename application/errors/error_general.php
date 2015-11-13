@@ -1,62 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<title>Error</title>
-<style type="text/css">
+    <head>
+        <title>AutoVille</title>
+        <link href="<?php echo base_url(); ?>application_resources/assets/fonts/font-awesome.css" rel="stylesheet" type="text/css">
+        <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="<?php echo base_url(); ?>application_resources/assets/bootstrap/css/bootstrap.css" type="text/css">
+        <link rel="stylesheet" href="<?php echo base_url(); ?>application_resources/assets/css/style.css" type="text/css">
+        <link rel="stylesheet" href="<?php echo base_url(); ?>application_resources/assets/css/colors/blue.css" type="text/css">
 
-::selection{ background-color: #E13300; color: white; }
-::moz-selection{ background-color: #E13300; color: white; }
-::webkit-selection{ background-color: #E13300; color: white; }
-
-body {
-	background-color: #fff;
-	margin: 40px;
-	font: 13px/20px normal Helvetica, Arial, sans-serif;
-	color: #4F5155;
-}
-
-a {
-	color: #003399;
-	background-color: transparent;
-	font-weight: normal;
-}
-
-h1 {
-	color: #444;
-	background-color: transparent;
-	border-bottom: 1px solid #D0D0D0;
-	font-size: 19px;
-	font-weight: normal;
-	margin: 0 0 14px 0;
-	padding: 14px 15px 10px 15px;
-}
-
-code {
-	font-family: Consolas, Monaco, Courier New, Courier, monospace;
-	font-size: 12px;
-	background-color: #f9f9f9;
-	border: 1px solid #D0D0D0;
-	color: #002166;
-	display: block;
-	margin: 14px 0 14px 0;
-	padding: 12px 10px 12px 10px;
-}
-
-#container {
-	margin: 10px;
-	border: 1px solid #D0D0D0;
-	-webkit-box-shadow: 0 0 8px #D0D0D0;
-}
-
-p {
-	margin: 12px 15px 12px 15px;
-}
-</style>
-</head>
-<body>
-	<div id="container">
-		<h1><?php echo $heading; ?></h1>
-		<?php echo $message; ?>
-	</div>
-</body>
+    </head>
+    <body id="page-top" class="page-subpage page-404 navigation-off-canvas page-fade-in" onunload="">
+        <div id="outer-wrapper">
+            <div id="inner-wrapper">
+                <div class="header">
+                    <div class="wrapper">
+                        <div class="brand">
+                            <a class="lazy" href="<?php echo site_url(); ?>/home"><img src="<?php echo base_url(); ?>application_resources/assets/img/logo.png" alt="logo"></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- end Navigation-->
+                <div id="page-canvas">
+                    <div id="page-content">
+                        <section class="container">
+                            <header>
+                                <h1 class="page-title">Error</h1>
+                            </header>
+                            <div class="block">
+                                <div id="title-404">
+                                    <aside>
+                                        Error
+                                        <img alt="" src="<?php echo base_url(); ?>application_resources/assets/img/scissors.png">
+                                    </aside>
+                                    <h2><?php echo $heading; ?></h2>
+                                    <p><?php echo $message; ?>
+                                    </p>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
 </html>
