@@ -33,9 +33,9 @@ class Website_advertisements_service extends CI_Model {
      * This service function to get the particular celebrity
      */
     
-    function get_celebrity($vehicle_id){
-        $this->db->select('website_advertisements.*');
-        $this->db->from('website_advertisements');
+    function get_celebrity($vehicle_id,$manufacture_id,$model_id,$year){
+        $this->db->select('celebrity.*,vehicle_advertisements.*');
+        $this->db->from('celebrity');
         $this->db->where('is_published', '1');
         $this->db->where('is_deleted', '0');
         $query = $this->db->get();
