@@ -42,8 +42,8 @@ class Cart extends CI_Controller{
         $user_id=$this->session->userdata('USER_ID');
       
         $data['latest_vehicles'] = $vehicle_advertisement_service->get_new_arrival(2);
-        $Itemts = $cart_service->get_cart_items_by_id($user_id);
-        $data['items'] = $Itemts;
+        $items = $cart_service->get_cart_items_by_id($user_id);
+        $data['items'] = $items;
         
         $parials = array('content' => 'spare_part/content_pages/cart_view', 'new_arrivals' => 'vehicle_adds/new_arrivals');
         $this->template->load('template/spare_part_template', $parials, $data);
