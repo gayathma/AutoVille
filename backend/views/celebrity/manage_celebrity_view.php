@@ -118,20 +118,19 @@
 
 
                     </script>
-
-                    <div class="form-group">
+                  <div class="form-group">                       
                         <label for="name">Manufacture<span class="mandatory">*</span></label>
-                        <select name="manufacture" id="manufacture" title="This field is required." data-live-search="true" class="live_select" >
+                        <select class="form-control" name="manufacture" id="manufacture" title="This field is required." data-live-search="true" class="live_select" >
                             <option value="" selected>Select Manufacturer</option>
                             <?php foreach ($manufactures as $manufacture) { ?>
                                 <option value="<?php echo $manufacture->id; ?>"><?php echo $manufacture->name; ?></option>
                             <?php } ?>
-                        </select>
+                        </select>                        
                     </div>
 
                     <div class="form-group">
                         <label for="name">Model<span class="mandatory">*</span></label>
-                        <select name="model" id="model" title="This field is required." data-live-search="true" class="live_select" >
+                        <select class="form-control" name="model" id="model" title="This field is required." data-live-search="true" class="live_select" >
                             <option value="" selected>Select Model</option>
                             <?php foreach ($models as $model) { ?>
                                 <option value="<?php echo $model->id; ?>"><?php echo $model->name; ?></option>
@@ -141,7 +140,7 @@
 
                     <div class="form-group">
                         <label for="fabrication">Fabrication</label>
-                        <select name="fabrication" id="fabrication" title="This field is required."  data-live-search="true">
+                        <select class="form-control" name="fabrication" id="fabrication" title="This field is required."  data-live-search="true">
                             <option value="">Select Fabrication</option>
                             <option value="1990">1990</option>
                             <option value="1991">1991</option>

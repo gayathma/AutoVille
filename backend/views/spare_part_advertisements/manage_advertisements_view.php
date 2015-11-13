@@ -58,10 +58,10 @@
                             <?php echo $result->price; ?>
                         </td>
                         <td class="p-team">
-                            <?php echo $result->category_id; ?>
+                            <?php echo $result->category; ?>
                         </td>
                         <td class="p-team">
-                            <?php echo $result->manufacture_id; ?>
+                            <td><?php echo ($result->manufacture . ' ' . $result->model . ' ' . $result->year); ?></td>
                         </td>
                         <td>
                             <?php if ($result->is_published == '1') { ?>

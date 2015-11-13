@@ -13,12 +13,17 @@ class Spare_parts_ad_service extends CI_Model{
     
     public function get_all_spare_part_advertisements(){
         
-        $this->db->select('spare_parts_advertisements.*,user.name as added_by_user,manufacture.name as manufacture,model.name as model,fuel_type.name as fuel');
+        $this->db->select('spare_parts_advertisements.*,'
+                . 'user.name as added_by_user,'
+                . 'manufacture.name as manufacture,'
+                . 'model.name as model,'
+                . 'fuel_type.name as fuel,spare_parts_cat.name as category');
         $this->db->from('spare_parts_advertisements');
         $this->db->join('user', 'user.id = spare_parts_advertisements.added_by');
         $this->db->join('manufacture','manufacture.id=spare_parts_advertisements.manufacture_id');
         $this->db->join('model','model.id=spare_parts_advertisements.model_id');
         $this->db->join('fuel_type','fuel_type.id=spare_parts_advertisements.fuel_type_id');
+        $this->db->join('spare_parts_cat','spare_parts_cat.id=spare_parts_advertisements.category_id');
         $this->db->where('spare_parts_advertisements.is_deleted', '0');
         $this->db->order_by("spare_parts_advertisements.added_date", "desc");
         $query = $this->db->get();

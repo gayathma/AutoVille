@@ -45,7 +45,7 @@ class Celebrity extends CI_Controller {
         $celebrity_model->set_model_id($this->input->post('model', TRUE));
         $celebrity_model->set_year($this->input->post('fabrication', TRUE)); 
         $celebrity_model->set_description($this->input->post('description', TRUE));
-        $celebrity_model->set_image($this->input->post('image', TRUE));
+        $celebrity_model->set_image($this->input->post('logo', TRUE));
         $celebrity_model->set_added_by($this->session->userdata('USER_ID'));
         $celebrity_model->set_added_date(date("Y-m-d H:i:s"));
         $celebrity_model->set_updated_by(1);

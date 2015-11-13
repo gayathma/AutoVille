@@ -79,7 +79,7 @@
 
                     <div class="form-group">
                         <label for="manufacturer">Manufacturer<span class="mandatory">*</span></label>
-                        <select name="manufacturer" id="manufacturer" title="manufacturer" data-live-search="true">
+                        <select class="form-control" name="manufacturer" id="manufacturer" title="manufacturer" data-live-search="true">
                             <option value="">Select Manufacturer</option>
                             <?php foreach ($manufacturer_results as $manufacturer_result) { ?>
                                 <option value="<?php echo $manufacturer_result->id; ?>"><?php echo $manufacturer_result->name; ?></option>
