@@ -8,17 +8,34 @@ class Bookmarked_spare_parts_service extends CI_Model {
          $this->load->model('bookmarked_spare_parts/bookmarked_spare_parts_model');
     }
 
+    /**
+     * Service function to insert a bookmark to a spare part
+     * @param type $bookmarked_spare_parts_model
+     * @return type
+     */
     function insert_bookmarked_spare_part($bookmarked_spare_parts_model) {
         $this->db->insert('bookmarked_spare_parts', $bookmarked_spare_parts_model);
         return $this->db->insert_id();
     }
 
+    /**
+     * Service function to remove a bookmark from a spare part
+     * @param type $bookmark_id
+     * @return type
+     */
     function delete_bookmark($bookmark_id) {
 
         $this->db->where('id', $bookmark_id);
         return $this->db->delete('bookmarked_spare_parts');
     }
 
+    /**
+     * this is the service function to get all the spare parts bookmarked by a user
+     * @param type $limit
+     * @param type $start
+     * @param type $user_id
+     * @return type
+     */
     function get_bookmarked_spare_parts($limit, $start, $user_id) {
         
         $this->db->select('bookmarked_spare_parts.id as bookmark_id,'
@@ -44,11 +61,15 @@ class Bookmarked_spare_parts_service extends CI_Model {
         }
 
         $query = $this->db->get();
-//        echo $this->db->last_query();
-//        die();
         return $query->result();
     }
 
+    /**
+     * this is the service function to get the spare parts bookmarked by a particular user
+     * @param type $user_id
+     * @param type $spare_part_id
+     * @return type
+     */
     function get_bookmarkd_spare_part($user_id, $spare_part_id) {
 
         $this->db->select('bookmarked_spare_parts.id as bookmarked_id,bookmarked_spare_parts.user_id as bookmarked_user');

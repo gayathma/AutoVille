@@ -34,8 +34,8 @@ class Bookmarked_spare_parts extends CI_Controller {
      */
     function remove_bookmark() {
 
-        $bookmarked_spare_parts_model = new Bookmarked_spare_parts_service();
-        echo $bookmarked_spare_parts_model->delete_bookmark($this->input->post('bookmark_id', TRUE));
+        $bookmarked_spare_parts_service = new Bookmarked_spare_parts_service();
+        echo $bookmarked_spare_parts_service->delete_bookmark($this->input->post('bookmark_id', TRUE));
     }
 
 }
