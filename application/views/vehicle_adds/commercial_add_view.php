@@ -21,10 +21,13 @@
 <!-- /.list-slider -->
 <br>
 <br>
-<div class="list-slider owl-carousel">
+<div>
     <?php foreach ($celebrity as $value) { ?>
         <div class="slide">
-            <a><img src="<?php echo base_url() . 'uploads/commercial_images/' . $value->image; ?>" height="250" width="250" alt=""></a>
+            <a><img src="<?php echo base_url() . 'uploads/celebrity/' . $value->image; ?>" height="250" width="250" alt=""></a>
+            <div>
+            <p><?php echo $value->description;?></p>
+            </div>
         </div>
     <?php } ?>
 </div>
