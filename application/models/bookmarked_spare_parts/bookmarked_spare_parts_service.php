@@ -44,7 +44,8 @@ class Bookmarked_spare_parts_service extends CI_Model {
         }
 
         $query = $this->db->get();
-        echo $this->db->last_query();
+//        echo $this->db->last_query();
+//        die();
         return $query->result();
     }
 
