@@ -30,4 +30,18 @@ class Cart extends CI_Controller{
 //            echo 0;
 //        }
     }
+    
+    function load_cart_view() {
+        //$cart_model = new Cart_model();
+        $cart_service = new Cart_service();
+        
+        $user_id=$this->session->userdata('USER_ID');
+       // echo $user_id;
+
+        //$cart_model->set_user_id($user_id);
+        $Itemts = $cart_service->get_cart_items_by_id($user_id);
+        $data['items'] = $Itemts;
+
+        echo $this->load->view('spare_part/content_pages/cart_view', $data, TRUE);
+    }
 }

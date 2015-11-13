@@ -54,6 +54,7 @@
                                     <li>
                                         <div class="btn-group cd-cart" id="cart_list">                                                
                                             <button style="border: 0px solid black; background-color: transparent; position: relative;">
+                                                <a href="<?php echo site_url();?>/cart/load_cart_view"></a>
                                                 <i class="fa fa-shopping-cart"></i>
                                                 <span style="position: absolute; top: -11px; right: 0px; width: 22px; height: 22px; border-radius: 25px;background:#00A8B3">5</span>
                                             </button>
