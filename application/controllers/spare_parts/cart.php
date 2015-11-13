@@ -10,6 +10,9 @@ class Cart extends CI_Controller{
         
         $this->load->model('cart/cart_model');
         $this->load->model('cart/cart_service');
+        
+        $this->load->model('vehicle_advertisments/vehicle_advertisments_model');
+        $this->load->model('vehicle_advertisments/vehicle_advertisments_service');
     }
     
     
@@ -34,14 +37,16 @@ class Cart extends CI_Controller{
     function load_cart_view() {
         //$cart_model = new Cart_model();
         $cart_service = new Cart_service();
-        
+        $vehicle_advertisement_service = new Vehicle_advertisments_service();
+     
         $user_id=$this->session->userdata('USER_ID');
-       // echo $user_id;
-
-        //$cart_model->set_user_id($user_id);
+      
+        $data['latest_vehicles'] = $vehicle_advertisement_service->get_new_arrival(2);
         $Itemts = $cart_service->get_cart_items_by_id($user_id);
         $data['items'] = $Itemts;
+        
+        $parials = array('content' => 'spare_part/content_pages/cart_view', 'new_arrivals' => 'vehicle_adds/new_arrivals');
+        $this->template->load('template/spare_part_template', $parials, $data);
 
-        echo $this->load->view('spare_part/content_pages/cart_view', $data, TRUE);
     }
 }

@@ -22,10 +22,12 @@ class Cart_service extends CI_Model{
 //        return $query->row();
 //    }
     function get_cart_items_by_id($uer_id) {
-        $this->db->select('cart.*');
+        $this->db->select('cart.*,spare_parts_advertisements.name as spare_name,spare_parts_advertisements.price as spare_price');
         $this->db->from('cart');
+        $this->db->join('spare_parts_advertisements','spare_parts_advertisements.added_by=cart.user_id','left');
         $this->db->where('cart.user_id',$uer_id);
         $query=  $this->db->get();
+        //echo $this->db->last_query();
         return $query->result();
     }
 }
