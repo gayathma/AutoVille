@@ -25,7 +25,7 @@
                     <li class="dash_items">  <a id="compare_vehicle_view" href="#"><i class="fa fa-compress"></i> <span>Compare Vehicles</span></a></li>
                     <?php if ($this->session->userdata('USER_LOGGED_IN')) { ?>    
                         <li class="dash_items"> <a id="searched_view" href="#"><i class="fa fa-star"></i> <span>Saved Searches</span></a></li>
-                        <li class="dash_items"> <a id="bookmarked_vehicles_view" href="#"><i class="fa fa-bookmark"></i><span> Bookmarks</span></a></li>
+                        <li class="dash_items"> <a id="bookmarked_vehicles_view" href="#"><i class="fa fa-bookmark"></i><span> Bookmarked Vehicles</span></a></li>
                         <li class="dash_items"> <a id="bookmarked_spare_part_view" href="#"><i class="fa fa-bookmark"></i><span> Bookmarked Spare Parts</span></a></li>
                         <li class="dash_items"> <a id="profile_link" href="#" ><i class="fa fa-user"></i> <span>My Profile</span></a></li>
                     <?php } ?>

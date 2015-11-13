@@ -1,10 +1,10 @@
 <h2>My Bookmarks</h2>
 
 
-<?php if (!empty($bookmarked_spare_parts_service)) { ?>
+<?php if (!empty($bookmarked_spare_parts)) { ?>
     <section id="items">
         <?php
-        foreach ($bookmarked_spare_parts_service as $vehicle) {
+        foreach ($bookmarked_spare_parts as $vehicle) {
             ?>
             <div class="item list admin-view" id="list_<?php echo $vehicle->bookmark_id; ?>">
                 <div class="image">
