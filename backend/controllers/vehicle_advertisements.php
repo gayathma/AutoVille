@@ -104,7 +104,7 @@ class Vehicle_advertisements extends CI_Controller {
                     $headers = 'MIME-Version: 1.0' . "\r\n";
                     $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
                     $headers .= 'From: AutoVille <info.autovillle@gmail.com>' . "\r\n";
-                    $headers .= 'Cc: heshani7.herath@gmail.com' . "\r\n";
+                    //$headers .= 'Cc: heshani7.herath@gmail.com' . "\r\n";
 
                     if (mail($email_to, $email_subject, $msg, $headers)) {
                         echo "1"; //mail sent
