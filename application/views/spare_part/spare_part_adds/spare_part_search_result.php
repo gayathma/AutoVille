@@ -32,13 +32,14 @@
             ?>
             <h4>Results</h4>
             <div class="row">
+                <input type="hidden" id="user_loged_id" value="<?php echo $this->session->userdata('USER_ID'); ?>"/>
                 <?php foreach ($results as $result) { ?>
                     <!--one result-->
                     <div class="col-md-<?php echo $class_no; ?> col-sm-<?php echo $class_no; ?>">
                         <div class="item" >
                             <div class="image">
                                 <div class="quick-view">
-                                    <i class="fa fa-plus" <?php if (!$this->session->userdata('USER_LOGGED_IN')) { ?> onclick="add_to_cart('<?php echo $result->id; ?>')" <?php } ?>></i><span>Add To Cart</span>
+                                    <i class="fa fa-plus"  onclick="add_to_cart('<?php echo $result->id; ?>')" ></i><span>Add To Cart</span>
                                 </div>       
 
                                 <a href="<?php echo site_url() ?>/spare_parts/spare_parts_advertisements/spare_part_advertisement_detail_view/<?php echo $result->id; ?>">
@@ -63,7 +64,7 @@
                                         <!--Bookmark-->
                                         <?php
                                         $bookmarked_spare_parts_service = new Bookmarked_spare_parts_service();
-                                        $bookmarked_spare_part_det = $bookmarked_spare_parts_service->get_bookmarkd_spare_part($this->session->userdata('USER_ID'), $result->id);
+                                        $bookmarked_spare_part_det      = $bookmarked_spare_parts_service->get_bookmarkd_spare_part($this->session->userdata('USER_ID'), $result->id);
                                         ?>                                        
 
                                         <!--Add New Bookmark-->
@@ -108,7 +109,7 @@
                             <div class="wrapper">
                                 <h3>
 
-                                    
+
                                 </h3>    
                             </div>
                         </div>                
@@ -131,86 +132,87 @@
 
 <script type="text/javascript">
 
-    function setting_pagination_content(url) {
+                                    function setting_pagination_content(url) {
 
-        $.post(url, {}, function (msg)
-        {
-            $('#spareparts_search_results').html(msg);
-        });
-    }
+                                        $.post(url, {}, function (msg)
+                                        {
+                                            $('#spareparts_search_results').html(msg);
+                                        });
+                                    }
 
-    //add spare parts to the cart
-    function add_to_cart(id) {
+                                    //add spare parts to the cart
+                                    function add_to_cart(id) {
+                                        if ($('#user_loged_id').val()) {
+                                            $.ajax({
+                                                type: "POST",
+                                                url: site_url + '/spare_parts/cart/add_items_to_cart',
+                                                data: "id=" + id,
+                                                success: function (msg) {
+                                                    if (msg != 0) {
+                                                        toastr.success("Successfully added to the cart!!", "AutoVille");
+                                                    } else {
+                                                        alert('Error loading vehicles');
+                                                    }
+                                                }
+                                            });
+                                        } else {
+                                            toastr.danger("Please log in to continue !!", "AutoVille");
+                                        }
 
-        //alert('added');
-
-        $.ajax({
-            type: "POST",
-            url: site_url + '/spare_parts/cart/add_items_to_cart',
-            data: "id=" + id,
-            success: function (msg) {
-                if (msg != 0) {
-                    toastr.success("Successfully added to the cart!!", "AutoVille");
-                } else {
-                    alert('Error loading vehicles');
-                }
-            }
-        });
-
-    }
+                                    }
 
 //bookmark spare part
-    function bookmark(spare_part_id) {
+                                    function bookmark(spare_part_id) {
 
-        var bookmark_status = $('#bookmark_status_' + spare_part_id).val();
-        var bookmark_id = $('#bookmark_id_' + spare_part_id).val();
+                                        var bookmark_status = $('#bookmark_status_' + spare_part_id).val();
+                                        var bookmark_id = $('#bookmark_id_' + spare_part_id).val();
 
-        if (bookmark_status == '0') {
-            //add bookmark
-            if (confirm('Bookmark this Vehicle?')) {
+                                        if (bookmark_status == '0') {
+                                            //add bookmark
+                                            if (confirm('Bookmark this Vehicle?')) {
 
-                $.ajax({
-                    type: "POST",
-                    url: site_url + '/spare_parts/bookmarked_spare_parts/bookmark_spare_part',
-                    data: "spare_part_id=" + spare_part_id,
-                    success: function (msg) {
-                        if (msg != 0) {
-                            toastr.success("Successfully Bookmarked!!", "AutoVille");
-                            $('#bookmark_status_' + spare_part_id).val('1');
-                            $('#bookmark_id_' + spare_part_id).val(msg);
-                            $('#star_img_' + spare_part_id).attr('src', '<?php echo base_url(); ?>application_resources/raty/images/star-on.png');
-                            $('#star_img_' + spare_part_id).attr('title', 'Remove Bookmark');
-                        } else {
-                            alert('Error!');
-                        }
-                    }
-                });
-            }
+                                                $.ajax({
+                                                    type: "POST",
+                                                    url: site_url + '/spare_parts/bookmarked_spare_parts/bookmark_spare_part',
+                                                    data: "spare_part_id=" + spare_part_id,
+                                                    success: function (msg) {
+                                                        if (msg != 0) {
+                                                            toastr.success("Successfully Bookmarked!!", "AutoVille");
+                                                            $('#bookmark_status_' + spare_part_id).val('1');
+                                                            $('#bookmark_id_' + spare_part_id).val(msg);
+                                                            $('#star_img_' + spare_part_id).attr('src', '<?php echo base_url(); ?>application_resources/raty/images/star-on.png');
+                                                            $('#star_img_' + spare_part_id).attr('title', 'Remove Bookmark');
+                                                        } else {
+                                                            alert('Error!');
+                                                        }
+                                                    }
+                                                });
+                                            }
 
-        } else if (bookmark_status == '1') {
-            //remove bookmark
-            if (confirm('Remove Bookmark?')) {
+                                        } else if (bookmark_status == '1') {
+                                            //remove bookmark
+                                            if (confirm('Remove Bookmark?')) {
 
-                $.ajax({
-                    type: "POST",
-                    url: site_url + '/bookmarked_spare_parts/remove_bookmark',
-                    data: "bookmark_id=" + bookmark_id,
-                    success: function (msg) {
-                        if (msg != 0) {
-                            toastr.success("Bookmark Removed Successfully!!", "AutoVille");
-                            $('#bookmark_status_' + spare_part_id).val('0');
-                            $('#bookmark_id_' + spare_part_id).val('0');
-                            $('#star_img_' + spare_part_id).attr('src', '<?php echo base_url(); ?>application_resources/raty/images/star-off.png');
-                            $('#star_img_' + spare_part_id).attr('title', 'Bookmark');
-                        } else {
-                            alert('Error!');
-                        }
-                    }
-                });
-            }
-        }
+                                                $.ajax({
+                                                    type: "POST",
+                                                    url: site_url + '/spare_parts/bookmarked_spare_parts/remove_bookmark',
+                                                    data: "bookmark_id=" + bookmark_id,
+                                                    success: function (msg) {
+                                                        if (msg != 0) {
+                                                            toastr.success("Bookmark Removed Successfully!!", "AutoVille");
+                                                            $('#bookmark_status_' + spare_part_id).val('0');
+                                                            $('#bookmark_id_' + spare_part_id).val('0');
+                                                            $('#star_img_' + spare_part_id).attr('src', '<?php echo base_url(); ?>application_resources/raty/images/star-off.png');
+                                                            $('#star_img_' + spare_part_id).attr('title', 'Bookmark');
+                                                        } else {
+                                                            alert('Error!');
+                                                        }
+                                                    }
+                                                });
+                                            }
+                                        }
 
-    }
+                                    }
 
 </script>
 

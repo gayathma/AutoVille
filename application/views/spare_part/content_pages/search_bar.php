@@ -52,7 +52,7 @@
 <div id="spareparts_search_results" class="inner col-lg-12" style="padding: 30px">
 
 </div>
-
+<script src="<?php echo base_url(); ?>application_resources/assets/toastr-master/toastr.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
 

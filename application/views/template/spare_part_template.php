@@ -18,12 +18,13 @@
         <link rel="stylesheet" href="<?php echo base_url(); ?>application_resources/assets/css/jquery.nouislider.min.css" type="text/css">
         <link rel="stylesheet" href="<?php echo base_url(); ?>application_resources/assets/css/colors/blue.css" type="text/css">
         <link href="<?php echo base_url(); ?>application_resources/pusher/pusher-chat-widget.css" rel="stylesheet" />
+        <link href="<?php echo base_url(); ?>application_resources/assets/toastr-master/toastr.css" rel="stylesheet" type="text/css" />
 
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery-2.1.0.min.js"></script>       
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/before.load.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery-ui.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery.validate.min.js"></script>
-
+        <script src="<?php echo base_url(); ?>application_resources/assets/toastr-master/toastr.js"></script>
         <title>AutoVille</title>
 
         <script type="text/javascript">
@@ -56,7 +57,7 @@
                                             <a href="<?php echo site_url(); ?>/spare_parts/cart/load_cart_view" style="text-decoration: none;color: white">
                                                 <button style="border: 0px solid black; background-color: transparent; position: relative;">
                                                     <i class="fa fa-shopping-cart"></i>
-                                                    <span style="position: absolute; top: -11px; right: 0px; width: 22px; height: 22px; border-radius: 25px;background:#00A8B3">5</span>
+                                                    <span style="position: absolute; top: -11px; right: 0px; width: 22px; height: 22px; border-radius: 25px;background:#00A8B3;transform: scale(0);">0</span>
                                                 </button>
                                             </a>
                                         </div>
