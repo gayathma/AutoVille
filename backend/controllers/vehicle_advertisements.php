@@ -98,6 +98,7 @@ class Vehicle_advertisements extends CI_Controller {
                     $data['vehicle_id']   = trim($this->input->post('vehicle_id', TRUE));
                     $data['seller_title'] = $subscriber->title;
                     $data['seller']       = $subscriber->seller_name;
+                    $data['link']         = $this->config->item('URL') . '/vehicle_advertisements/vehicle_advertisement_detail_view/' . trim($this->input->post('vehicle_id', TRUE));
 
                     $msg = $this->load->view('template/mail_template/seller_subscription_notification', $data, TRUE);
 
