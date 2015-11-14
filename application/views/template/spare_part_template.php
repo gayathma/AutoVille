@@ -53,11 +53,21 @@
                                 <ul class="user-area">
                                     <!--cart-->   
                                     <li>
+                                        <?php
+                                        $cart_count = 0;
+                                        $cart_class = '';
+                                        if ($this->session->userdata('USER_LOGGED_IN')) {
+                                            $cart_service = new Cart_service();
+                                            $cart_count   = $cart_service->get_cart_items_count_by_id($this->session->userdata('USER_ID'));
+                                            $cart_class = 'items-added';
+                                        }
+                                        ?>
+
                                         <div class="btn-group cd-cart" id="cart_list">                                                
                                             <a href="<?php echo site_url(); ?>/spare_parts/cart/load_cart_view" style="text-decoration: none;color: white">
                                                 <button style="border: 0px solid black; background-color: transparent; position: relative;">
                                                     <i class="fa fa-shopping-cart"></i>
-                                                    <span style="position: absolute; top: -11px; right: 0px; width: 22px; height: 22px; border-radius: 25px;background:#00A8B3;transform: scale(0);">0</span>
+                                                    <span id="cart_span" style="position: absolute; top: -11px; right: 0px; width: 22px; height: 22px; border-radius: 25px;background:#00A8B3;transform: scale(0);" class="<?php echo $cart_class;?>"><?php echo $cart_count;?></span>
                                                 </button>
                                             </a>
                                         </div>
@@ -308,50 +318,50 @@
 
 <script>
 
-                                            $(document).ready(function () {
+            $(document).ready(function() {
 
 <?php if ($this->session->userdata('USER_LOGGED_IN')) { ?>
-                                                    $.ajax({
-                                                        type: "POST",
-                                                        url: site_url + '/vehicle_compare/load_vehicle_popup',
-                                                        success: function (msg) {
-                                                            if (msg != 0) {
-                                                                $('#compare_vehicle_list').html(msg);
-                                                            } else {
-                                                                alert('Error loading vehicles');
-                                                            }
-                                                        }
-                                                    });
+                    $.ajax({
+                        type: "POST",
+                        url: site_url + '/vehicle_compare/load_vehicle_popup',
+                        success: function(msg) {
+                            if (msg != 0) {
+                                $('#compare_vehicle_list').html(msg);
+                            } else {
+                                alert('Error loading vehicles');
+                            }
+                        }
+                    });
 
 <?php } else { ?>
-                                                    $.jStorage.flush();
-                                                    var jSindex = $.jStorage.index();
+                    $.jStorage.flush();
+                    var jSindex = $.jStorage.index();
 
-                                                    var compareBtn = '<li><a href="<?php echo site_url(); ?>/vehicle_compare/load_compare_vehicles_dashboard_unreg_user" class="dealer-name"><button id="compareButton">Compare</button></a></li>';
+                    var compareBtn = '<li><a href="<?php echo site_url(); ?>/vehicle_compare/load_compare_vehicles_dashboard_unreg_user" class="dealer-name"><button id="compareButton">Compare</button></a></li>';
 
-                                                    var li_list = '<button style="border:0px solid black; background-color: transparent;" data-toggle="dropdown"><i class="fa fa-road"></i> Compare(' + jSindex.length + ')<span class="caret"></span></button><ul class="dropdown-menu" id="added_vehicle_list">';
+                    var li_list = '<button style="border:0px solid black; background-color: transparent;" data-toggle="dropdown"><i class="fa fa-road"></i> Compare(' + jSindex.length + ')<span class="caret"></span></button><ul class="dropdown-menu" id="added_vehicle_list">';
 
-                                                    if (jSindex.length == 0) {
-                                                        li_list += '<li>Add Vehicle</li>';
-                                                    }
+                    if (jSindex.length == 0) {
+                        li_list += '<li>Add Vehicle</li>';
+                    }
 
-                                                    for (i = 0; i < jSindex.length; i++) {
-                                                        li_list += $.jStorage.get(jSindex[i]);
-                                                    }
+                    for (i = 0; i < jSindex.length; i++) {
+                        li_list += $.jStorage.get(jSindex[i]);
+                    }
 
-                                                    if (jSindex.length >= 2) {
-                                                        li_list += compareBtn;
-                                                    }
+                    if (jSindex.length >= 2) {
+                        li_list += compareBtn;
+                    }
 
-                                                    li_list += '</ul>';
-                                                    $('#compare_vehicle_list').html(li_list);
+                    li_list += '</ul>';
+                    $('#compare_vehicle_list').html(li_list);
 
 <?php } ?>
 
-                                                function signOut() {
-                                                    var auth2 = gapi.auth2.getAuthInstance();
-                                                    auth2.signOut();
-                                                }
-                                            });
+                function signOut() {
+                    var auth2 = gapi.auth2.getAuthInstance();
+                    auth2.signOut();
+                }
+            });
 
 </script>

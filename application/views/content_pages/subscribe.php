@@ -30,7 +30,7 @@
                     if (msg == 1) {
                         toastr.success("Subscription successful !!", "AutoVille");
                     }else if(msg == 0){
-                        toastr.danger("You already subscribed to the newsletter !!", "AutoVille");
+                        toastr.error("You already subscribed to the newsletter !!", "AutoVille");
                     }
                 });
 

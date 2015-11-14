@@ -6760,13 +6760,13 @@ body.navigation-top-header .header .wrapper .toggle-navigation {
   transition: transform 0.2s 0s;
 }
 
-.cd-cart.items-added span {
+.items-added {
   /* counter visible when a product is added to the cart */
   -webkit-transform: scale(1);
   -moz-transform: scale(1);
   -ms-transform: scale(1);
   -o-transform: scale(1);
-  transform: scale(1);
+  transform: scale(1) !important;
 }
 
 @keyframes fade_out_animation {

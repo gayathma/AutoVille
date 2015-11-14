@@ -121,7 +121,7 @@
                                                 $('#list_' + id).hide();
                                                 toastr.success("Successfully removed from your garage !!", "AutoVille");
                                             } else if (msg == 2) {
-                                                toastr.danger('Error occured. !!', "AutoVille");
+                                                toastr.error('Error occured. !!', "AutoVille");
                                             }
                                         }
                                     });

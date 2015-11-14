@@ -24,7 +24,7 @@
                         <div class="item-specific">
                             <span class="price"><?php echo "Rs. " . number_format($vehicle->price, 2, '.', ','); ?></span>
                         </div>
-                        <img  class="lazy" src="<?php echo base_url() . 'uploads/celebrity/' . $value->image; ?> "> 
+                        <img src="<?php echo base_url() . 'uploads/spare_part_images/' . $vehicle->image; ?>" height="180" width="260" alt=""/>
                      
                     </a>
                 </div>
@@ -33,21 +33,7 @@
                         <h3><?php echo $vehicle->manufacture . " " . $vehicle->model . " " . $vehicle->year; ?></h3>
                     </a>
                     <figure><?php echo substr($vehicle->description, 0, strrpos(substr($vehicle->description, 0, 50), ' ')); ?> <a href="<?php echo site_url() ?>/spare_parts/spare_parts_advertisements/spare_part_advertisement_detail_view/<?php echo $vehicle->id; ?>"> .. <strong>Readmore</strong></a></figure>
-
-                    <div class="info">
-                        <div class="type">
-                            <i>
-                                <img alt="" src="<?php echo base_url() . 'application_resources/assets/icons/transportation/road-transportation/caraccident.png' ?>">
-                            </i>
-                            <span><?php echo $vehicle->sale_type; ?></span>
-                        </div>
-                        <div class="type">
-                            <i>
-                                <img alt="" src="<?php echo base_url() . 'application_resources/assets/icons/transportation/road-transportation/car.png' ?>">
-                            </i>
-                            <span><?php echo $vehicle->body_type; ?></span>
-                        </div>
-                    </div>
+                    
                 </div>
                 <div class="description">
                     <ul class="list-unstyled actions">
@@ -82,7 +68,7 @@
 
             $.ajax({
                 type: "POST",
-                url: site_url + '/bookmarked_vehicles/remove_bookmark',
+                url: site_url + '/bookmarked_spare_parts/remove_bookmark',
                 data: "bookmark_id=" + bookmark_id,
                 success: function(msg) {
                     if (msg != 0) {

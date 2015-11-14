@@ -149,24 +149,26 @@
                 data: "id=" + id,
                 success: function (msg) {
                     if (msg != 0) {
-                        var cart_val = $('#cart_list').val();
-                        if ($('#cart_list').val() == '0') {
-                            $('#cart_list').addClass('items-added');
-                            cart_val += parseInt(cart_val) + 1;
-                            $('#cart_list').val(cart_val);
+                        var cart_val = $('#cart_span').html();
+                        if (cart_val == '0') {
+                            $('#cart_span').addClass('items-added');
+                            cart_val = parseInt(cart_val) + 1;
+                            $('#cart_span').html("");
+                            $('#cart_span').html(cart_val);
                         } else {
-                            cart_val += parseInt(cart_val) + 1;
-                            $('#cart_list').val(cart_val);
+                            cart_val = parseInt(cart_val) + 1;
+                            $('#cart_span').html("");
+                            $('#cart_span').html(cart_val);
                         }
                         toastr.success("Successfully added to the cart!!", "AutoVille");
                     } else {
-                        alert('Error loading vehicles');
+                       toastr.error("Error Occured !!", "AutoVille");
                     }
                 }
             });
 
         } else {
-            toastr.danger("Please log in to continue !!", "AutoVille");
+            toastr.error("Please log in to continue !!", "AutoVille");
         }
 
     }
@@ -193,7 +195,7 @@
                             $('#star_img_' + spare_part_id).attr('src', '<?php echo base_url(); ?>application_resources/raty/images/star-on.png');
                             $('#star_img_' + spare_part_id).attr('title', 'Remove Bookmark');
                         } else {
-                            alert('Error!');
+                            toastr.error("Error Occured !!", "AutoVille");
                         }
                     }
                 });
@@ -215,7 +217,7 @@
                             $('#star_img_' + spare_part_id).attr('src', '<?php echo base_url(); ?>application_resources/raty/images/star-off.png');
                             $('#star_img_' + spare_part_id).attr('title', 'Bookmark');
                         } else {
-                            alert('Error!');
+                            toastr.error("Error Occured !!", "AutoVille");
                         }
                     }
                 });

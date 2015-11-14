@@ -13,6 +13,9 @@ class Home extends CI_Controller {
         
         $this->load->model('vehicle_advertisments/vehicle_advertisments_model');
         $this->load->model('vehicle_advertisments/vehicle_advertisments_service');
+        
+        $this->load->model('cart/cart_model');
+        $this->load->model('cart/cart_service');
     }
 
     /**
