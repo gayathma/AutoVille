@@ -27,9 +27,9 @@
             {
                 $.post(site_url + '/home/subscribe', $('#subscribe_form').serialize(), function(msg)
                 {                  
-                    if (msg == 1) {
+                    if (msg == '1') {
                         toastr.success("Subscription successful !!", "AutoVille");
-                    }else if(msg == 0){
+                    }else if(msg == '0'){
                         toastr.error("You already subscribed to the newsletter !!", "AutoVille");
                     }
                 });

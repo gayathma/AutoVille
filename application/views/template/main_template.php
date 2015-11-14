@@ -16,12 +16,13 @@
         <link rel="stylesheet" href="<?php echo base_url(); ?>application_resources/assets/css/style.css" type="text/css">
         <link rel="stylesheet" href="<?php echo base_url(); ?>application_resources/assets/css/jquery.nouislider.min.css" type="text/css">
         <link rel="stylesheet" href="<?php echo base_url(); ?>application_resources/assets/css/colors/blue.css" type="text/css">
-        <!--<link rel="stylesheet" href="<?php echo base_url(); ?>application_resources/assets/css/user.style.css" type="text/css">-->
+        <link href="<?php echo base_url(); ?>application_resources/assets/toastr-master/toastr.css" rel="stylesheet" type="text/css" />
         <link href="<?php echo base_url(); ?>application_resources/pusher/pusher-chat-widget.css" rel="stylesheet" />
 
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery-2.1.0.min.js"></script>       
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/before.load.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery-ui.min.js"></script>
+        <script src="<?php echo base_url(); ?>application_resources/assets/toastr-master/toastr.js"></script>
 
         <title>AutoVille</title>
 
@@ -354,8 +355,6 @@
     <![endif]-->
     </body>
 </html>
-
-<script src="<?php echo base_url(); ?>application_resources/assets/toastr-master/toastr.js"></script>
 <script src="<?php echo base_url(); ?>application_resources/jStorage/json2.js"></script>
 <script src="<?php echo base_url(); ?>application_resources/jStorage/jstorage.js"></script>
 

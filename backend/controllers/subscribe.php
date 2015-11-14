@@ -80,12 +80,12 @@ class Subscribe extends CI_Controller {
         $newsletters_model->set_content($this->input->post('content', TRUE));
         $newsletters_model->set_status('0'); //not sent
         $newsletters_model->set_added_date(date("Y-m-d H:i:s"));
-        
+
         if ($id == '') {
             $result = $newsletters_service->add_newsletter($newsletters_model);
         } else {
             $newsletters_model->set_id($id);
-            
+
             $result = $newsletters_service->update_newsletter($newsletters_model);
         }
         echo $result;
@@ -110,30 +110,34 @@ class Subscribe extends CI_Controller {
             $result = $newsletters_service->add_newsletter($newsletters_model);
         } else {
             $newsletters_model->set_id($id);
-            
+
             $result = $newsletters_service->update_newsletter($newsletters_model);
         }
 
         //send newsletters to subscribers
         $subscribers = $subscribers_service->get_active_subscribers();
-        foreach ($subscribers as $subscriber) {
-            //send email
-            $token           = $this->generate_random_string(); //generate account activation token
-            $email_to        = $subscriber->email;
-            $email_subject   = $this->input->post('subject', TRUE);
-            $data['link']    = $this->config->item('URL') . '/home/unsubscribe?email=' . $subscriber->email . '&token=' . $token;
-            $data['content'] = $subscriber->content;
+        if (!empty($subscribers)) {
+            foreach ($subscribers as $subscriber) {
+                //send email
+                $token           = $this->generate_random_string(); //generate account activation token
+                $email_to        = $subscriber->email;
+                $email_subject   = $this->input->post('subject', TRUE);
+                $data['link']    = $this->config->item('URL') . '/home/unsubscribe?email=' . $subscriber->email . '&token=' . $token;
+                $data['content'] = $this->input->post('content', TRUE);
 
-            $msg = $this->load->view('template/mail_template/newsletter', $data, TRUE);
+                $msg = $this->load->view('template/mail_template/newsletter', $data, TRUE);
 
-            $headers = 'MIME-Version: 1.0' . "\r\n";
-            $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-            $headers .= 'From: AutoVille <info.autovillle@gmail.com>' . "\r\n";
-            $headers .= 'Cc: gayathma3@gmail.com' . "\r\n";
+                $headers = 'MIME-Version: 1.0' . "\r\n";
+                $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+                $headers .= 'From: AutoVille <info.autovillle@gmail.com>' . "\r\n";
+                $headers .= 'Cc: gayathma3@gmail.com' . "\r\n";
 
-            $result = mail($email_to, $email_subject, $msg, $headers);
+                $result = mail($email_to, $email_subject, $msg, $headers);
+            }
+
+            echo $result;
+            die();
         }
-        echo $result;
     }
 
     /**
@@ -168,24 +172,28 @@ class Subscribe extends CI_Controller {
         //send newsletters to subscribers
         $result      = 0;
         $subscribers = $subscribers_service->get_active_subscribers();
-        foreach ($subscribers as $subscriber) {
-            //send email
-            $token           = $this->generate_random_string(); //generate account activation token
-            $email_to        = $subscriber->email;
-            $email_subject   = $this->input->post('subject', TRUE);
-            $data['link']    = $this->config->item('URL') . '/home/unsubscribe?email=' . $subscriber->email . '&token=' . $token;
-            $data['content'] = $subscriber->content;
+        if (!empty($subscribers)) {
+            foreach ($subscribers as $subscriber) {
+                //send email
+                $token           = $this->generate_random_string(); //generate account activation token
+                $email_to        = $subscriber->email;
+                $email_subject   = $this->input->post('subject', TRUE);
+                $data['link']    = $this->config->item('URL') . '/home/unsubscribe?email=' . $subscriber->email . '&token=' . $token;
+                $data['content'] = $this->input->post('content', TRUE);
 
-            $msg = $this->load->view('template/mail_template/newsletter', $data, TRUE);
+                $msg = $this->load->view('template/mail_template/newsletter', $data, TRUE);
 
-            $headers = 'MIME-Version: 1.0' . "\r\n";
-            $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-            $headers .= 'From: AutoVille <info.autovillle@gmail.com>' . "\r\n";
-            $headers .= 'Cc: gayathma3@gmail.com' . "\r\n";
+                $headers = 'MIME-Version: 1.0' . "\r\n";
+                $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+                $headers .= 'From: AutoVille <info.autovillle@gmail.com>' . "\r\n";
+                $headers .= 'Cc: gayathma3@gmail.com' . "\r\n";
 
-            $result = mail($email_to, $email_subject, $msg, $headers);
+                $result = mail($email_to, $email_subject, $msg, $headers);
+            }
+
+            echo $result;
+            die();
         }
-        echo $result;
     }
 
 }
