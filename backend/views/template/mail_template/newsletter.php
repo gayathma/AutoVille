@@ -185,7 +185,7 @@
                                                     <tr>
                                                         <td style="font-size:40px; font-weight: 600; color: #ffffff; text-align:center;" class="mobile-spacing">
                                                             <div class="mobile-br">&nbsp;</div>
-                                                            AutoVille Newsletter
+                                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AutoVille Newsletter
                                                             <br/>
                                                         </td>
                                                     </tr>

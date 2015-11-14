@@ -109,7 +109,7 @@
 
                                     <span id="add_like_div">
                                         <a class="star_class" style="cursor: pointer" title="I Love this" <?php if ($this->session->userdata('USER_LOGGED_IN')) { ?> onclick="like_vehicle('<?php echo $result->id; ?>')" <?php } ?> >              
-                                            <i class="fa fa-heart"></i>
+                                            <i class="fa fa-heart" style="color: #ff69b4"></i>
                                             <span id="like_count_<?php echo $result->id; ?>"><?php echo $likes->like_count; ?></span>
                                         </a>                                         
                                     </span>
@@ -121,7 +121,7 @@
 
                                     <span id="add_dislike_div">
                                         <a class="star_class" style="cursor: pointer" title="Broken Heart" <?php if ($this->session->userdata('USER_LOGGED_IN')) { ?> onclick="dislike_vehicle('<?php echo $result->id; ?>')" <?php } ?>  >              
-                                            <i class="fa fa-heart-o"></i>
+                                            <i class="fa fa-heart-o" style="color: #ff69b4"></i>
                                             <span id="dislike_count_<?php echo $result->id; ?>"><?php echo $dislikes->dislike_count; ?></span>
                                         </a>
                                     </span>                                   
