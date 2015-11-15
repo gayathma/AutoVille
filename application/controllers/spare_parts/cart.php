@@ -15,6 +15,9 @@ class Cart extends CI_Controller {
         $this->load->model('vehicle_advertisments/vehicle_advertisments_service');
     }
 
+    /**
+     *Add new spare part to the cart
+     */
     function add_items_to_cart() {
 
         $cart_model   = new Cart_model();
@@ -27,6 +30,9 @@ class Cart extends CI_Controller {
         echo $cart_service->add_to_cart($cart_model);
     }
 
+    /**
+     * Load cart view
+     */
     function load_cart_view() {
         $cart_service                  = new Cart_service();
         $vehicle_advertisement_service = new Vehicle_advertisments_service();
@@ -41,6 +47,9 @@ class Cart extends CI_Controller {
         $this->template->load('template/spare_part_template', $parials, $data);
     }
 
+    /**
+     * Remove spare part from cart
+     */
     function delete_cart_items() {
         $cart_service = new Cart_service();
 

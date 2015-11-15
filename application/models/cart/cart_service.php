@@ -40,6 +40,11 @@ class Cart_service extends CI_Model {
         return $this->db->count_all_results();
     }
 
+    /**
+     * Delete spare part from the cart
+     * @param type $id
+     * @return type
+     */
     function delete_item($id) {
         return $this->db->delete('cart', array('id' => $id));
     }
