@@ -68,7 +68,7 @@
 
             $.ajax({
                 type: "POST",
-                url: site_url + '/bookmarked_spare_parts/remove_bookmark',
+                url: site_url + '/spare_parts/bookmarked_spare_parts/remove_bookmark',
                 data: "bookmark_id=" + bookmark_id,
                 success: function(msg) {
                     if (msg != 0) {
