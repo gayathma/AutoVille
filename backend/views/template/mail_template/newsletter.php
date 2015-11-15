@@ -214,7 +214,7 @@
 
                                                 <center>
 
-                                                    <table style="margin: 0 auto;" cellspacing="0" cellpadding="0" class="force-width-80">
+                                                    <table style="margin: 5 auto;" cellspacing="0" cellpadding="0" class="force-width-80">
                                                         <tr>
                                                             <td style="text-align: left;">
                                                                 <br>
