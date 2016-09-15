@@ -4,5 +4,5 @@ AutoVille is an E-Vehicle Portal which includes all the facilities for a user wh
 
 
 ## Screenshots
-![Alt text](/sc1.png?raw=true "Autoville")
-![Alt text](/sc2.png?raw=true "Autoville Search Results")
+![Alt text](/sc1.PNG?raw=true "Autoville")
+![Alt text](/sc2.PNG?raw=true "Autoville Search Results")
